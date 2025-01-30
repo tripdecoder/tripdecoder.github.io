@@ -1,0 +1,183 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header */
+header {
+  background: #333;
+  color: #fff;
+  padding: 20px 0;
+}
+
+header .logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+header nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+header nav ul li {
+  margin-right: 20px;
+}
+
+header nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+header .cta-button {
+  background: #ff6347;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+  background: url('rio-hero.jpg') no-repeat center center/cover;
+  color: #fff;
+  padding: 100px 0;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.hero .search-form input {
+  padding: 10px;
+  width: 300px;
+  border: none;
+}
+
+.hero .search-form button {
+  padding: 10px 20px;
+  background: #ff6347;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+/* Featured Tours */
+.featured-tours {
+  padding: 50px 0;
+}
+
+.featured-tours h2 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.tour-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.tour-card {
+  background: #f4f4f4;
+  padding: 20px;
+  text-align: center;
+}
+
+.tour-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.tour-card h3 {
+  margin: 15px 0;
+}
+
+.tour-card .price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ff6347;
+}
+
+.tour-card button {
+  background: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+/* Testimonials */
+.testimonials {
+  background: #f4f4f4;
+  padding: 50px 0;
+}
+
+.testimonials h2 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.testimonial-card {
+  background: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+.testimonial-card .author {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Footer */
+footer {
+  background: #333;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
+
+footer .footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+footer .footer-links ul li {
+  margin-bottom: 10px;
+}
+
+footer .footer-links ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+footer .social-media a {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+}
