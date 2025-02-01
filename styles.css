@@ -3,6 +3,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  color: #333;
   line-height: 1.6;
 }
 
@@ -12,48 +13,78 @@ body {
   margin: 0 auto;
 }
 
-/* Header */
+/* Header Styles */
 header {
-  background: #333;
-  color: #fff;
-  padding: 20px 0;
+  display: flex;
+  align-items: center; /* Center the header content vertically */
+  justify-content: space-between; /* Space out the logo, nav, and button */
+  padding: 10px 0;
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-header .logo {
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the logo horizontally */
+  gap: 10px; /* Space between logo and text */
   font-size: 24px;
   font-weight: bold;
+  color: #333;
 }
 
-header nav ul {
+.logo-img {
+  width: 20px; /* 50% smaller than the original 40px */
+  height: 20px; /* 50% smaller than the original 40px */
+  border-radius: 50%; /* Makes the logo circular for a friendly look */
+  transition: transform 0.3s ease; /* Adds a hover effect */
+}
+
+.logo-img:hover {
+  transform: scale(1.1); /* Slightly enlarges the logo on hover */
+}
+
+nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
+  gap: 20px;
 }
 
-header nav ul li {
-  margin-right: 20px;
-}
-
-header nav ul li a {
-  color: #fff;
+nav ul li a {
   text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
 }
 
-header .cta-button {
-  background: #ff6347;
+nav ul li a:hover {
+  color: #007bff;
+}
+
+.cta-button {
+  background-color: #007bff;
   color: #fff;
   border: none;
   padding: 10px 20px;
+  border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-/* Hero Section */
+.cta-button:hover {
+  background-color: #0056b3;
+}
+
+/* Hero Section Styles */
 .hero {
-  background: url('rio-hero.jpg') no-repeat center center/cover;
+  background-image: url('rio-hero.jpg'); /* Add your hero image here */
+  background-size: cover;
+  background-position: center;
   color: #fff;
-  padding: 100px 0;
   text-align: center;
+  padding: 100px 0;
 }
 
 .hero h1 {
@@ -62,44 +93,65 @@ header .cta-button {
 }
 
 .hero p {
-  font-size: 20px;
+  font-size: 18px;
   margin-bottom: 30px;
 }
 
-.hero .search-form input {
+.search-form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.search-form input {
   padding: 10px;
   width: 300px;
   border: none;
+  border-radius: 5px;
 }
 
-.hero .search-form button {
+.search-form button {
   padding: 10px 20px;
-  background: #ff6347;
+  background-color: #007bff;
   color: #fff;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-/* Featured Tours */
+.search-form button:hover {
+  background-color: #0056b3;
+}
+
+/* Featured Tours Section Styles */
 .featured-tours {
-  padding: 50px 0;
+  padding: 60px 0;
+  text-align: center;
 }
 
 .featured-tours h2 {
-  text-align: center;
+  font-size: 36px;
   margin-bottom: 40px;
 }
 
 .tour-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
 }
 
 .tour-card {
-  background: #f4f4f4;
-  padding: 20px;
-  text-align: center;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tour-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .tour-card img {
@@ -109,96 +161,125 @@ header .cta-button {
 }
 
 .tour-card h3 {
+  font-size: 24px;
   margin: 15px 0;
+}
+
+.tour-card p {
+  font-size: 16px;
+  color: #666;
+  padding: 0 15px;
 }
 
 .tour-card .price {
   font-size: 20px;
   font-weight: bold;
-  color: #ff6347;
+  color: #007bff;
+  margin: 15px 0;
 }
 
 .tour-card button {
-  background: #333;
+  background-color: #007bff;
   color: #fff;
   border: none;
   padding: 10px 20px;
+  border-radius: 5px;
   cursor: pointer;
+  margin-bottom: 15px;
+  transition: background-color 0.3s ease;
 }
 
-/* Testimonials */
+.tour-card button:hover {
+  background-color: #0056b3;
+}
+
+/* Testimonials Section Styles */
 .testimonials {
-  background: #f4f4f4;
-  padding: 50px 0;
+  background-color: #f8f9fa;
+  padding: 60px 0;
+  text-align: center;
 }
 
 .testimonials h2 {
-  text-align: center;
+  font-size: 36px;
   margin-bottom: 40px;
 }
 
 .testimonial-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
 }
 
 .testimonial-card {
-  background: #fff;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
   padding: 20px;
-  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-card p {
+  font-size: 16px;
+  color: #666;
 }
 
 .testimonial-card .author {
+  font-size: 14px;
   font-weight: bold;
+  color: #333;
   margin-top: 10px;
 }
 
-/* Footer */
+/* Footer Styles */
 footer {
-  background: #333;
+  background-color: #333;
   color: #fff;
-  padding: 20px 0;
+  padding: 40px 0;
   text-align: center;
 }
 
-footer .footer-links ul {
-  list-style: none;
-  padding: 0;
-}
-
-footer .footer-links ul li {
-  margin-bottom: 10px;
-}
-
-footer .footer-links ul li a {
-  color: #fff;
-  text-decoration: none;
-}
-
-footer .social-media a {
-  color: #fff;
-  margin: 0 10px;
-  text-decoration: none;
-}
-
-/* Logo Styling */
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* Space between logo and text */
+.footer-logo {
   font-size: 24px;
   font-weight: bold;
-  color: #333; /* Adjust color as needed */
+  margin-bottom: 20px;
 }
 
-.logo-img {
-  width: 40px; /* Adjust size as needed */
-  height: 40px; /* Adjust size as needed */
-  border-radius: 50%; /* Makes the logo circular for a friendly look */
-  transition: transform 0.3s ease; /* Adds a hover effect */
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
-.logo-img:hover {
-  transform: scale(1.1); /* Slightly enlarges the logo on hover */
+.footer-links ul li a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+  color: #007bff;
+}
+
+.social-media {
+  margin-top: 20px;
+}
+
+.social-media a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+  transition: color 0.3s ease;
+}
+
+.social-media a:hover {
+  color: #007bff;
 }
