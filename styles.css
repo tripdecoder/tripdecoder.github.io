@@ -181,3 +181,24 @@ footer .social-media a {
   margin: 0 10px;
   text-decoration: none;
 }
+
+/* Logo Styling */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between logo and text */
+  font-size: 24px;
+  font-weight: bold;
+  color: #333; /* Adjust color as needed */
+}
+
+.logo-img {
+  width: 40px; /* Adjust size as needed */
+  height: 40px; /* Adjust size as needed */
+  border-radius: 50%; /* Makes the logo circular for a friendly look */
+  transition: transform 0.3s ease; /* Adds a hover effect */
+}
+
+.logo-img:hover {
+  transform: scale(1.1); /* Slightly enlarges the logo on hover */
+}
