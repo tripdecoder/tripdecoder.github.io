@@ -1,243 +1,118 @@
-/* General Styles */
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
 }
 
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Header */
 header {
-  background-color: #333;
-  color: #fff;
-  padding: 10px 0;
+    background-color: #2c3e50;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 header .logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+    display: flex;
+    align-items: center;
 }
 
-header .logo-img {
-  width: 40px; /* Coin-sized logo */
-  height: 40px;
-  border-radius: 50%; /* Optional: Make it circular */
-  object-fit: cover;
-}
-
-header .logo span {
-  font-size: 1.2rem;
-  font-weight: bold;
+header .logo img {
+    height: 50px;
+    margin-right: 10px;
 }
 
 header nav ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+header nav ul li {
+    margin-left: 20px;
 }
 
 header nav ul li a {
-  color: #fff;
-  text-decoration: none;
+    color: #fff;
+    text-decoration: none;
 }
 
-header .cta-button {
-  background-color: #ff6347;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 5px;
+section {
+    padding: 20px;
 }
 
-header .cta-button:hover {
-  background-color: #ff4500;
+#home {
+    background: url('brazil-bg.jpg') no-repeat center center/cover;
+    color: #fff;
+    text-align: center;
+    padding: 100px 20px;
 }
 
-/* Hero Section */
-.hero {
-  background: url('rio-hero.jpg') no-repeat center center/cover;
-  color: #fff;
-  text-align: center;
-  padding: 100px 0;
+#home h2 {
+    font-size: 2.5em;
 }
 
-.hero h1 {
-  font-size: 3rem;
-  margin-bottom: 20px;
+#home p {
+    font-size: 1.2em;
 }
 
-.hero p {
-  font-size: 1.2rem;
-  margin-bottom: 30px;
+#home form {
+    margin-top: 20px;
 }
 
-.hero .search-form {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
+#home form input {
+    padding: 10px;
+    width: 300px;
+    border: none;
+    border-radius: 5px;
 }
 
-.hero .search-form input {
-  padding: 10px;
-  width: 300px;
-  border: none;
-  border-radius: 5px;
+#home form button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #e67e22;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.hero .search-form button {
-  padding: 10px 20px;
-  background-color: #ff6347;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+#tours .tour-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
-.hero .search-form button:hover {
-  background-color: #ff4500;
+#tours .tour-item {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    width: calc(33.333% - 40px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* Featured Tours */
-.featured-tours {
-  padding: 50px 0;
-  text-align: center;
+#tours .tour-item img {
+    width: 100%;
+    border-radius: 10px;
 }
 
-.featured-tours h2 {
-  font-size: 2rem;
-  margin-bottom: 30px;
+#tours .tour-item h3 {
+    margin-top: 10px;
 }
 
-.tour-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+#tours .tour-item a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #e67e22;
+    text-decoration: none;
 }
 
-.tour-card {
-  background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.tour-card img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-.tour-card h3 {
-  font-size: 1.5rem;
-  margin: 15px 0;
-}
-
-.tour-card p {
-  font-size: 1rem;
-  color: #555;
-}
-
-.tour-card .price {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #ff6347;
-}
-
-.tour-card button {
-  background-color: #ff6347;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.tour-card button:hover {
-  background-color: #ff4500;
-}
-
-/* Testimonials */
-.testimonials {
-  background-color: #f1f1f1;
-  padding: 50px 0;
-  text-align: center;
-}
-
-.testimonials h2 {
-  font-size: 2rem;
-  margin-bottom: 30px;
-}
-
-.testimonial-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
-
-.testimonial-card {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.testimonial-card p {
-  font-size: 1rem;
-  color: #555;
-}
-
-.testimonial-card .author {
-  font-size: 0.9rem;
-  font-weight: bold;
-  color: #333;
-}
-
-/* Footer */
 footer {
-  background-color: #333;
-  color: #fff;
-  padding: 20px 0;
-  text-align: center;
+    background-color: #2c3e50;
+    color: #fff;
+    text-align: center;
+    padding: 10px 20px;
+    margin-top: 20px;
 }
-
-footer .footer-logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-footer .footer-links ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-footer .footer-links ul li a {
-  color: #fff;
-  text-decoration: none;
-}
-
-footer .social-media {
-  margin: 20px 0;
-}
-
-footer .social-media a {
-  color: #fff;
-  text-decoration: none;
-  margin: 0 10px;
-}
-
-footer .copyright {
-  font-size: 0.9rem;
-  color: #ccc;
