@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enquete: Melhores Atrações de Niterói</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #results {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #results li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Qual é a sua atração favorita em Niterói?</h1>
+        <form id="pollForm">
+            <label>
+                <input type="radio" name="attraction" value="MAC"> Museu de Arte Contemporânea (MAC)
+            </label>
+            <label>
+                <input type="radio" name="attraction" value="Fortaleza"> Fortaleza de Santa Cruz
+            </label>
+            <label>
+                <input type="radio" name="attraction" value="Parque"> Parque da Cidade
+            </label>
+            <label>
+                <input type="radio" name="attraction" value="Icaraí"> Praia de Icaraí
+            </label>
+            <label>
+                <input type="radio" name="attraction" value="Caminho"> Caminho Niemeyer
+            </label>
+            <label>
+                <input type="radio" name="attraction" value="Itacoatiara"> Praia de Itacoatiara
+            </label>
+            <label>
+                <input type="radio" name="attraction" value="Solar"> Solar do Jambeiro
+            </label>
+            <button type="submit">Votar</button>
+        </form>
+
+        <h2>Resultados:</h2>
+        <ul id="results"></ul>
+    </div>
+
+    <script>
+        // Objeto para armazenar os votos
+        const votes = {
+            MAC: 0,
+            Fortaleza: 0,
+            Parque: 0,
+            Icaraí: 0,
+            Caminho: 0,
+            Itacoatiara: 0,
+            Solar: 0
+        };
+
+        // Função para atualizar os resultados na tela
+        function updateResults() {
+            const resultsList = document.getElementById('results');
+            resultsList.innerHTML = ''; // Limpa a lista atual
+
+            for (const [attraction, count] of Object.entries(votes)) {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${attraction}: ${count} voto(s)`;
+                resultsList.appendChild(listItem);
+            }
+        }
+
+        // Adiciona um evento ao formulário para capturar o voto
+        document.getElementById('pollForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Impede o envio do formulário
+
+            const selectedAttraction = document.querySelector('input[name="attraction"]:checked');
+
+            if (selectedAttraction) {
+                const attractionValue = selectedAttraction.value;
+                votes[attractionValue]++; // Incrementa o voto
+                updateResults(); // Atualiza os resultados na tela
+            } else {
+                alert('Por favor, selecione uma atração antes de votar!');
+            }
+        });
+
+        // Inicializa a exibição dos resultados
+        updateResults();
+    </script>
+</body>
+</html
