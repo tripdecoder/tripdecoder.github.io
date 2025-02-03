@@ -3,8 +3,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  color: #333;
-  line-height: 1.6;
+  box-sizing: border-box;
 }
 
 .container {
@@ -13,126 +12,108 @@ body {
   margin: 0 auto;
 }
 
-/* Header Styles */
+/* Header */
 header {
-  display: flex;
-  align-items: center; /* Center the header content vertically */
-  justify-content: space-between; /* Space out the logo, nav, and button */
+  background-color: #333;
+  color: #fff;
   padding: 10px 0;
-  background-color: #f8f9fa;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.logo {
+header .logo {
   display: flex;
   align-items: center;
-  justify-content: center; /* Center the logo horizontally */
-  gap: 10px; /* Space between logo and text */
-  font-size: 24px;
+  gap: 10px;
+}
+
+header .logo-img {
+  width: 40px; /* Coin-sized logo */
+  height: 40px;
+  border-radius: 50%; /* Optional: Make it circular */
+  object-fit: cover;
+}
+
+header .logo span {
+  font-size: 1.2rem;
   font-weight: bold;
-  color: #333;
 }
 
-.logo-img {
-  width: 20px; /* 50% smaller than the original 40px */
-  height: 20px; /* 50% smaller than the original 40px */
-  border-radius: 50%; /* Makes the logo circular for a friendly look */
-  transition: transform 0.3s ease; /* Adds a hover effect */
-}
-
-.logo-img:hover {
-  transform: scale(1.1); /* Slightly enlarges the logo on hover */
-}
-
-nav ul {
+header nav ul {
   list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   gap: 20px;
 }
 
-nav ul li a {
+header nav ul li a {
+  color: #fff;
   text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  transition: color 0.3s ease;
 }
 
-nav ul li a:hover {
-  color: #007bff;
-}
-
-.cta-button {
-  background-color: #007bff;
+header .cta-button {
+  background-color: #ff6347;
   color: #fff;
   border: none;
   padding: 10px 20px;
-  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  border-radius: 5px;
 }
 
-.cta-button:hover {
-  background-color: #0056b3;
+header .cta-button:hover {
+  background-color: #ff4500;
 }
 
-/* Hero Section Styles */
+/* Hero Section */
 .hero {
-  background-image: url('rio-hero.jpg'); /* Add your hero image here */
-  background-size: cover;
-  background-position: center;
+  background: url('rio-hero.jpg') no-repeat center center/cover;
   color: #fff;
   text-align: center;
   padding: 100px 0;
 }
 
 .hero h1 {
-  font-size: 48px;
+  font-size: 3rem;
   margin-bottom: 20px;
 }
 
 .hero p {
-  font-size: 18px;
+  font-size: 1.2rem;
   margin-bottom: 30px;
 }
 
-.search-form {
+.hero .search-form {
   display: flex;
   justify-content: center;
   gap: 10px;
 }
 
-.search-form input {
+.hero .search-form input {
   padding: 10px;
   width: 300px;
   border: none;
   border-radius: 5px;
 }
 
-.search-form button {
+.hero .search-form button {
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #ff6347;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-.search-form button:hover {
-  background-color: #0056b3;
+.hero .search-form button:hover {
+  background-color: #ff4500;
 }
 
-/* Featured Tours Section Styles */
+/* Featured Tours */
 .featured-tours {
-  padding: 60px 0;
+  padding: 50px 0;
   text-align: center;
 }
 
 .featured-tours h2 {
-  font-size: 36px;
-  margin-bottom: 40px;
+  font-size: 2rem;
+  margin-bottom: 30px;
 }
 
 .tour-grid {
@@ -142,67 +123,58 @@ nav ul li a:hover {
 }
 
 .tour-card {
-  background-color: #fff;
-  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  padding: 20px;
   border-radius: 10px;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.tour-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .tour-card img {
   width: 100%;
-  height: 200px;
+  height: 150px;
   object-fit: cover;
+  border-radius: 10px;
 }
 
 .tour-card h3 {
-  font-size: 24px;
+  font-size: 1.5rem;
   margin: 15px 0;
 }
 
 .tour-card p {
-  font-size: 16px;
-  color: #666;
-  padding: 0 15px;
+  font-size: 1rem;
+  color: #555;
 }
 
 .tour-card .price {
-  font-size: 20px;
+  font-size: 1.2rem;
   font-weight: bold;
-  color: #007bff;
-  margin: 15px 0;
+  color: #ff6347;
 }
 
 .tour-card button {
-  background-color: #007bff;
+  background-color: #ff6347;
   color: #fff;
   border: none;
   padding: 10px 20px;
-  border-radius: 5px;
   cursor: pointer;
-  margin-bottom: 15px;
-  transition: background-color 0.3s ease;
+  border-radius: 5px;
 }
 
 .tour-card button:hover {
-  background-color: #0056b3;
+  background-color: #ff4500;
 }
 
-/* Testimonials Section Styles */
+/* Testimonials */
 .testimonials {
-  background-color: #f8f9fa;
-  padding: 60px 0;
+  background-color: #f1f1f1;
+  padding: 50px 0;
   text-align: center;
 }
 
 .testimonials h2 {
-  font-size: 36px;
-  margin-bottom: 40px;
+  font-size: 2rem;
+  margin-bottom: 30px;
 }
 
 .testimonial-grid {
@@ -213,73 +185,59 @@ nav ul li a:hover {
 
 .testimonial-card {
   background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 10px;
   padding: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.testimonial-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .testimonial-card p {
-  font-size: 16px;
-  color: #666;
+  font-size: 1rem;
+  color: #555;
 }
 
 .testimonial-card .author {
-  font-size: 14px;
+  font-size: 0.9rem;
   font-weight: bold;
   color: #333;
-  margin-top: 10px;
 }
 
-/* Footer Styles */
+/* Footer */
 footer {
   background-color: #333;
   color: #fff;
-  padding: 40px 0;
+  padding: 20px 0;
   text-align: center;
 }
 
-.footer-logo {
-  font-size: 24px;
+footer .footer-logo {
+  font-size: 1.5rem;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
-.footer-links ul {
+footer .footer-links ul {
   list-style: none;
   padding: 0;
-  margin: 0;
   display: flex;
   justify-content: center;
   gap: 20px;
 }
 
-.footer-links ul li a {
+footer .footer-links ul li a {
   color: #fff;
   text-decoration: none;
-  transition: color 0.3s ease;
 }
 
-.footer-links ul li a:hover {
-  color: #007bff;
+footer .social-media {
+  margin: 20px 0;
 }
 
-.social-media {
-  margin-top: 20px;
-}
-
-.social-media a {
+footer .social-media a {
   color: #fff;
   text-decoration: none;
   margin: 0 10px;
-  transition: color 0.3s ease;
 }
 
-.social-media a:hover {
-  color: #007bff;
-}
+footer .copyright {
+  font-size: 0.9rem;
+  color: #ccc;
