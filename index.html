@@ -5,12 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TripDecoder - Explore Rio de Janeiro</title>
   <link rel="stylesheet" href="styles.css">
+  <!-- Add the favicon -->
+  <link rel="icon" href="https://tripdecoder.github.io/tripdecoder.ico" type="image/x-icon">
 </head>
 <body>
   <!-- Header -->
   <header>
     <div class="container">
-      <div class="logo">TripDecoder</div>
+      <!-- Add the logo to the header -->
+      <div class="logo">
+        <img src="https://tripdecoder.github.io/tripdecoder.ico" alt="TripDecoder Logo" class="logo-img">
+        TripDecoder
+      </div>
       <nav>
         <ul>
           <li><a href="#tours">Tours</a></li>
@@ -29,7 +35,7 @@
       <h1>Discover the Magic of Rio de Janeiro</h1>
       <p>Explore the best tours in the city of wonders.</p>
       <form class="search-form">
-        <input type="text" placeholder="Search for tours..." />
+        <input type="text" id="search-input" placeholder="Search for tours..." />
         <button type="submit">Search</button>
       </form>
     </div>
@@ -62,6 +68,14 @@
           <button>Book Now</button>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section id="about" class="about">
+    <div class="container">
+      <h2>About Us</h2>
+      <p>TripDecoder is your ultimate guide to exploring Rio de Janeiro. We offer curated tours that showcase the best of the city, from iconic landmarks to hidden gems. Our mission is to make your trip unforgettable!</p>
     </div>
   </section>
 
@@ -100,5 +114,23 @@
       </div>
     </div>
   </footer>
+
+  <!-- JavaScript for Dynamic Search -->
+  <script>
+    document.querySelector('.search-form').addEventListener('submit', function (e) {
+      e.preventDefault(); // Prevent form submission
+      const searchTerm = document.getElementById('search-input').value.toLowerCase();
+      const tourCards = document.querySelectorAll('.tour-card');
+
+      tourCards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        if (title.includes(searchTerm)) {
+          card.style.display = 'block'; // Show matching tours
+        } else {
+          card.style.display = 'none'; // Hide non-matching tours
+        }
+      });
+    });
+  </script>
 </body>
-      </html>
+</html>
