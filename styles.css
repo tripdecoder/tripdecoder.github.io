@@ -3,7 +3,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  line-height: 1.6;
+  box-sizing: border-box;
 }
 
 .container {
@@ -12,7 +12,7 @@ body {
   margin: 0 auto;
 }
 
-/* Header */
+/* Header Styles */
 header {
   background: #333;
   color: #fff;
@@ -20,28 +20,31 @@ header {
 }
 
 header .logo {
+  display: flex;
+  align-items: center;
   font-size: 24px;
   font-weight: bold;
 }
 
-header nav ul {
+.logo-img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+nav ul {
   list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
+  gap: 20px;
 }
 
-header nav ul li {
-  margin-right: 20px;
-}
-
-header nav ul li a {
+nav ul li a {
   color: #fff;
   text-decoration: none;
 }
 
-header .cta-button {
-  background: #ff6347;
+.cta-button {
+  background: #ff6f61;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -61,22 +64,25 @@ header .cta-button {
   margin-bottom: 20px;
 }
 
-.hero p {
-  font-size: 20px;
-  margin-bottom: 30px;
+.search-form {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-.hero .search-form input {
+.search-form input {
   padding: 10px;
   width: 300px;
   border: none;
+  border-radius: 5px 0 0 5px;
 }
 
-.hero .search-form button {
+.search-form button {
   padding: 10px 20px;
-  background: #ff6347;
-  color: #fff;
   border: none;
+  background: #ff6f61;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
   cursor: pointer;
 }
 
@@ -85,68 +91,70 @@ header .cta-button {
   padding: 50px 0;
 }
 
-.featured-tours h2 {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
 .tour-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
 }
 
 .tour-card {
-  background: #f4f4f4;
+  background: #f9f9f9;
   padding: 20px;
+  border-radius: 10px;
   text-align: center;
 }
 
 .tour-card img {
   width: 100%;
-  height: 200px;
-  object-fit: cover;
+  border-radius: 10px;
 }
 
 .tour-card h3 {
-  margin: 15px 0;
+  margin: 15px 0 10px;
 }
 
 .tour-card .price {
   font-size: 20px;
   font-weight: bold;
-  color: #ff6347;
+  color: #ff6f61;
 }
 
 .tour-card button {
-  background: #333;
+  background: #ff6f61;
   color: #fff;
   border: none;
   padding: 10px 20px;
+  border-radius: 5px;
   cursor: pointer;
+}
+
+/* About Section */
+.about {
+  background: #f1f1f1;
+  padding: 50px 0;
+  text-align: center;
 }
 
 /* Testimonials */
 .testimonials {
-  background: #f4f4f4;
   padding: 50px 0;
-}
-
-.testimonials h2 {
-  text-align: center;
-  margin-bottom: 40px;
 }
 
 .testimonial-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
 }
 
 .testimonial-card {
-  background: #fff;
+  background: #f9f9f9;
   padding: 20px;
+  border-radius: 10px;
   text-align: center;
+}
+
+.testimonial-card p {
+  font-style: italic;
 }
 
 .testimonial-card .author {
@@ -162,43 +170,25 @@ footer {
   text-align: center;
 }
 
-footer .footer-links ul {
+.footer-links ul {
   list-style: none;
   padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
-footer .footer-links ul li {
-  margin-bottom: 10px;
-}
-
-footer .footer-links ul li a {
+.footer-links ul li a {
   color: #fff;
   text-decoration: none;
 }
 
-footer .social-media a {
+.social-media {
+  margin-top: 20px;
+}
+
+.social-media a {
   color: #fff;
   margin: 0 10px;
-  text-decoration: none;
+  text-decoration: none;
 }
-
-/* Logo Styling */
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* Space between logo and text */
-  font-size: 24px;
-  font-weight: bold;
-  color: #333; /* Adjust color as needed */
-}
-
-.logo-img {
-  width: 40px; /* Adjust size as needed */
-  height: 40px; /* Adjust size as needed */
-  border-radius: 50%; /* Makes the logo circular for a friendly look */
-  transition: transform 0.3s ease; /* Adds a hover effect */
-}
-
-.logo-img:hover {
-  transform: scale(1.1); /* Slightly enlarges the logo on hover */
-  }
