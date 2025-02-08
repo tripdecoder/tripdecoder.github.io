@@ -5,18 +5,18 @@ body {
     padding: 0;
     box-sizing: border-box;
     line-height: 1.6;
-    color: #333;
-    background-color: #f9f9f9;
+    color: #e0e0e0;
+    background-color: #121212;
 }
 
 header {
-    background-color: #2c3e50;
+    background-color: #1f1f1f;
     color: #fff;
     padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 header .logo {
@@ -78,7 +78,7 @@ header nav ul li a:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7);
 }
 
 .hero-content {
@@ -119,13 +119,13 @@ header nav ul li a:hover {
 .passeios {
     padding: 60px 20px;
     text-align: center;
-    background-color: #fff;
+    background-color: #1f1f1f;
 }
 
 .passeios h2 {
     font-size: 2.5em;
     margin-bottom: 40px;
-    color: #2c3e50;
+    color: #ff6600;
 }
 
 .passeios-container {
@@ -136,19 +136,19 @@ header nav ul li a:hover {
 }
 
 .passeio-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
+    background-color: #2c2c2c;
+    border: 1px solid #444;
     border-radius: 10px;
     padding: 20px;
     width: 30%;
     margin: 10px 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .passeio-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
 }
 
 .passeio-card img {
@@ -160,12 +160,12 @@ header nav ul li a:hover {
 .passeio-card h3 {
     margin: 10px 0;
     font-size: 1.5em;
-    color: #2c3e50;
+    color: #ff6600;
 }
 
 .passeio-card p {
     font-size: 1em;
-    color: #666;
+    color: #b0b0b0;
 }
 
 .passeio-card .preco {
@@ -192,7 +192,7 @@ header nav ul li a:hover {
 
 /* Seção de Depoimentos */
 .depoimentos {
-    background-color: #f1f1f1;
+    background-color: #1f1f1f;
     padding: 60px 20px;
     text-align: center;
 }
@@ -200,7 +200,7 @@ header nav ul li a:hover {
 .depoimentos h2 {
     font-size: 2.5em;
     margin-bottom: 40px;
-    color: #2c3e50;
+    color: #ff6600;
 }
 
 .depoimentos-container {
@@ -211,30 +211,30 @@ header nav ul li a:hover {
 }
 
 .depoimento-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
+    background-color: #2c2c2c;
+    border: 1px solid #444;
     border-radius: 10px;
     padding: 20px;
     width: 45%;
     margin: 10px 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .depoimento-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
 }
 
 .depoimento-card p {
     font-size: 1.1em;
-    color: #666;
+    color: #b0b0b0;
     font-style: italic;
 }
 
 .depoimento-card .autor {
     font-weight: bold;
-    color: #2c3e50;
+    color: #ff6600;
     margin-top: 10px;
 }
 
@@ -242,13 +242,13 @@ header nav ul li a:hover {
 .contato {
     padding: 60px 20px;
     text-align: center;
-    background-color: #fff;
+    background-color: #1f1f1f;
 }
 
 .contato h2 {
     font-size: 2.5em;
     margin-bottom: 40px;
-    color: #2c3e50;
+    color: #ff6600;
 }
 
 .contato form {
@@ -261,16 +261,18 @@ header nav ul li a:hover {
     display: block;
     margin: 10px 0 5px;
     font-weight: bold;
-    color: #2c3e50;
+    color: #ff6600;
 }
 
 .contato input, .contato textarea {
     width: 100%;
     padding: 12px;
     margin-bottom: 15px;
-    border: 1px solid #ddd;
+    border: 1px solid #444;
     border-radius: 5px;
     font-size: 1em;
+    background-color: #2c2c2c;
+    color: #e0e0e0;
     transition: border-color 0.3s ease;
 }
 
@@ -296,11 +298,12 @@ header nav ul li a:hover {
 
 /* Rodapé */
 footer {
-    background-color: #2c3e50;
+    background-color: #1f1f1f;
     color: #fff;
     text-align: center;
     padding: 20px;
     font-size: 0.9em;
+    border-top: 1px solid #444;
 }
 
 footer p {
