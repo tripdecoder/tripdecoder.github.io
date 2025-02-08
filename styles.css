@@ -1,154 +1,113 @@
-/* Estilos Globais */
+/* General Styles */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    line-height: 1.6;
-    color: #e0e0e0;
-    background-color: #121212;
+    background-color: #f4f4f9;
+    color: #333;
 }
 
 header {
-    background-color: #1f1f1f;
+    background-color: #2c3e50;
     color: #fff;
-    padding: 15px 20px;
+    padding: 20px 10%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-header .logo {
+.logo {
     display: flex;
     align-items: center;
 }
 
-header .logo img {
-    width: 40px;
-    height: 40px;
+.logo img {
+    width: 50px;
     margin-right: 10px;
-    border-radius: 50%;
 }
 
-header .logo h1 {
-    margin: 0;
-    font-size: 1.8em;
-    font-weight: bold;
-    color: #ff6600;
-}
-
-header nav ul {
+nav ul {
     list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
+    gap: 20px;
 }
 
-header nav ul li {
-    margin-left: 20px;
-}
-
-header nav ul li a {
+nav ul li a {
     color: #fff;
     text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
+    font-weight: 600;
+    transition: color 0.3s;
 }
 
-header nav ul li a:hover {
-    color: #ff6600;
+nav ul li a:hover {
+    color: #1abc9c;
 }
 
-/* Seção Hero */
+/* Hero Section */
 .hero {
-    background-image: url('rio-hero.jpg');
-    background-size: cover;
-    background-position: center;
-    color: #fff;
+    background: url('rio-hero.jpg') no-repeat center center/cover;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    padding: 150px 20px;
-    position: relative;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
-}
-
-.hero-content {
-    position: relative;
-    z-index: 1;
+    color: #fff;
+    padding: 0 10%;
 }
 
 .hero-content h2 {
-    font-size: 3em;
-    margin: 0;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
 }
 
 .hero-content p {
-    font-size: 1.5em;
-    margin: 20px 0;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-size: 1.2rem;
+    margin-bottom: 20px;
 }
 
 .btn {
-    background-color: #ff6600;
+    background-color: #1abc9c;
     color: #fff;
-    padding: 12px 24px;
+    padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    display: inline-block;
+    transition: background-color 0.3s;
 }
 
 .btn:hover {
-    background-color: #e65c00;
-    transform: translateY(-3px);
+    background-color: #16a085;
 }
 
-/* Seção de Passeios */
+/* Passeios Section */
 .passeios {
-    padding: 60px 20px;
+    padding: 50px 10%;
     text-align: center;
-    background-color: #1f1f1f;
 }
 
 .passeios h2 {
-    font-size: 2.5em;
-    margin-bottom: 40px;
-    color: #ff6600;
+    font-size: 2rem;
+    margin-bottom: 30px;
 }
 
 .passeios-container {
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
     gap: 20px;
+    justify-content: center;
 }
 
 .passeio-card {
-    background-color: #2c2c2c;
-    border: 1px solid #444;
+    background-color: #fff;
     border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
     padding: 20px;
-    width: 30%;
-    margin: 10px 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s;
 }
 
 .passeio-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
 }
 
 .passeio-card img {
@@ -158,154 +117,153 @@ header nav ul li a:hover {
 }
 
 .passeio-card h3 {
-    margin: 10px 0;
-    font-size: 1.5em;
-    color: #ff6600;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
 }
 
 .passeio-card p {
-    font-size: 1em;
-    color: #b0b0b0;
+    font-size: 1rem;
+    margin-bottom: 10px;
 }
 
 .passeio-card .preco {
-    font-weight: bold;
-    color: #ff6600;
-    font-size: 1.2em;
-    margin: 10px 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #1abc9c;
 }
 
 .passeio-card button {
-    background-color: #ff6600;
+    background-color: #1abc9c;
     color: #fff;
-    padding: 10px 20px;
     border: none;
+    padding: 10px 20px;
     border-radius: 5px;
-    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
 }
 
 .passeio-card button:hover {
-    background-color: #e65c00;
+    background-color: #16a085;
 }
 
-/* Seção de Depoimentos */
+/* Depoimentos Section */
 .depoimentos {
-    background-color: #1f1f1f;
-    padding: 60px 20px;
+    padding: 50px 10%;
     text-align: center;
+    background-color: #ecf0f1;
 }
 
 .depoimentos h2 {
-    font-size: 2.5em;
-    margin-bottom: 40px;
-    color: #ff6600;
+    font-size: 2rem;
+    margin-bottom: 30px;
 }
 
 .depoimentos-container {
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
     gap: 20px;
+    justify-content: center;
 }
 
 .depoimento-card {
-    background-color: #2c2c2c;
-    border: 1px solid #444;
+    background-color: #fff;
     border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
     padding: 20px;
-    width: 45%;
-    margin: 10px 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.depoimento-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
 }
 
 .depoimento-card p {
-    font-size: 1.1em;
-    color: #b0b0b0;
     font-style: italic;
+    margin-bottom: 10px;
 }
 
 .depoimento-card .autor {
-    font-weight: bold;
-    color: #ff6600;
-    margin-top: 10px;
+    font-weight: 600;
+    color: #1abc9c;
 }
 
-/* Seção de Contato */
+/* Contato Section */
 .contato {
-    padding: 60px 20px;
+    padding: 50px 10%;
     text-align: center;
-    background-color: #1f1f1f;
 }
 
 .contato h2 {
-    font-size: 2.5em;
-    margin-bottom: 40px;
-    color: #ff6600;
+    font-size: 2rem;
+    margin-bottom: 30px;
 }
 
-.contato form {
-    max-width: 600px;
+#form-contato {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
     margin: 0 auto;
-    text-align: left;
 }
 
-.contato label {
-    display: block;
-    margin: 10px 0 5px;
-    font-weight: bold;
-    color: #ff6600;
-}
-
-.contato input, .contato textarea {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 1px solid #444;
+#form-contato input,
+#form-contato textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 1em;
-    background-color: #2c2c2c;
-    color: #e0e0e0;
-    transition: border-color 0.3s ease;
+    font-size: 1rem;
 }
 
-.contato input:focus, .contato textarea:focus {
-    border-color: #ff6600;
-    outline: none;
-}
-
-.contato button {
-    background-color: #ff6600;
+#form-contato button {
+    background-color: #1abc9c;
     color: #fff;
-    padding: 12px 24px;
     border: none;
+    padding: 10px 20px;
     border-radius: 5px;
-    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
 }
 
-.contato button:hover {
-    background-color: #e65c00;
+#form-contato button:hover {
+    background-color: #16a085;
 }
 
-/* Rodapé */
+/* Footer */
 footer {
-    background-color: #1f1f1f;
+    background-color: #2c3e50;
     color: #fff;
     text-align: center;
     padding: 20px;
-    font-size: 0.9em;
-    border-top: 1px solid #444;
+    margin-top: 50px;
 }
 
-footer p {
-    margin: 0;
-    
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .passeios-container,
+    .depoimentos-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.hero-content, .passeio-card, .depoimento-card {
+    animation: fadeIn 1s ease-in-out;
+}
