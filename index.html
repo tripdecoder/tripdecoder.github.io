@@ -7,12 +7,289 @@
   <link rel="stylesheet" href="styles.css">
   <!-- Add the favicon -->
   <link rel="icon" href="https://tripdecoder.github.io/tripdecoder.ico" type="image/x-icon">
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center; /* Center the logo */
+      font-size: 24px; /* Larger font size */
+    }
+
+    .logo-img {
+      width: 80px; /* Twice as big */
+      height: 80px; /* Twice as big */
+      margin-right: 10px;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .cta-button {
+      background-color: #ff6347;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: url('rio-hero.jpg') no-repeat center center/cover;
+      color: #fff;
+      padding: 100px 0;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .search-form {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .search-form input {
+      padding: 10px;
+      width: 300px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .search-form button {
+      padding: 10px 20px;
+      background-color: #ff6347;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* Featured Tours */
+    .featured-tours {
+      padding: 50px 0;
+      text-align: center;
+    }
+
+    .tour-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .tour-card {
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .tour-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .tour-card h3 {
+      margin: 15px 0 10px;
+    }
+
+    .tour-card .price {
+      font-weight: bold;
+      color: #ff6347;
+    }
+
+    .tour-card button {
+      background-color: #ff6347;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* About Us Section */
+    .about {
+      background-color: #f1f1f1;
+      padding: 50px 0;
+      text-align: center;
+    }
+
+    /* Testimonials Carousel */
+    .testimonials {
+      padding: 50px 0;
+      text-align: center;
+    }
+
+    .testimonial-carousel {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .testimonial-card {
+      display: none;
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .testimonial-card.active {
+      display: block;
+    }
+
+    .carousel-prev, .carousel-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .carousel-prev {
+      left: -50px;
+    }
+
+    .carousel-next {
+      right: -50px;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 50px 0;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .footer-links ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .footer-links ul li a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .social-media {
+      margin-top: 20px;
+    }
+
+    .social-media a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      width: 80%;
+      max-width: 500px;
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .close-modal {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .modal-content h2 {
+      margin-bottom: 20px;
+    }
+
+    .modal-content form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .modal-content input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .modal-content button {
+      background-color: #ff6347;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
   <!-- Header -->
   <header>
     <div class="container">
-      <!-- Add the logo to the header -->
+      <!-- Logo -->
       <div class="logo">
         <img src="https://tripdecoder.github.io/tripdecoder.ico" alt="TripDecoder Logo" class="logo-img">
         TripDecoder
@@ -79,12 +356,12 @@
     </div>
   </section>
 
-  <!-- Testimonials -->
+  <!-- Testimonials Carousel -->
   <section id="testimonials" class="testimonials">
     <div class="container">
       <h2>What Our Customers Say</h2>
-      <div class="testimonial-grid">
-        <div class="testimonial-card">
+      <div class="testimonial-carousel">
+        <div class="testimonial-card active">
           <p>"The Christ the Redeemer tour was amazing! Highly recommend!"</p>
           <p class="author">- John Doe</p>
         </div>
@@ -92,6 +369,8 @@
           <p>"Sugarloaf Mountain was breathtaking. Worth every penny!"</p>
           <p class="author">- Jane Smith</p>
         </div>
+        <button class="carousel-prev">&#10094;</button>
+        <button class="carousel-next">&#10095;</button>
       </div>
     </div>
   </section>
@@ -115,21 +394,91 @@
     </div>
   </footer>
 
-  <!-- JavaScript for Dynamic Search -->
+  <!-- Booking Modal -->
+  <div id="booking-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h2>Book Your Tour</h2>
+      <form>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <input type="date" placeholder="Tour Date" required>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
   <script>
+    // Smooth Scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Search Functionality
     document.querySelector('.search-form').addEventListener('submit', function (e) {
-      e.preventDefault(); // Prevent form submission
+      e.preventDefault();
       const searchTerm = document.getElementById('search-input').value.toLowerCase();
       const tourCards = document.querySelectorAll('.tour-card');
 
       tourCards.forEach(card => {
         const title = card.querySelector('h3').textContent.toLowerCase();
         if (title.includes(searchTerm)) {
-          card.style.display = 'block'; // Show matching tours
+          card.style.display = 'block';
         } else {
-          card.style.display = 'none'; // Hide non-matching tours
+          card.style.display = 'none';
         }
       });
+    });
+
+    // Testimonials Carousel
+    let currentTestimonial = 0;
+    const testimonials = document.querySelectorAll('.testimonial-card');
+    const prevButton = document.querySelector('.carousel-prev');
+    const nextButton = document.querySelector('.carousel-next');
+
+    function showTestimonial(index) {
+      testimonials.forEach((testimonial, i) => {
+        testimonial.classList.toggle('active', i === index);
+      });
+    }
+
+    prevButton.addEventListener('click', () => {
+      currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+      showTestimonial(currentTestimonial);
+    });
+
+    nextButton.addEventListener('click', () => {
+      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+      showTestimonial(currentTestimonial);
+    });
+
+    showTestimonial(currentTestimonial);
+
+    // Booking Modal
+    const modal = document.getElementById('booking-modal');
+    const closeModal = document.querySelector('.close-modal');
+    const bookButtons = document.querySelectorAll('.cta-button, .tour-card button');
+
+    bookButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        modal.style.display = 'block';
+      });
+    });
+
+    closeModal.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
     });
   </script>
 </body>
