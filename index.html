@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trip Decoder - Passeios no Rio de Janeiro e Niterói</title>
+    <title>TripDecoder - Passeios no Rio de Janeiro e Niterói</title>
     <link rel="shortcut icon" href="tripdecoder.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
@@ -29,17 +29,19 @@
 
         .logo {
             display: flex;
+            flex-direction: column; /* Empilha o logo e o nome verticalmente */
             align-items: center;
             margin-bottom: 20px; /* Espaço entre o logo e o nav */
         }
 
         .logo img {
-            width: 80px; /* Logo maior */
-            margin-right: 15px;
+            width: 100px; /* Logo maior */
+            margin-bottom: 10px; /* Espaço entre o logo e o nome */
         }
 
         .logo h1 {
             font-size: 2rem; /* Título maior */
+            margin: 0; /* Remove margem padrão */
         }
 
         nav ul {
@@ -283,8 +285,8 @@
     <!-- Cabeçalho -->
     <header>
         <div class="logo">
-            <img src="tripdecoder.ico" alt="Trip Decoder Logo">
-            <h1>Trip Decoder</h1>
+            <img src="tripdecoder.ico" alt="TripDecoder Logo">
+            <h1>TripDecoder</h1>
         </div>
         <nav>
             <ul>
@@ -363,7 +365,7 @@
 
     <!-- Rodapé -->
     <footer>
-        <p>&copy; 2023 Trip Decoder. Todos os direitos reservados.</p>
+        <p>&copy; 2023 TripDecoder. Todos os direitos reservados.</p>
     </footer>
 
     <!-- Script JavaScript -->
