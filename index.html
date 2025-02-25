@@ -7,25 +7,25 @@
     <link rel="shortcut icon" href="tripdecoder.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        /* General Styles */
+        /* Estilos gerais */
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            background-color: #121212; /* Fundo escuro */
-            color: #e0e0e0; /* Texto claro */
+            background-color: #121212;
+            color: #e0e0e0;
         }
 
         header {
-            background-color: #1f1f1f; /* Header escuro */
+            background-color: #1f1f1f;
             color: #fff;
             padding: 20px 10%;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .logo {
@@ -36,14 +36,14 @@
         }
 
         .logo img {
-            width: 300px; /* Logo menor e mais sofisticado */
+            width: 300px;
             margin-bottom: 10px;
         }
 
         .logo h1 {
             font-size: 2rem;
             margin: 0;
-            color: #FFFFFF; /* Branco */
+            color: #FFFFFF;
             font-weight: 600;
         }
 
@@ -55,14 +55,14 @@
         }
 
         nav ul li a {
-            color: #e0e0e0; /* Texto claro */
+            color: #e0e0e0;
             text-decoration: none;
             font-weight: 600;
             transition: color 0.3s;
         }
 
         nav ul li a:hover {
-            color: #00bcd4; /* Verde-água */
+            color: #00bcd4;
         }
 
         /* Hero Section */
@@ -89,7 +89,7 @@
         }
 
         .btn {
-            background-color: #00bcd4; /* Verde-água */
+            background-color: #00bcd4;
             color: #fff;
             padding: 10px 20px;
             text-decoration: none;
@@ -98,20 +98,20 @@
         }
 
         .btn:hover {
-            background-color: #0097a7; /* Verde-água mais escuro */
+            background-color: #0097a7;
         }
 
         /* Passeios Section */
         .passeios {
             padding: 50px 10%;
             text-align: center;
-            background-color: #1f1f1f; /* Fundo escuro */
+            background-color: #1f1f1f;
         }
 
         .passeios h2 {
             font-size: 2rem;
             margin-bottom: 30px;
-            color: #00bcd4; /* Verde-água */
+            color: #00bcd4;
         }
 
         .passeios-container {
@@ -122,9 +122,9 @@
         }
 
         .passeio-card {
-            background-color: #2c3e50; /* Azul escuro */
+            background-color: #2c3e50;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             width: 300px;
             padding: 20px;
             transition: transform 0.3s;
@@ -143,23 +143,23 @@
         .passeio-card h3 {
             font-size: 1.5rem;
             margin-bottom: 10px;
-            color: #00bcd4; /* Verde-água */
+            color: #00bcd4;
         }
 
         .passeio-card p {
             font-size: 1rem;
             margin-bottom: 10px;
-            color: #e0e0e0; /* Texto claro */
+            color: #e0e0e0;
         }
 
         .passeio-card .preco {
             font-size: 1.2rem;
             font-weight: 600;
-            color: #00bcd4; /* Verde-água */
+            color: #00bcd4;
         }
 
         .passeio-card button {
-            background-color: #00bcd4; /* Verde-água */
+            background-color: #00bcd4;
             color: #fff;
             border: none;
             padding: 10px 20px;
@@ -169,7 +169,7 @@
         }
 
         .passeio-card button:hover {
-            background-color: #0097a7; /* Verde-água mais escuro */
+            background-color: #0097a7;
         }
 
         /* Modal de Reserva */
@@ -180,14 +180,14 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro semi-transparente */
+            background-color: rgba(0, 0, 0, 0.8);
             justify-content: center;
             align-items: center;
             z-index: 1000;
         }
 
         .modal-content {
-            background-color: #1f1f1f; /* Fundo escuro */
+            background-color: #1f1f1f;
             padding: 20px;
             border-radius: 10px;
             width: 300px;
@@ -197,87 +197,88 @@
         .modal-content h3 {
             font-size: 1.5rem;
             margin-bottom: 20px;
-            color: #00bcd4; /* Verde-água */
+            color: #00bcd4;
         }
 
         .modal-content label {
             display: block;
             margin-bottom: 10px;
-            color: #e0e0e0; /* Texto claro */
+            color: #e0e0e0;
         }
 
         .modal-content input {
             width: 100%;
             padding: 10px;
             margin-bottom: 20px;
-            border: 1px solid #444; /* Borda cinza */
+            border: 1px solid #444;
             border-radius: 5px;
-            background-color: #2c3e50; /* Azul escuro */
-            color: #e0e0e0; /* Texto claro */
+            background-color: #2c3e50;
+            color: #e0e0e0;
         }
 
         .modal-content button {
-            background-color: #00bcd4; /* Verde-água */
+            background-color: #00bcd4;
             color: #fff;
             border: none;
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
+            margin: 5px;
         }
 
         .modal-content button:hover {
-            background-color: #0097a7; /* Verde-água mais escuro */
+            background-color: #0097a7;
         }
 
-        /* Trilhas Section */
-        .trilhas {
+        /* Outras seções (Trilhas, Depoimentos, Contato) */
+        .trilhas, .depoimentos, .contato {
             padding: 50px 10%;
             text-align: center;
-            background-color: #121212; /* Fundo escuro */
+            background-color: #121212;
         }
 
-        .trilhas h2 {
+        .trilhas h2, .depoimentos h2, .contato h2 {
             font-size: 2rem;
             margin-bottom: 30px;
-            color: #00bcd4; /* Verde-água */
+            color: #00bcd4;
         }
 
-        .trilhas-container {
+        .trilhas-container, .depoimentos-container {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
             justify-content: center;
         }
 
-        .trilha-card {
-            background-color: #1f1f1f; /* Fundo escuro */
+        .trilha-card, .depoimento-card {
+            background-color: #1f1f1f;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             width: 300px;
             padding: 20px;
         }
 
-        .trilha-card h3 {
+        .trilha-card h3, .depoimento-card .autor {
             font-size: 1.5rem;
             margin-bottom: 10px;
-            color: #00bcd4; /* Verde-água */
+            color: #00bcd4;
         }
 
-        .trilha-card p {
+        .trilha-card p, .depoimento-card p {
             font-size: 1rem;
             margin-bottom: 10px;
-            color: #e0e0e0; /* Texto claro */
+            color: #e0e0e0;
         }
 
         .trilha-card .dificuldade {
             font-size: 1rem;
             font-weight: 600;
-            color: #00bcd4; /* Verde-água */
+            color: #00bcd4;
         }
 
-        .trilha-card button {
-            background-color: #00bcd4; /* Verde-água */
+        .trilha-card button, .depoimento-card button {
+            background-color: #00bcd4;
             color: #fff;
             border: none;
             padding: 10px 20px;
@@ -286,62 +287,11 @@
             transition: background-color 0.3s;
         }
 
-        .trilha-card button:hover {
-            background-color: #0097a7; /* Verde-água mais escuro */
+        .trilha-card button:hover, .depoimento-card button:hover {
+            background-color: #0097a7;
         }
 
-        /* Depoimentos Section */
-        .depoimentos {
-            padding: 50px 10%;
-            text-align: center;
-            background-color: #1f1f1f; /* Fundo escuro */
-        }
-
-        .depoimentos h2 {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: #00bcd4; /* Verde-água */
-        }
-
-        .depoimentos-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
-
-        .depoimento-card {
-            background-color: #2c3e50; /* Azul escuro */
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
-            width: 300px;
-            padding: 20px;
-        }
-
-        .depoimento-card p {
-            font-style: italic;
-            margin-bottom: 10px;
-            color: #e0e0e0; /* Texto claro */
-        }
-
-        .depoimento-card .autor {
-            font-weight: 600;
-            color: #00bcd4; /* Verde-água */
-        }
-
-        /* Contato Section */
-        .contato {
-            padding: 50px 10%;
-            text-align: center;
-            background-color: #121212; /* Fundo escuro */
-        }
-
-        .contato h2 {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: #00bcd4; /* Verde-água */
-        }
-
+        /* Formulário de Contato */
         #form-contato {
             display: flex;
             flex-direction: column;
@@ -350,18 +300,17 @@
             margin: 0 auto;
         }
 
-        #form-contato input,
-        #form-contato textarea {
+        #form-contato input, #form-contato textarea {
             padding: 10px;
-            border: 1px solid #444; /* Borda cinza */
+            border: 1px solid #444;
             border-radius: 5px;
             font-size: 1rem;
-            background-color: #1f1f1f; /* Fundo escuro */
-            color: #e0e0e0; /* Texto claro */
+            background-color: #1f1f1f;
+            color: #e0e0e0;
         }
 
         #form-contato button {
-            background-color: #00bcd4; /* Verde-água */
+            background-color: #00bcd4;
             color: #fff;
             border: none;
             padding: 10px 20px;
@@ -371,20 +320,20 @@
         }
 
         #form-contato button:hover {
-            background-color: #0097a7; /* Verde-água mais escuro */
+            background-color: #0097a7;
         }
 
-        /* Footer */
+        /* Rodapé */
         footer {
-            background-color: #1f1f1f; /* Fundo escuro */
-            color: #e0e0e0; /* Texto claro */
+            background-color: #1f1f1f;
+            color: #e0e0e0;
             text-align: center;
             padding: 20px;
             margin-top: 50px;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Responsive Design */
+        /* Responsividade */
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
@@ -404,19 +353,17 @@
                 font-size: 1rem;
             }
 
-            .passeios-container,
-            .trilhas-container,
-            .depoimentos-container {
+            .passeios-container, .trilhas-container, .depoimentos-container {
                 flex-direction: column;
                 align-items: center;
             }
 
             .logo img {
-                width: 120px; /* Logo menor em dispositivos móveis */
+                width: 120px;
             }
 
             .logo h1 {
-                font-size: 1.8rem; /* Título menor em dispositivos móveis */
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -473,8 +420,6 @@
                 <p class="preco">R$ 120,00</p>
                 <button onclick="abrirModal('Museu de Arte Contemporânea')">Reservar</button>
             </div>
-            <!-- Adicione mais pontos turísticos de Niterói aqui -->
-
             <!-- Pontos Turísticos do Rio de Janeiro -->
             <div class="passeio-card">
                 <img src="https://source.unsplash.com/400x300/?christ-the-redeemer" alt="Cristo Redentor">
@@ -497,7 +442,6 @@
                 <p class="preco">R$ 90,00</p>
                 <button onclick="abrirModal('Praia de Copacabana')">Reservar</button>
             </div>
-            <!-- Adicione mais pontos turísticos do Rio de Janeiro aqui -->
         </div>
     </section>
 
@@ -505,11 +449,17 @@
     <div id="modal" class="modal">
         <div class="modal-content">
             <h3 id="modal-titulo"></h3>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" required>
+            <label for="telefone">Telefone:</label>
+            <input type="tel" id="telefone" required>
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" required>
             <label for="data">Data:</label>
             <input type="date" id="data" required>
             <label for="pessoas">Quantidade de Pessoas:</label>
             <input type="number" id="pessoas" min="1" required>
-            <button onclick="reservarPasseio()">Confirmar Reserva</button>
+            <button onclick="enviarWhatsApp()">Confirmar Reserva</button>
             <button onclick="fecharModal()">Cancelar</button>
         </div>
     </div>
@@ -539,7 +489,6 @@
                 <p class="dificuldade">Dificuldade: Baixa</p>
                 <button onclick="abrirModal('Trilha do Morro da Urca')">Reservar</button>
             </div>
-            <!-- Adicione mais trilhas aqui -->
         </div>
     </section>
 
@@ -579,28 +528,49 @@
 
     <!-- Script JavaScript -->
     <script>
-        let passeioSelecionado = '';
+        let passeiosSelecionados = [];
 
         function abrirModal(nomePasseio) {
-            passeioSelecionado = nomePasseio;
-            document.getElementById('modal-titulo').textContent = `Reservar: ${nomePasseio}`;
+            if (!passeiosSelecionados.includes(nomePasseio)) {
+                passeiosSelecionados.push(nomePasseio);
+            }
+            document.getElementById('modal-titulo').textContent = `Reservar: ${passeiosSelecionados.join(', ')}`;
             document.getElementById('modal').style.display = 'flex';
         }
 
         function fecharModal() {
+            passeiosSelecionados = []; // Limpa a seleção ao fechar o modal
             document.getElementById('modal').style.display = 'none';
         }
 
-        function reservarPasseio() {
+        function enviarWhatsApp() {
+            const nome = document.getElementById('nome').value;
+            const telefone = document.getElementById('telefone').value;
+            const email = document.getElementById('email').value;
             const data = document.getElementById('data').value;
             const pessoas = document.getElementById('pessoas').value;
 
-            if (!data || !pessoas) {
-                alert('Por favor, preencha todos os campos.');
+            if (!nome || !telefone || !email || !data || !pessoas || passeiosSelecionados.length === 0) {
+                alert('Por favor, preencha todos os campos e selecione pelo menos um passeio.');
                 return;
             }
 
-            alert(`Reserva confirmada para:\nPasseio: ${passeioSelecionado}\nData: ${data}\nPessoas: ${pessoas}`);
+            // Mensagem personalizada
+            const mensagem = `Olá, gostaria de reservar os seguintes passeios: ${passeiosSelecionados.join(', ')}\nNome: ${nome}\nTelefone: ${telefone}\nE-mail: ${email}\nData: ${data}\nQuantidade de pessoas: ${pessoas}`;
+
+            // Número do WhatsApp (formato internacional)
+            const numeroWhatsApp = '5521990455492';
+
+            // Codificar a mensagem para URL
+            const mensagemCodificada = encodeURIComponent(mensagem);
+
+            // Criar o link do WhatsApp
+            const linkWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensagemCodificada}`;
+
+            // Redirecionar para o WhatsApp
+            window.open(linkWhatsApp, '_blank');
+
+            // Fechar o modal
             fecharModal();
         }
     </script>
