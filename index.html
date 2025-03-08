@@ -192,6 +192,15 @@
             border-radius: 10px;
             width: 300px;
             text-align: center;
+            position: relative;
+        }
+
+        .modal-content span {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 1.5rem;
         }
 
         .modal-content h3 {
@@ -404,21 +413,21 @@
                 <h3>Praia de Icaraí</h3>
                 <p>Uma das praias mais famosas de Niterói, com vista para o Pão de Açúcar.</p>
                 <p class="preco">R$ 80,00</p>
-                <button onclick="abrirModal('Praia de Icaraí')">Reservar</button>
+                <button onclick="abrirModal('Praia de Icaraí', 80)">Reservar</button>
             </div>
             <div class="passeio-card">
                 <img src="https://source.unsplash.com/400x300/?fortaleza-de-santa-cruz" alt="Fortaleza de Santa Cruz">
                 <h3>Fortaleza de Santa Cruz</h3>
                 <p>Uma fortaleza histórica com vista deslumbrante para a Baía de Guanabara.</p>
                 <p class="preco">R$ 100,00</p>
-                <button onclick="abrirModal('Fortaleza de Santa Cruz')">Reservar</button>
+                <button onclick="abrirModal('Fortaleza de Santa Cruz', 100)">Reservar</button>
             </div>
             <div class="passeio-card">
                 <img src="https://source.unsplash.com/400x300/?museu-de-arte-contemporânea" alt="Museu de Arte Contemporânea">
                 <h3>Museu de Arte Contemporânea (MAC)</h3>
                 <p>Um ícone da arquitetura moderna com exposições incríveis.</p>
                 <p class="preco">R$ 120,00</p>
-                <button onclick="abrirModal('Museu de Arte Contemporânea')">Reservar</button>
+                <button onclick="abrirModal('Museu de Arte Contemporânea', 120)">Reservar</button>
             </div>
             <!-- Pontos Turísticos do Rio de Janeiro -->
             <div class="passeio-card">
@@ -426,21 +435,21 @@
                 <h3>Cristo Redentor</h3>
                 <p>Um dos pontos turísticos mais famosos do mundo.</p>
                 <p class="preco">R$ 150,00</p>
-                <button onclick="abrirModal('Cristo Redentor')">Reservar</button>
+                <button onclick="abrirModal('Cristo Redentor', 150)">Reservar</button>
             </div>
             <div class="passeio-card">
                 <img src="https://source.unsplash.com/400x300/?sugarloaf-mountain" alt="Pão de Açúcar">
                 <h3>Pão de Açúcar</h3>
                 <p>Desfrute de uma vista incrível da cidade do Rio de Janeiro.</p>
                 <p class="preco">R$ 120,00</p>
-                <button onclick="abrirModal('Pão de Açúcar')">Reservar</button>
+                <button onclick="abrirModal('Pão de Açúcar', 120)">Reservar</button>
             </div>
             <div class="passeio-card">
                 <img src="https://source.unsplash.com/400x300/?copacabana-beach" alt="Praia de Copacabana">
                 <h3>Praia de Copacabana</h3>
                 <p>Uma das praias mais famosas do mundo.</p>
                 <p class="preco">R$ 90,00</p>
-                <button onclick="abrirModal('Praia de Copacabana')">Reservar</button>
+                <button onclick="abrirModal('Praia de Copacabana', 90)">Reservar</button>
             </div>
         </div>
     </section>
@@ -448,6 +457,7 @@
     <!-- Modal de Reserva -->
     <div id="modal" class="modal">
         <div class="modal-content">
+            <span onclick="fecharModal()">×</span>
             <h3 id="modal-titulo"></h3>
             <label for="nome">Nome:</label>
             <input type="text" id="nome" required>
@@ -473,21 +483,21 @@
                 <h3>Trilha do Costão de Itacoatiara</h3>
                 <p>Uma trilha desafiadora com vista para o mar.</p>
                 <p class="dificuldade">Dificuldade: Alta</p>
-                <button onclick="abrirModal('Trilha do Costão de Itacoatiara')">Reservar</button>
+                <button onclick="abrirModal('Trilha do Costão de Itacoatiara', 50)">Reservar</button>
             </div>
             <div class="trilha-card">
                 <img src="https://source.unsplash.com/400x300/?hiking" alt="Trilha da Pedra da Tartaruga">
                 <h3>Trilha da Pedra da Tartaruga</h3>
                 <p>Uma trilha moderada com vista panorâmica de Niterói.</p>
                 <p class="dificuldade">Dificuldade: Média</p>
-                <button onclick="abrirModal('Trilha da Pedra da Tartaruga')">Reservar</button>
+                <button onclick="abrirModal('Trilha da Pedra da Tartaruga', 40)">Reservar</button>
             </div>
             <div class="trilha-card">
                 <img src="https://source.unsplash.com/400x300/?mountain-trail" alt="Trilha do Morro da Urca">
                 <h3>Trilha do Morro da Urca</h3>
                 <p>Uma trilha leve com vista para o Pão de Açúcar.</p>
                 <p class="dificuldade">Dificuldade: Baixa</p>
-                <button onclick="abrirModal('Trilha do Morro da Urca')">Reservar</button>
+                <button onclick="abrirModal('Trilha do Morro da Urca', 30)">Reservar</button>
             </div>
         </div>
     </section>
@@ -529,17 +539,20 @@
     <!-- Script JavaScript -->
     <script>
         let passeiosSelecionados = [];
+        let precosSelecionados = [];
 
-        function abrirModal(nomePasseio) {
+        function abrirModal(nomePasseio, preco) {
             if (!passeiosSelecionados.includes(nomePasseio)) {
                 passeiosSelecionados.push(nomePasseio);
+                precosSelecionados.push(preco);
             }
             document.getElementById('modal-titulo').textContent = `Reservar: ${passeiosSelecionados.join(', ')}`;
             document.getElementById('modal').style.display = 'flex';
         }
 
         function fecharModal() {
-            passeiosSelecionados = []; // Limpa a seleção ao fechar o modal
+            passeiosSelecionados = [];
+            precosSelecionados = [];
             document.getElementById('modal').style.display = 'none';
         }
 
@@ -555,24 +568,32 @@
                 return;
             }
 
-            // Mensagem personalizada
-            const mensagem = `Olá, gostaria de reservar os seguintes passeios: ${passeiosSelecionados.join(', ')}\nNome: ${nome}\nTelefone: ${telefone}\nE-mail: ${email}\nData: ${data}\nQuantidade de pessoas: ${pessoas}`;
+            if (!validarTelefone(telefone)) {
+                alert('Por favor, insira um número de telefone válido.');
+                return;
+            }
 
-            // Número do WhatsApp (formato internacional)
+            const precoTotal = precosSelecionados.reduce((total, preco) => total + preco, 0);
+            const mensagem = `Olá, gostaria de reservar os seguintes passeios:\n\n${passeiosSelecionados.map((passeio, index) => `- ${passeio}: R$ ${precosSelecionados[index].toFixed(2)}`).join('\n')}\n\n**Total: R$ ${precoTotal.toFixed(2)}**\n\nNome: ${nome}\nTelefone: ${telefone}\nE-mail: ${email}\nData: ${data}\nQuantidade de pessoas: ${pessoas}`;
             const numeroWhatsApp = '5521990455492';
-
-            // Codificar a mensagem para URL
             const mensagemCodificada = encodeURIComponent(mensagem);
-
-            // Criar o link do WhatsApp
             const linkWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensagemCodificada}`;
 
-            // Redirecionar para o WhatsApp
             window.open(linkWhatsApp, '_blank');
-
-            // Fechar o modal
             fecharModal();
+            alert('Reserva enviada com sucesso!');
         }
+
+        function validarTelefone(telefone) {
+            const regex = /^\d{10,11}$/;
+            return regex.test(telefone);
+        }
+
+        document.getElementById('form-contato').addEventListener('submit', function (event) {
+            event.preventDefault();
+            alert('Mensagem enviada com sucesso!');
+            document.getElementById('form-contato').reset();
+        });
     </script>
 </body>
 </html>
