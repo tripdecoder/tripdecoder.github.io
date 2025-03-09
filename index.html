@@ -237,6 +237,59 @@
             background-color: #cc0000;
         }
 
+        .btn-adicionar {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .btn-adicionar:hover {
+            background-color: #45a049;
+        }
+
+        #lista-passeios-disponiveis {
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        #lista-passeios-disponiveis h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #00bcd4;
+        }
+
+        #lista-passeios-disponiveis ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #lista-passeios-disponiveis ul li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #444;
+        }
+
+        #lista-passeios-disponiveis ul li button {
+            background-color: #00bcd4;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #lista-passeios-disponiveis ul li button:hover {
+            background-color: #0097a7;
+        }
+
         .modal-content label {
             display: block;
             margin-bottom: 10px;
@@ -488,6 +541,11 @@
             <span onclick="fecharModal()">×</span>
             <h3 id="modal-titulo">Reservar Passeios</h3>
             <div id="lista-passeios"></div>
+            <button onclick="mostrarListaPasseios()" class="btn-adicionar">Adicionar Passeio</button>
+            <div id="lista-passeios-disponiveis">
+                <h4>Selecione mais passeios:</h4>
+                <ul id="passeios-disponiveis"></ul>
+            </div>
             <label for="nome">Nome:</label>
             <input type="text" id="nome" required>
             <label for="telefone">Telefone:</label>
@@ -570,6 +628,19 @@
         let passeiosSelecionados = [];
         let precosSelecionados = [];
 
+        // Lista de passeios disponíveis
+        const passeiosDisponiveis = [
+            { nome: "Praia de Icaraí", preco: 80 },
+            { nome: "Fortaleza de Santa Cruz", preco: 100 },
+            { nome: "Museu de Arte Contemporânea (MAC)", preco: 120 },
+            { nome: "Cristo Redentor", preco: 150 },
+            { nome: "Pão de Açúcar", preco: 120 },
+            { nome: "Praia de Copacabana", preco: 90 },
+            { nome: "Trilha do Costão de Itacoatiara", preco: 50 },
+            { nome: "Trilha da Pedra da Tartaruga", preco: 40 },
+            { nome: "Trilha do Morro da Urca", preco: 30 }
+        ];
+
         function abrirModal(nomePasseio, preco) {
             const index = passeiosSelecionados.indexOf(nomePasseio);
             if (index === -1) {
@@ -581,6 +652,41 @@
             }
             atualizarListaPasseios();
             document.getElementById('modal').style.display = 'flex';
+        }
+
+        function mostrarListaPasseios() {
+            const listaPasseiosDisponiveis = document.getElementById('passeios-disponiveis');
+            listaPasseiosDisponiveis.innerHTML = ''; // Limpa a lista atual
+
+            // Adiciona os passeios disponíveis à lista
+            passeiosDisponiveis.forEach(passeio => {
+                const item = document.createElement('li');
+                item.innerHTML = `
+                    <span>${passeio.nome} - R$ ${passeio.preco.toFixed(2)}</span>
+                    <button onclick="adicionarPasseio('${passeio.nome}', ${passeio.preco})">Adicionar</button>
+                `;
+                listaPasseiosDisponiveis.appendChild(item);
+            });
+
+            // Exibe a lista de passeios disponíveis
+            document.getElementById('lista-passeios-disponiveis').style.display = 'block';
+        }
+
+        function adicionarPasseio(nomePasseio, preco) {
+            if (!passeiosSelecionados.includes(nomePasseio)) {
+                passeiosSelecionados.push(nomePasseio);
+                precosSelecionados.push(preco);
+                atualizarListaPasseios();
+            }
+        }
+
+        function removerPasseio(nomePasseio, preco) {
+            const index = passeiosSelecionados.indexOf(nomePasseio);
+            if (index !== -1) {
+                passeiosSelecionados.splice(index, 1);
+                precosSelecionados.splice(index, 1);
+                atualizarListaPasseios();
+            }
         }
 
         function atualizarListaPasseios() {
@@ -598,15 +704,6 @@
             });
 
             document.getElementById('modal-titulo').textContent = `Reservar Passeios (${passeiosSelecionados.length} selecionados)`;
-        }
-
-        function removerPasseio(nomePasseio, preco) {
-            const index = passeiosSelecionados.indexOf(nomePasseio);
-            if (index !== -1) {
-                passeiosSelecionados.splice(index, 1);
-                precosSelecionados.splice(index, 1);
-                atualizarListaPasseios();
-            }
         }
 
         function fecharModal() {
