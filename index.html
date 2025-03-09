@@ -658,8 +658,13 @@
             const listaPasseiosDisponiveis = document.getElementById('passeios-disponiveis');
             listaPasseiosDisponiveis.innerHTML = ''; // Limpa a lista atual
 
+            // Filtra os passeios disponíveis que ainda não foram selecionados
+            const passeiosNaoSelecionados = passeiosDisponiveis.filter(passeio => 
+                !passeiosSelecionados.includes(passeio.nome)
+            );
+
             // Adiciona os passeios disponíveis à lista
-            passeiosDisponiveis.forEach(passeio => {
+            passeiosNaoSelecionados.forEach(passeio => {
                 const item = document.createElement('li');
                 item.innerHTML = `
                     <span>${passeio.nome} - R$ ${passeio.preco.toFixed(2)}</span>
