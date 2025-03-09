@@ -561,7 +561,7 @@
             const telefone = document.getElementById('telefone').value;
             const email = document.getElementById('email').value;
             const data = document.getElementById('data').value;
-            const pessoas = document.getElementById('pessoas').value;
+            const pessoas = parseInt(document.getElementById('pessoas').value);
 
             if (!nome || !telefone || !email || !data || !pessoas || passeiosSelecionados.length === 0) {
                 alert('Por favor, preencha todos os campos e selecione pelo menos um passeio.');
@@ -573,13 +573,25 @@
                 return;
             }
 
-            const precoTotal = precosSelecionados.reduce((total, preco) => total + preco, 0);
-            const mensagem = `Olá, gostaria de reservar os seguintes passeios:\n\n${passeiosSelecionados.map((passeio, index) => `- ${passeio}: R$ ${precosSelecionados[index].toFixed(2)}`).join('\n')}\n\n**Total: R$ ${precoTotal.toFixed(2)}**\n\nNome: ${nome}\nTelefone: ${telefone}\nE-mail: ${email}\nData: ${data}\nQuantidade de pessoas: ${pessoas}`;
+            // Calcular o preço total com base na quantidade de pessoas
+            const precoTotal = precosSelecionados.reduce((total, preco) => total + preco, 0) * pessoas;
+
+            // Mensagem personalizada com preço por pessoa e total
+            const mensagem = `Olá, gostaria de reservar os seguintes passeios:\n\n${passeiosSelecionados.map((passeio, index) => `- ${passeio}: R$ ${precosSelecionados[index].toFixed(2)} por pessoa`).join('\n')}\n\n**Quantidade de pessoas: ${pessoas}**\n**Total: R$ ${precoTotal.toFixed(2)}**\n\nNome: ${nome}\nTelefone: ${telefone}\nE-mail: ${email}\nData: ${data}`;
+
+            // Número do WhatsApp (formato internacional)
             const numeroWhatsApp = '5521990455492';
+
+            // Codificar a mensagem para URL
             const mensagemCodificada = encodeURIComponent(mensagem);
+
+            // Criar o link do WhatsApp
             const linkWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensagemCodificada}`;
 
+            // Redirecionar para o WhatsApp
             window.open(linkWhatsApp, '_blank');
+
+            // Fechar o modal
             fecharModal();
             alert('Reserva enviada com sucesso!');
         }
