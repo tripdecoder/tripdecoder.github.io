@@ -209,6 +209,34 @@
             color: #00bcd4;
         }
 
+        #lista-passeios {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .item-passeio {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #444;
+        }
+
+        .item-passeio button {
+            background-color: #ff4d4d;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .item-passeio button:hover {
+            background-color: #cc0000;
+        }
+
         .modal-content label {
             display: block;
             margin-bottom: 10px;
@@ -458,7 +486,8 @@
     <div id="modal" class="modal">
         <div class="modal-content">
             <span onclick="fecharModal()">×</span>
-            <h3 id="modal-titulo"></h3>
+            <h3 id="modal-titulo">Reservar Passeios</h3>
+            <div id="lista-passeios"></div>
             <label for="nome">Nome:</label>
             <input type="text" id="nome" required>
             <label for="telefone">Telefone:</label>
@@ -542,12 +571,42 @@
         let precosSelecionados = [];
 
         function abrirModal(nomePasseio, preco) {
-            if (!passeiosSelecionados.includes(nomePasseio)) {
+            const index = passeiosSelecionados.indexOf(nomePasseio);
+            if (index === -1) {
                 passeiosSelecionados.push(nomePasseio);
                 precosSelecionados.push(preco);
+            } else {
+                passeiosSelecionados.splice(index, 1);
+                precosSelecionados.splice(index, 1);
             }
-            document.getElementById('modal-titulo').textContent = `Reservar: ${passeiosSelecionados.join(', ')}`;
+            atualizarListaPasseios();
             document.getElementById('modal').style.display = 'flex';
+        }
+
+        function atualizarListaPasseios() {
+            const listaPasseios = document.getElementById('lista-passeios');
+            listaPasseios.innerHTML = '';
+
+            passeiosSelecionados.forEach((passeio, index) => {
+                const item = document.createElement('div');
+                item.className = 'item-passeio';
+                item.innerHTML = `
+                    <span>${passeio} - R$ ${precosSelecionados[index].toFixed(2)}</span>
+                    <button onclick="removerPasseio('${passeio}', ${precosSelecionados[index]})">Remover</button>
+                `;
+                listaPasseios.appendChild(item);
+            });
+
+            document.getElementById('modal-titulo').textContent = `Reservar Passeios (${passeiosSelecionados.length} selecionados)`;
+        }
+
+        function removerPasseio(nomePasseio, preco) {
+            const index = passeiosSelecionados.indexOf(nomePasseio);
+            if (index !== -1) {
+                passeiosSelecionados.splice(index, 1);
+                precosSelecionados.splice(index, 1);
+                atualizarListaPasseios();
+            }
         }
 
         function fecharModal() {
@@ -573,25 +632,13 @@
                 return;
             }
 
-            // Calcular o preço total com base na quantidade de pessoas
             const precoTotal = precosSelecionados.reduce((total, preco) => total + preco, 0) * pessoas;
-
-            // Mensagem personalizada com preço por pessoa e total
             const mensagem = `Olá, gostaria de reservar os seguintes passeios:\n\n${passeiosSelecionados.map((passeio, index) => `- ${passeio}: R$ ${precosSelecionados[index].toFixed(2)} por pessoa`).join('\n')}\n\n**Quantidade de pessoas: ${pessoas}**\n**Total: R$ ${precoTotal.toFixed(2)}**\n\nNome: ${nome}\nTelefone: ${telefone}\nE-mail: ${email}\nData: ${data}`;
-
-            // Número do WhatsApp (formato internacional)
             const numeroWhatsApp = '5521990455492';
-
-            // Codificar a mensagem para URL
             const mensagemCodificada = encodeURIComponent(mensagem);
-
-            // Criar o link do WhatsApp
             const linkWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensagemCodificada}`;
 
-            // Redirecionar para o WhatsApp
             window.open(linkWhatsApp, '_blank');
-
-            // Fechar o modal
             fecharModal();
             alert('Reserva enviada com sucesso!');
         }
