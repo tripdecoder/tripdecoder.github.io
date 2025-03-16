@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TripDecoder - Passeios no Rio de Janeiro e Niterói</title>
+    <link rel="shortcut icon" href="tripdecoder.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos gerais */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        /* ... (outros estilos permanecem iguais) ... */
+
+        /* Estilo para a lista de passeios disponíveis */
+        #lista-passeios-disponiveis {
+            margin-bottom: 20px;
+            display: none; /* Inicialmente oculta */
+        }
+
+        #lista-passeios-disponiveis h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #00bcd4;
+        }
+
+        #lista-passeios-disponiveis ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #lista-passeios-disponiveis ul li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #444;
+        }
+
+        #lista-passeios-disponiveis ul li button {
+            background-color: #00bcd4;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #lista-passeios-disponiveis ul li button:hover {
+            background-color: #0097a7;
+        }
+    </style>
+</head>
+<body>
+    <!-- ... (cabeçalho, hero, passeios, trilhas, depoimentos, contato e rodapé permanecem iguais) ... -->
+
+    <!-- Modal de Reserva -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span onclick="fecharModal()">×</span>
+            <h3 id="modal-titulo">Reservar Passeios</h3>
+            <div id="lista-passeios"></div>
+            <button onclick="mostrarListaPasseios()" class="btn-adicionar">Adicionar Passeio</button>
+            <div id="lista-passeios-disponiveis">
+                <h4>Selecione mais passeios:</h4>
+                <ul id="passeios-disponiveis"></ul>
+            </div>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" required>
+            <label for="telefone">Telefone:</label>
+            <input type="tel" id="telefone" required>
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" required>
+            <label for="data">Data:</label>
+            <input type="date" id="data" required>
+            <label for="pessoas">Quantidade de Pessoas:</label>
+            <input type="number" id="pessoas" min="1" required>
+            <button onclick="enviarWhatsApp()">Confirmar Reserva</button>
+            <button onclick="fecharModal()">Cancelar</button>
+        </div>
+    </div>
+
+    <!-- Script JavaScript -->
+    <script>
+        let passeiosSelecionados = [];
+        let precosSelecionados = [];
+
+        // Lista de passeios disponíveis
+        const passeiosDisponiveis = [
+            { nome: "Praia de Icaraí", preco: 80 },
+            { nome: "Fortaleza de Santa Cruz", preco: 100 },
+            { nome: "Museu de Arte Contemporânea (MAC)", preco: 120 },
+            { nome: "Cristo Redentor", preco: 150 },
+            { nome: "Pão de Açúcar", preco: 120 },
+            { nome: "Praia de Copacabana", preco: 90 },
+            { nome: "Trilha do Costão de Itacoatiara", preco: 50 },
+            { nome: "Trilha da Pedra da Tartaruga", preco: 40 },
+            { nome: "Trilha do Morro da Urca", preco: 30 }
+        ];
+
+        function abrirModal(nomePasseio, preco) {
+            const index = passeiosSelecionados.indexOf(nomePasseio);
+            if (index === -1) {
+                passeiosSelecionados.push(nomePasseio);
+                precosSelecionados.push(preco);
+            } else {
+                passeiosSelecionados.splice(index, 1);
+                precosSelecionados.splice(index, 1);
+            }
+            atualizarListaPasseios();
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        function mostrarListaPasseios() {
+            const listaPasseiosDisponiveis = document.getElementById('passeios-disponiveis');
+            listaPasseiosDisponiveis.innerHTML = ''; // Limpa a lista atual
+
+            // Filtra os passeios disponíveis que ainda não foram selecionados
+            const passeiosNaoSelecionados = passeiosDisponiveis.filter(passeio => 
+                !passeiosSelecionados.includes(passeio.nome)
+            );
+
+            // Adiciona os passeios disponíveis à lista
+            passeiosNaoSelecionados.forEach(passeio => {
+                const item = document.createElement('li');
+                item.innerHTML = `
+                    <span>${passeio.nome} - R$ ${passeio.preco.toFixed(2)}</span>
+                    <button onclick="adicionarPasseio('${passeio.nome}', ${passeio.preco})">Adicionar</button>
+                `;
+                listaPasseiosDisponiveis.appendChild(item);
+            });
+
+            // Exibe a lista de passeios disponíveis
+            document.getElementById('lista-passeios-disponiveis').style.display = 'block';
+        }
+
+        function adicionarPasseio(nomePasseio, preco) {
+            if (!passeiosSelecionados.includes(nomePasseio)) {
+                passeiosSelecionados.push(nomePasseio);
+                precosSelecionados.push(preco);
+                atualizarListaPasseios();
+            }
+            // Oculta a lista de passeios disponíveis após adicionar um passeio
+            document.getElementById('lista-passeios-disponiveis').style.display = 'none';
+        }
+
+        function removerPasseio(nomePasseio, preco) {
+            const index = passeiosSelecionados.indexOf(nomePasseio);
+            if (index !== -1) {
+                passeiosSelecionados.splice(index, 1);
+                precosSelecionados.splice(index, 1);
+                atualizarListaPasseios();
+            }
+        }
+
+        function atualizarListaPasseios() {
+            const listaPasseios = document.getElementById('lista-passeios');
+            listaPasseios.innerHTML = '';
+
+            passeiosSelecionados.forEach((passeio, index) => {
+                const item = document.createElement('div');
+                item.className = 'item-passeio';
+                item.innerHTML = `
+                    <span>${passeio} - R$ ${precosSelecionados[index].toFixed(2)}</span>
+                    <button onclick="removerPasseio('${passeio}', ${precosSelecionados[index]})">Remover</button>
+                `;
+                listaPasseios.appendChild(item);
+            });
+
+            document.getElementById('modal-titulo').textContent = `Reservar Passeios (${passeiosSelecionados.length} selecionados)`;
+        }
+
+        function fecharModal() {
+            passeiosSelecionados = [];
+            precosSelecionados = [];
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        function enviarWhatsApp() {
+            const nome = document.getElementById('nome').value;
+            const telefone = document.getElementById('telefone').value;
+            const email = document.getElementById('email').value;
+            const data = document.getElementById('data').value;
+            const pessoas = parseInt(document.getElementById('pessoas').value);
+
+            if (!nome || !telefone || !email || !data || !pessoas || passeiosSelecionados.length === 0) {
+                alert('Por favor, preencha todos os campos e selecione pelo menos um passeio.');
+                return;
+            }
+
+            if (!validarTelefone(telefone)) {
+                alert('Por favor, insira um número de telefone válido.');
+                return;
+            }
+
+            const precoTotal = precosSelecionados.reduce((total, preco) => total + preco, 0) * pessoas;
+            const mensagem = `Olá, gostaria de reservar os seguintes passeios:\n\n${passeiosSelecionados.map((passeio, index) => `- ${passeio}: R$ ${precosSelecionados[index].toFixed(2)} por pessoa`).join('\n')}\n\n**Quantidade de pessoas: ${pessoas}**\n**Total: R$ ${precoTotal.toFixed(2)}**\n\nNome: ${nome}\nTelefone: ${telefone}\nE-mail: ${email}\nData: ${data}`;
+            const numeroWhatsApp = '5521990455492';
+            const mensagemCodificada = encodeURIComponent(mensagem);
+            const linkWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensagemCodificada}`;
+
+            window.open(linkWhatsApp, '_blank');
+            fecharModal();
+            alert('Reserva enviada com sucesso!');
+        }
+
+        function validarTelefone(telefone) {
+            const regex = /^\d{10,11}$/;
+            return regex.test(telefone);
+        }
+
+        document.getElementById('form-contato').addEventListener('submit', function (event) {
+            event.preventDefault();
+            alert('Mensagem enviada com sucesso!');
+            document.getElementById('form-contato').reset();
+        });
+    </script>
+</body>
+</html>
