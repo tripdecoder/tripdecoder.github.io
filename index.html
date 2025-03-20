@@ -545,6 +545,7 @@
             <div id="lista-passeios-disponiveis">
                 <h4>Selecione mais passeios:</h4>
                 <ul id="passeios-disponiveis"></ul>
+                <button onclick="confirmarSelecao()" class="btn-adicionar">Confirmar Seleção</button>
             </div>
             <label for="nome">Nome:</label>
             <input type="text" id="nome" required>
@@ -663,12 +664,12 @@
                 !passeiosSelecionados.includes(passeio.nome)
             );
 
-            // Adiciona os passeios disponíveis à lista
+            // Adiciona os passeios disponíveis à lista com checkboxes
             passeiosNaoSelecionados.forEach(passeio => {
                 const item = document.createElement('li');
                 item.innerHTML = `
-                    <span>${passeio.nome} - R$ ${passeio.preco.toFixed(2)}</span>
-                    <button onclick="adicionarPasseio('${passeio.nome}', ${passeio.preco})">Adicionar</button>
+                    <input type="checkbox" id="${passeio.nome}" value="${passeio.nome}">
+                    <label for="${passeio.nome}">${passeio.nome} - R$ ${passeio.preco.toFixed(2)}</label>
                 `;
                 listaPasseiosDisponiveis.appendChild(item);
             });
@@ -677,15 +678,22 @@
             document.getElementById('lista-passeios-disponiveis').style.display = 'block';
         }
 
-        function adicionarPasseio(nomePasseio, preco) {
-            if (!passeiosSelecionados.includes(nomePasseio)) {
-                passeiosSelecionados.push(nomePasseio);
-                precosSelecionados.push(preco);
-                atualizarListaPasseios();
-            }
+        function confirmarSelecao() {
+            const checkboxes = document.querySelectorAll('#passeios-disponiveis input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    const passeio = passeiosDisponiveis.find(p => p.nome === checkbox.value);
+                    if (passeio && !passeiosSelecionados.includes(passeio.nome)) {
+                        passeiosSelecionados.push(passeio.nome);
+                        precosSelecionados.push(passeio.preco);
+                    }
+                }
+            });
+            atualizarListaPasseios();
+            document.getElementById('lista-passeios-disponiveis').style.display = 'none';
         }
 
-        function removerPasseio(nomePasseio, preco) {
+        function removerPasseio(nomePasseio) {
             const index = passeiosSelecionados.indexOf(nomePasseio);
             if (index !== -1) {
                 passeiosSelecionados.splice(index, 1);
@@ -703,7 +711,7 @@
                 item.className = 'item-passeio';
                 item.innerHTML = `
                     <span>${passeio} - R$ ${precosSelecionados[index].toFixed(2)}</span>
-                    <button onclick="removerPasseio('${passeio}', ${precosSelecionados[index]})">Remover</button>
+                    <button onclick="removerPasseio('${passeio}')">Remover</button>
                 `;
                 listaPasseios.appendChild(item);
             });
