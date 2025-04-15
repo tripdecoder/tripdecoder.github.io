@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TripDecoder | Passeios Exclusivos em Niterói</title>
+    <meta name="description" content="Passeios personalizados em Niterói: Horto do Fonseca, MAC, Campo de São Bento, Trilha do Costão e almoço na Praia de Itacoatiara">
+    <link rel="shortcut icon" href="tripdecoder.ico" type="image/x-icon">
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Video Hero Section */
+        .video-hero {
+            position: relative;
+            height: 80vh;
+            max-height: 800px;
+            overflow: hidden;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+        }
+        
+        .video-hero video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            z-index: -1;
+        }
+        
+        .hero-overlay {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            margin-bottom: 20px;
+        }
+        
+        .logo img {
+            height: 80px;
+            margin-bottom: 10px;
+        }
+        
+        .hero-overlay h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-overlay p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .cta-button {
+            background-color: #00bcd4;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            background-color: #0097a7;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 188, 212, 0.4);
+        }
+        
+        /* Tour Highlights */
+        .highlights {
+            padding: 60px 20px;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            color: #2C3E50;
+        }
+        
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .highlight-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .highlight-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .highlight-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .highlight-content {
+            padding: 20px;
+        }
+        
+        .highlight-content h3 {
+            color: #00bcd4;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+        
+        .highlight-content p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .info-button {
+            background-color: #00bcd4;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .info-button:hover {
+            background-color: #0097a7;
+        }
+        
+        /* Quotation Form */
+        .quotation {
+            padding: 60px 20px;
+            background-color: #1f1f1f;
+            color: white;
+        }
+        
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #2c3e50;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .form-title {
+            color: #00bcd4;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #e0e0e0;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: #1f1f1f;
+            color: white;
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-submit {
+            width: 100%;
+            padding: 15px;
+            background-color: #00bcd4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .form-submit:hover {
+            background-color: #0097a7;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 60px 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: #00bcd4;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1f1f1f;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo img {
+            height: 60px;
+        }
+        
+        .social-links {
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #00bcd4;
+        }
+        
+        .footer-links {
+            margin: 20px 0;
+        }
+        
+        .footer-links a {
+            color: #e0e0e0;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #00bcd4;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero-overlay h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-overlay p {
+                font-size: 1rem;
+            }
+            
+            .logo img {
+                height: 60px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Video Hero Section -->
+    <section class="video-hero">
+        <video autoplay muted loop>
+            <source src="https://example.com/niteroi-tour-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-overlay">
+            <div class="logo">
+                <img src="tripdecoder.ico" alt="TripDecoder Logo">
+            </div>
+            <h1>Descubra Niterói com a TripDecoder</h1>
+            <p>Passeios exclusivos pelo Horto do Fonseca, MAC, Campo de São Bento e trilha no Costão de Itacoatiara com almoço na praia</p>
+            <button class="cta-button" id="hero-cta">Solicitar Cotação</button>
+        </div>
+    </section>
+    
+    <!-- Tour Highlights -->
+    <section class="highlights">
+        <h2 class="section-title">Nossos Passeios em Niterói</h2>
+        <div class="highlight-grid">
+            <div class="highlight-card">
+                <img src="https://source.unsplash.com/600x400/?botanical-garden" alt="Horto do Fonseca">
+                <div class="highlight-content">
+                    <h3>Horto do Fonseca</h3>
+                    <p>Um dos jardins mais bonitos de Niterói, com espécies raras e paisagens deslumbrantes. Visita guiada com especialista em botânica local.</p>
+                    <button class="info-button" onclick="abrirModal('Horto do Fonseca')">Mais informações</button>
+                </div>
+            </div>
+            <div class="highlight-card">
+                <img src="https://source.unsplash.com/600x400/?modern-art-museum" alt="Museu de Arte Contemporânea">
+                <div class="highlight-content">
+                    <h3>Museu de Arte Contemporânea (MAC)</h3>
+                    <p>Ícone da arquitetura moderna com exposições de arte de renome internacional. Tour com guia especializado em arte contemporânea.</p>
+                    <button class="info-button" onclick="abrirModal('Museu de Arte Contemporânea')">Mais informações</button>
+                </div>
+            </div>
+            <div class="highlight-card">
+                <img src="https://source.unsplash.com/600x400/?park" alt="Campo de São Bento">
+                <div class="highlight-content">
+                    <h3>Campo de São Bento</h3>
+                    <p>O parque mais tradicional de Niterói, com natureza exuberante no coração da cidade. Passeio histórico-cultural pela área.</p>
+                    <button class="info-button" onclick="abrirModal('Campo de São Bento')">Mais informações</button>
+                </div>
+            </div>
+            <div class="highlight-card">
+                <img src="https://source.unsplash.com/600x400/?hiking-trail" alt="Trilha do Costão de Itacoatiara">
+                <div class="highlight-content">
+                    <h3>Trilha do Costão</h3>
+                    <p>Aventura com vista para o mar em uma das trilhas mais bonitas da região. Guia credenciado e equipamento de segurança incluso.</p>
+                    <button class="info-button" onclick="abrirModal('Trilha do Costão')">Mais informações</button>
+                </div>
+            </div>
+            <div class="highlight-card">
+                <img src="https://source.unsplash.com/600x400/?beach-restaurant" alt="Almoço na Praia de Itacoatiara">
+                <div class="highlight-content">
+                    <h3>Almoço na Praia</h3>
+                    <p>Experiência gastronômica com os melhores frutos do mar à beira mar. Opções vegetarianas disponíveis.</p>
+                    <button class="info-button" onclick="abrirModal('Almoço na Praia')">Mais informações</button>
+                </div>
+            </div>
+            <div class="highlight-card">
+                <img src="https://source.unsplash.com/600x400/?tour-group" alt="Pacote Completo">
+                <div class="highlight-content">
+                    <h3>Pacote Completo</h3>
+                    <p>Combine os melhores passeios de Niterói em um roteiro personalizado. Transporte, guia exclusivo e alimentação inclusos.</p>
+                    <button class="info-button" onclick="abrirModal('Pacote Completo')">Mais informações</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Quotation Form -->
+    <section class="quotation">
+        <div class="form-container">
+            <h2 class="form-title">Solicite sua Cotação</h2>
+            <form id="quotation-form">
+                <div class="form-group">
+                    <label for="name">Nome Completo</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Telefone</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="date">Data Pretendida</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="people">Quantidade de Pessoas</label>
+                    <input type="number" id="people" name="people" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="tour">Passeio de Interesse</label>
+                    <select id="tour" name="tour" required>
+                        <option value="">Selecione um passeio</option>
+                        <option value="Horto do Fonseca">Horto do Fonseca</option>
+                        <option value="Museu de Arte Contemporânea">MAC</option>
+                        <option value="Campo de São Bento">Campo de São Bento</option>
+                        <option value="Trilha do Costão">Trilha do Costão</option>
+                        <option value="Almoço na Praia">Almoço na Praia</option>
+                        <option value="Pacote Completo">Pacote Completo</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensagem Adicional</label>
+                    <textarea id="message" name="message"></textarea>
+                </div>
+                <button type="submit" class="form-submit">Enviar Solicitação</button>
+            </form>
+        </div>
+    </section>
+    
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <h2 class="section-title">O que nossos clientes dizem</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">"A trilha do Costão com a TripDecoder foi incrível! Os guias conhecem cada detalhe do lugar e nos levaram a pontos com vistas deslumbrantes que não encontraríamos sozinhos."</p>
+                <p class="testimonial-author">- Mariana R.</p>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"O almoço na Praia de Itacoatiara foi o ponto alto do nosso dia. Comida fresca, ambiente incrível e atendimento impecável da equipe TripDecoder."</p>
+                <p class="testimonial-author">- Carlos A.</p>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Conheci o MAC e o Horto do Fonseca de uma maneira completamente nova com os guias da TripDecoder. Histórias e detalhes que enriqueceram muito a experiência."</p>
+                <p class="testimonial-author">- Juliana M.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">
+            <img src="tripdecoder.ico" alt="TripDecoder">
+        </div>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+        </div>
+        <div class="footer-links">
+            <a href="#passeios">Passeios</a>
+            <a href="#trilhas">Trilhas</a>
+            <a href="#contato">Contato</a>
+            <a href="#sobre">Sobre Nós</a>
+        </div>
+        <p class="copyright">&copy; 2023 TripDecoder. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Information Modal -->
+    <div id="info-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span onclick="fecharModal()">×</span>
+            <h3 id="modal-tour-title"></h3>
+            <div id="modal-tour-description"></div>
+            <button class="cta-button" onclick="scrollToForm()">Solicitar Cotação</button>
+        </div>
+    </div>
+    
+    <script>
+        // Smooth scroll to form
+        document.getElementById('hero-cta').addEventListener('click', function() {
+            document.querySelector('.quotation').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+        
+        // Form submission
+        document.getElementById('quotation-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const date = document.getElementById('date').value;
+            const people = document.getElementById('people').value;
+            const tour = document.getElementById('tour').value;
+            const message = document.getElementById('message').value;
+            
+            // Format date
+            const formattedDate = new Date(date).toLocaleDateString('pt-BR');
+            
+            // Create WhatsApp message
+            const whatsappMessage = `📅 *Cotação TripDecoder* 📅\n\n` +
+                                   `🟢 *Passeio selecionado:* ${tour}\n` +
+                                   `👤 *Nome:* ${name}\n` +
+                                   `📞 *Telefone:* ${phone}\n` +
+                                   `✉ *E-mail:* ${email}\n` +
+                                   `📅 *Data:* ${formattedDate}\n` +
+                                   `👥 *Pessoas:* ${people}\n\n` +
+                                   `💬 *Mensagem:*\n${message || 'Nenhuma mensagem adicional'}\n\n` +
+                                   `_Enviado via site TripDecoder_`;
+            
+            // Encode for URL
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            
+            // Open WhatsApp
+            window.open(`https://wa.me/5521999999999?text=${encodedMessage}`, '_blank');
+            
+            // Reset form
+            this.reset();
+            
+            // Show confirmation
+            alert('Solicitação enviada! Entraremos em contato em breve para confirmar os detalhes.');
+        });
+        
+        // Set minimum date to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('date').min = today;
+        
+        // Tour information modal
+        const tourDescriptions = {
+            "Horto do Fonseca": `
+                <p>O Horto do Fonseca é um jardim botânico com mais de 8 mil m² de área verde, abrigando diversas espécies de plantas ornamentais, medicinais e frutíferas.</p>
+                <p><strong>Duração:</strong> Aproximadamente 2 horas</p>
+                <p><strong>Inclui:</strong> Guia especializado em botânica, água mineral</p>
+                <p><strong>Recomendações:</strong> Levar protetor solar e calçado confortável</p>
+            `,
+            "Museu de Arte Contemporânea": `
+                <p>O MAC é um marco da arquitetura moderna brasileira, projetado por Oscar Niemeyer, com exposições temporárias e acervo permanente de arte contemporânea.</p>
+                <p><strong>Duração:</strong> Aproximadamente 3 horas</p>
+                <p><strong>Inclui:</strong> Ingresso, guia especializado em arte</p>
+                <p><strong>Dias de funcionamento:</strong> Quarta a segunda-feira</p>
+            `,
+            "Campo de São Bento": `
+                <p>Parque urbano histórico com jardins, lago, playground e áreas de convivência. Um oásis verde no centro de Niterói com muita história para contar.</p>
+                <p><strong>Duração:</strong> Aproximadamente 1h30</p>
+                <p><strong>Inclui:</strong> Guia local, roteiro histórico</p>
+                <p><strong>Melhor horário:</strong> Manhã ou final de tarde</p>
+            `,
+            "Trilha do Costão": `
+                <p>Trilha moderada com vistas espetaculares do oceano. O percurso inclui passagem por piscinas naturais e mirantes exclusivos.</p>
+                <p><strong>Duração:</strong> Aproximadamente 4 horas</p>
+                <p><strong>Inclui:</strong> Guia credenciado, equipamento de segurança, seguro</p>
+                <p><strong>Nível de dificuldade:</strong> Moderado</p>
+            `,
+            "Almoço na Praia": `
+                <p>Experiência gastronômica em restaurante à beira-mar com os melhores frutos do mar da região. Opções para todos os gostos e dietas.</p>
+                <p><strong>Duração:</strong> Aproximadamente 2 horas</p>
+                <p><strong>Inclui:</strong> Refeição completa (entrada, prato principal e sobremesa), 1 bebida</p>
+                <p><strong>Opções:</strong> Frutos do mar, vegetariano, infantil</p>
+            `,
+            "Pacote Completo": `
+                <p>Roteiro personalizado que combina os melhores atrativos de Niterói em um dia inesquecível. Podemos incluir transporte privativo e guia exclusivo.</p>
+                <p><strong>Duração:</strong> Personalizado (normalmente 6-8 horas)</p>
+                <p><strong>Pode incluir:</strong> Transporte, guia exclusivo, alimentação, ingressos</p>
+                <p><strong>Personalização:</strong> Conte-nos seu interesse para criarmos o roteiro ideal</p>
+            `
+        };
+        
+        function abrirModal(tourName) {
+            document.getElementById('modal-tour-title').textContent = tourName;
+            document.getElementById('modal-tour-description').innerHTML = tourDescriptions[tourName];
+            document.getElementById('info-modal').style.display = 'flex';
+        }
+        
+        function fecharModal() {
+            document.getElementById('info-modal').style.display = 'none';
+        }
+        
+        function scrollToForm() {
+            fecharModal();
+            document.querySelector('.quotation').scrollIntoView({
+                behavior: 'smooth'
+            });
+            // Auto-fill the tour selection
+            const tourName = document.getElementById('modal-tour-title').textContent;
+            document.getElementById('tour').value = tourName;
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('info-modal');
+            if (event.target == modal) {
+                fecharModal();
+            }
+        }
+        
+        // Add animation to cards when scrolling
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.highlight-card, .testimonial-card').forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.5s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html
