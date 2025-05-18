@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trilha do Costão de Itacoatiara - TripDecoder</title>
+    <title>Itacoatiara Costão Trail - TripDecoder</title>
     <link rel="icon" href="tripdecoder.ico" type="image/x-icon">
     <style>
         body {
@@ -154,9 +154,9 @@
 
     <section class="hero">
         <div class="container">
-            <h1 style="font-size: 2.8em; margin-bottom: 20px; text-shadow: 2px 2px 8px rgba(0,0,0,0.6);">Trilha do Costão de Itacoatiara</h1>
-            <p style="font-size: 1.3em; max-width: 700px; margin: 0 auto 30px; text-shadow: 1px 1px 3px rgba(0,0,0,0.5);">Descubra uma das paisagens mais impressionantes de Niterói</p>
-            <a href="#form" class="cta">Reserve Sua Aventura</a>
+            <h1 style="font-size: 2.8em; margin-bottom: 20px; text-shadow: 2px 2px 8px rgba(0,0,0,0.6);">Itacoatiara Costão Trail</h1>
+            <p style="font-size: 1.3em; max-width: 700px; margin: 0 auto 30px; text-shadow: 1px 1px 3px rgba(0,0,0,0.5);">Discover one of Niterói's most impressive landscapes</p>
+            <a href="#form" class="cta">Book Your Adventure</a>
         </div>
     </section>
 
@@ -166,50 +166,53 @@
         </div>
 
         <div class="highlight-box">
-            <h2>Por que fazer esta trilha conosco?</h2>
-            <p>• Roteiro completo com os melhores mirantes</p>
+            <h2>Why choose this trail with us?</h2>
+            <p>• Complete itinerary with the best viewpoints</p>
+            <p>• Experienced local guides</p>
+            <p>• Small groups for better experience</p>
+            <p>• Safety as our top priority</p>
         </div>
     </section>
 
     <section id="form" class="form-container">
-        <h2 style="text-align: center; margin-bottom: 25px;">Solicite Seu Orçamento</h2>
+        <h2 style="text-align: center; margin-bottom: 25px;">Request Your Quote</h2>
         
         <form id="contactForm" onsubmit="sendToWhatsApp(event)">
             <div class="form-group">
-                <label for="name">Nome completo:</label>
-                <input type="text" id="name" required placeholder="Seu nome completo">
+                <label for="name">Full name:</label>
+                <input type="text" id="name" required placeholder="Your full name">
             </div>
             <div class="form-group">
-                <label for="date">Data de interesse:</label>
+                <label for="date">Preferred date:</label>
                 <input type="date" id="date" required>
             </div>
             <div class="form-group">
-                <label for="people">Número de participantes:</label>
-                <input type="number" id="people" min="1" required placeholder="Quantas pessoas?">
+                <label for="people">Number of participants:</label>
+                <input type="number" id="people" min="1" required placeholder="How many people?">
             </div>
-            <button type="submit" class="cta" style="width: 100%;">Enviar para WhatsApp</button>
+            <button type="submit" class="cta" style="width: 100%;">Send via WhatsApp</button>
         </form>
     </section>
 
     <section class="container">
         <div class="info-grid">
             <div class="info-card">
-                <h3>⏱ Duração</h3>
-                <p>1 hora e 30 minutos (incluindo paradas para fotos)</p>
+                <h3>⏱ Duration</h3>
+                <p>1 hour 30 minutes (including photo stops)</p>
             </div>
             <div class="info-card">
-                <h3>⚡ Dificuldade</h3>
-                <p>Moderada - Requer condicionamento físico básico</p>
+                <h3>⚡ Difficulty</h3>
+                <p>Moderate - Requires basic physical condition</p>
             </div>
             <div class="info-card">
-                <h3>🎒 O que levar</h3>
-                <p>Água, protetor solar, boné e calçado esportivo</p>
+                <h3>🎒 What to bring</h3>
+                <p>Water, sunscreen, hat, and sports shoes</p>
             </div>
         </div>
     </section>
 
     <footer class="footer">
-        <p style="margin-bottom: 10px;"><strong>TripDecoder Experiências</strong></p>
+        <p style="margin-bottom: 10px;"><strong>TripDecoder Experiences</strong></p>
         <div class="social-links">
             <a href="https://www.instagram.com/tripdecoder" class="social-link" target="_blank">
                 <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
@@ -218,8 +221,8 @@
                 @tripdecoder
             </a>
         </div>
-        <p style="font-size: 0.9em; opacity: 0.8; margin-top: 20px;">WhatsApp: (21) 99045-5492</p>
-        <p style="font-size: 0.9em; opacity: 0.8;">© 2024 Todos os direitos reservados</p>
+        <p style="font-size: 0.9em; opacity: 0.8; margin-top: 20px;">WhatsApp: +55 (21) 99045-5492</p>
+        <p style="font-size: 0.9em; opacity: 0.8;">© 2024 All rights reserved</p>
     </footer>
 
     <script>
@@ -230,8 +233,8 @@
             const date = document.getElementById('date').value;
             const people = document.getElementById('people').value;
             
-            const formattedDate = new Date(date).toLocaleDateString('pt-BR');
-            const message = `Olá TripDecoder! Gostaria de informações sobre a Trilha do Costão:\n\n*Nome:* ${name}\n*Data:* ${formattedDate}\n*Pessoas:* ${people}\n\nPor favor, envie valores e disponibilidade.`;
+            const formattedDate = new Date(date).toLocaleDateString('en-US');
+            const message = `Hello TripDecoder! I'd like information about the Itacoatiara Costão Trail:\n\n*Name:* ${name}\n*Date:* ${formattedDate}\n*People:* ${people}\n\nPlease send availability and pricing.`;
             
             const encodedMessage = encodeURIComponent(message);
             window.open(`https://wa.me/5521990455492?text=${encodedMessage}`, '_blank');
