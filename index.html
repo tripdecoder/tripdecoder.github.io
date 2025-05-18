@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TripDecoder - Passeios no Rio de Janeiro e Niterói</title>
+    <title>TripDecoder - Tours in Rio de Janeiro and Niterói</title>
     <link rel="shortcut icon" href="tripdecoder.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        /* Estilos gerais */
+        /* General styles */
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -101,27 +101,27 @@
             background-color: #0097a7;
         }
 
-        /* Passeios Section */
-        .passeios {
+        /* Tours Section */
+        .tours {
             padding: 50px 10%;
             text-align: center;
             background-color: #1f1f1f;
         }
 
-        .passeios h2 {
+        .tours h2 {
             font-size: 2rem;
             margin-bottom: 30px;
             color: #00bcd4;
         }
 
-        .passeios-container {
+        .tours-container {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
             justify-content: center;
         }
 
-        .passeio-card {
+        .tour-card {
             background-color: #2c3e50;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -130,35 +130,35 @@
             transition: transform 0.3s;
         }
 
-        .passeio-card:hover {
+        .tour-card:hover {
             transform: translateY(-10px);
         }
 
-        .passeio-card img {
+        .tour-card img {
             width: 100%;
             border-radius: 10px;
             margin-bottom: 15px;
         }
 
-        .passeio-card h3 {
+        .tour-card h3 {
             font-size: 1.5rem;
             margin-bottom: 10px;
             color: #00bcd4;
         }
 
-        .passeio-card p {
+        .tour-card p {
             font-size: 1rem;
             margin-bottom: 10px;
             color: #e0e0e0;
         }
 
-        .passeio-card .preco {
+        .tour-card .price {
             font-size: 1.2rem;
             font-weight: 600;
             color: #00bcd4;
         }
 
-        .passeio-card button {
+        .tour-card button {
             background-color: #00bcd4;
             color: #fff;
             border: none;
@@ -168,11 +168,11 @@
             transition: background-color 0.3s;
         }
 
-        .passeio-card button:hover {
+        .tour-card button:hover {
             background-color: #0097a7;
         }
 
-        /* Modal de Reserva - AJUSTADO */
+        /* Booking Modal - ADJUSTED */
         .modal {
             display: none;
             position: fixed;
@@ -219,7 +219,7 @@
             color: #00bcd4;
         }
 
-        #lista-passeios {
+        #tour-list {
             max-height: 200px;
             overflow-y: auto;
             margin-bottom: 20px;
@@ -228,7 +228,7 @@
             padding: 10px;
         }
 
-        .item-passeio {
+        .tour-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -236,11 +236,11 @@
             border-bottom: 1px solid #444;
         }
 
-        .item-passeio:last-child {
+        .tour-item:last-child {
             border-bottom: none;
         }
 
-        .item-passeio button {
+        .tour-item button {
             background-color: #ff4d4d;
             color: #fff;
             border: none;
@@ -251,11 +251,11 @@
             font-size: 0.9rem;
         }
 
-        .item-passeio button:hover {
+        .tour-item button:hover {
             background-color: #cc0000;
         }
 
-        .btn-adicionar {
+        .btn-add {
             background-color: #4CAF50;
             color: #fff;
             border: none;
@@ -268,11 +268,11 @@
             font-weight: 600;
         }
 
-        .btn-adicionar:hover {
+        .btn-add:hover {
             background-color: #45a049;
         }
 
-        #lista-passeios-disponiveis {
+        #available-tours {
             margin-bottom: 20px;
             display: none;
             background-color: #2c3e50;
@@ -280,19 +280,19 @@
             border-radius: 8px;
         }
 
-        #lista-passeios-disponiveis h4 {
+        #available-tours h4 {
             font-size: 1.2rem;
             margin-bottom: 15px;
             color: #00bcd4;
         }
 
-        #lista-passeios-disponiveis ul {
+        #available-tours ul {
             list-style: none;
             padding: 0;
             margin: 0;
         }
 
-        #lista-passeios-disponiveis ul li {
+        #available-tours ul li {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -300,18 +300,18 @@
             border-bottom: 1px solid #444;
         }
 
-        #lista-passeios-disponiveis ul li:last-child {
+        #available-tours ul li:last-child {
             border-bottom: none;
         }
 
-        #lista-passeios-disponiveis ul li label {
+        #available-tours ul li label {
             display: flex;
             align-items: center;
             cursor: pointer;
             width: 100%;
         }
 
-        #lista-passeios-disponiveis ul li input[type="checkbox"] {
+        #available-tours ul li input[type="checkbox"] {
             margin-right: 10px;
         }
 
@@ -362,7 +362,7 @@
             flex: 1;
         }
 
-        .modal-content button.btn-cancelar {
+        .modal-content button.btn-cancel {
             background-color: #ff4d4d;
         }
 
@@ -370,31 +370,31 @@
             background-color: #0097a7;
         }
 
-        .modal-content button.btn-cancelar:hover {
+        .modal-content button.btn-cancel:hover {
             background-color: #cc0000;
         }
 
-        /* Outras seções (Trilhas, Depoimentos, Contato) */
-        .trilhas, .depoimentos, .contato {
+        /* Other sections (Hikes, Testimonials, Contact) */
+        .hikes, .testimonials, .contact {
             padding: 50px 10%;
             text-align: center;
             background-color: #121212;
         }
 
-        .trilhas h2, .depoimentos h2, .contato h2 {
+        .hikes h2, .testimonials h2, .contact h2 {
             font-size: 2rem;
             margin-bottom: 30px;
             color: #00bcd4;
         }
 
-        .trilhas-container, .depoimentos-container {
+        .hikes-container, .testimonials-container {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
             justify-content: center;
         }
 
-        .trilha-card, .depoimento-card {
+        .hike-card, .testimonial-card {
             background-color: #1f1f1f;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -402,25 +402,25 @@
             padding: 20px;
         }
 
-        .trilha-card h3, .depoimento-card .autor {
+        .hike-card h3, .testimonial-card .author {
             font-size: 1.5rem;
             margin-bottom: 10px;
             color: #00bcd4;
         }
 
-        .trilha-card p, .depoimento-card p {
+        .hike-card p, .testimonial-card p {
             font-size: 1rem;
             margin-bottom: 10px;
             color: #e0e0e0;
         }
 
-        .trilha-card .dificuldade {
+        .hike-card .difficulty {
             font-size: 1rem;
             font-weight: 600;
             color: #00bcd4;
         }
 
-        .trilha-card button, .depoimento-card button {
+        .hike-card button, .testimonial-card button {
             background-color: #00bcd4;
             color: #fff;
             border: none;
@@ -430,12 +430,12 @@
             transition: background-color 0.3s;
         }
 
-        .trilha-card button:hover, .depoimento-card button:hover {
+        .hike-card button:hover, .testimonial-card button:hover {
             background-color: #0097a7;
         }
 
-        /* Formulário de Contato */
-        #form-contato {
+        /* Contact Form */
+        #contact-form {
             display: flex;
             flex-direction: column;
             gap: 15px;
@@ -443,7 +443,7 @@
             margin: 0 auto;
         }
 
-        #form-contato input, #form-contato textarea {
+        #contact-form input, #contact-form textarea {
             padding: 10px;
             border: 1px solid #444;
             border-radius: 5px;
@@ -452,7 +452,7 @@
             color: #e0e0e0;
         }
 
-        #form-contato button {
+        #contact-form button {
             background-color: #00bcd4;
             color: #fff;
             border: none;
@@ -462,11 +462,11 @@
             transition: background-color 0.3s;
         }
 
-        #form-contato button:hover {
+        #contact-form button:hover {
             background-color: #0097a7;
         }
 
-        /* Rodapé */
+        /* Footer */
         footer {
             background-color: #1f1f1f;
             color: #e0e0e0;
@@ -476,7 +476,7 @@
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Responsividade */
+        /* Responsiveness */
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
@@ -496,7 +496,7 @@
                 font-size: 1rem;
             }
 
-            .passeios-container, .trilhas-container, .depoimentos-container {
+            .tours-container, .hikes-container, .testimonials-container {
                 flex-direction: column;
                 align-items: center;
             }
@@ -521,7 +521,7 @@
     </style>
 </head>
 <body>
-    <!-- Cabeçalho -->
+    <!-- Header -->
     <header>
         <div class="logo">
             <img src="tripdecoder.ico" alt="TripDecoder Logo">
@@ -529,349 +529,349 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#passeios">Passeios</a></li>
-                <li><a href="#trilhas">Trilhas</a></li>
-                <li><a href="#depoimentos">Depoimentos</a></li>
-                <li><a href="#contato">Contato</a></li>
+                <li><a href="#tours">Tours</a></li>
+                <li><a href="#hikes">Hikes</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Seção Hero -->
+    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h2>Descubra o Rio de Janeiro e Niterói com quem conhece!</h2>
-            <p>Reserve agora seus passeios pelos principais pontos turísticos e trilhas.</p>
-            <a href="#passeios" class="btn">Reservar Agora</a>
+            <h2>Discover Rio de Janeiro and Niterói with locals!</h2>
+            <p>Book now your tours to the main attractions and hiking trails.</p>
+            <a href="#tours" class="btn">Book Now</a>
         </div>
     </section>
 
-    <!-- Seção de Passeios -->
-    <section id="passeios" class="passeios">
-        <h2>Nossos Passeios</h2>
-        <div class="passeios-container">
-            <!-- Pontos Turísticos de Niterói -->
-            <div class="passeio-card">
-                <img src="https://source.unsplash.com/400x300/?icaraí-beach" alt="Praia de Icaraí">
-                <h3>Praia de Icaraí</h3>
-                <p>Uma das praias mais famosas de Niterói, com vista para o Pão de Açúcar.</p>
-                <p class="preco">R$ 80,00</p>
-                <button onclick="abrirModal('Praia de Icaraí', 80)">Reservar</button>
+    <!-- Tours Section -->
+    <section id="tours" class="tours">
+        <h2>Our Tours</h2>
+        <div class="tours-container">
+            <!-- Niterói Attractions -->
+            <div class="tour-card">
+                <img src="https://source.unsplash.com/400x300/?icaraí-beach" alt="Icaraí Beach">
+                <h3>Icaraí Beach</h3>
+                <p>One of the most famous beaches in Niterói with views of Sugarloaf Mountain.</p>
+                <p class="price">$80.00</p>
+                <button onclick="openModal('Icaraí Beach', 80)">Book</button>
             </div>
-            <div class="passeio-card">
-                <img src="https://source.unsplash.com/400x300/?fortaleza-de-santa-cruz" alt="Fortaleza de Santa Cruz">
-                <h3>Fortaleza de Santa Cruz</h3>
-                <p>Uma fortaleza histórica com vista deslumbrante para a Baía de Guanabara.</p>
-                <p class="preco">R$ 100,00</p>
-                <button onclick="abrirModal('Fortaleza de Santa Cruz', 100)">Reservar</button>
+            <div class="tour-card">
+                <img src="https://source.unsplash.com/400x300/?fortaleza-de-santa-cruz" alt="Santa Cruz Fortress">
+                <h3>Santa Cruz Fortress</h3>
+                <p>A historic fortress with stunning views of Guanabara Bay.</p>
+                <p class="price">$100.00</p>
+                <button onclick="openModal('Santa Cruz Fortress', 100)">Book</button>
             </div>
-            <div class="passeio-card">
-                <img src="https://source.unsplash.com/400x300/?museu-de-arte-contemporânea" alt="Museu de Arte Contemporânea">
-                <h3>Museu de Arte Contemporânea (MAC)</h3>
-                <p>Um ícone da arquitetura moderna com exposições incríveis.</p>
-                <p class="preco">R$ 120,00</p>
-                <button onclick="abrirModal('Museu de Arte Contemporânea', 120)">Reservar</button>
+            <div class="tour-card">
+                <img src="https://source.unsplash.com/400x300/?museu-de-arte-contemporânea" alt="Contemporary Art Museum">
+                <h3>Contemporary Art Museum (MAC)</h3>
+                <p>An icon of modern architecture with amazing exhibitions.</p>
+                <p class="price">$120.00</p>
+                <button onclick="openModal('Contemporary Art Museum', 120)">Book</button>
             </div>
-            <!-- Pontos Turísticos do Rio de Janeiro -->
-            <div class="passeio-card">
-                <img src="https://source.unsplash.com/400x300/?christ-the-redeemer" alt="Cristo Redentor">
-                <h3>Cristo Redentor</h3>
-                <p>Um dos pontos turísticos mais famosos do mundo.</p>
-                <p class="preco">R$ 150,00</p>
-                <button onclick="abrirModal('Cristo Redentor', 150)">Reservar</button>
+            <!-- Rio de Janeiro Attractions -->
+            <div class="tour-card">
+                <img src="https://source.unsplash.com/400x300/?christ-the-redeemer" alt="Christ the Redeemer">
+                <h3>Christ the Redeemer</h3>
+                <p>One of the most famous landmarks in the world.</p>
+                <p class="price">$150.00</p>
+                <button onclick="openModal('Christ the Redeemer', 150)">Book</button>
             </div>
-            <div class="passeio-card">
-                <img src="https://source.unsplash.com/400x300/?sugarloaf-mountain" alt="Pão de Açúcar">
-                <h3>Pão de Açúcar</h3>
-                <p>Desfrute de uma vista incrível da cidade do Rio de Janeiro.</p>
-                <p class="preco">R$ 120,00</p>
-                <button onclick="abrirModal('Pão de Açúcar', 120)">Reservar</button>
+            <div class="tour-card">
+                <img src="https://source.unsplash.com/400x300/?sugarloaf-mountain" alt="Sugarloaf Mountain">
+                <h3>Sugarloaf Mountain</h3>
+                <p>Enjoy an incredible view of Rio de Janeiro city.</p>
+                <p class="price">$120.00</p>
+                <button onclick="openModal('Sugarloaf Mountain', 120)">Book</button>
             </div>
-            <div class="passeio-card">
-                <img src="https://source.unsplash.com/400x300/?copacabana-beach" alt="Praia de Copacabana">
-                <h3>Praia de Copacabana</h3>
-                <p>Uma das praias mais famosas do mundo.</p>
-                <p class="preco">R$ 90,00</p>
-                <button onclick="abrirModal('Praia de Copacabana', 90)">Reservar</button>
+            <div class="tour-card">
+                <img src="https://source.unsplash.com/400x300/?copacabana-beach" alt="Copacabana Beach">
+                <h3>Copacabana Beach</h3>
+                <p>One of the most famous beaches in the world.</p>
+                <p class="price">$90.00</p>
+                <button onclick="openModal('Copacabana Beach', 90)">Book</button>
             </div>
         </div>
     </section>
 
-    <!-- Modal de Reserva - AJUSTADO -->
+    <!-- Booking Modal - ADJUSTED -->
     <div id="modal" class="modal">
         <div class="modal-content">
-            <span onclick="fecharModal()">×</span>
-            <h3 id="modal-titulo">Reservar Passeios</h3>
-            <div id="lista-passeios"></div>
-            <button onclick="mostrarListaPasseios()" class="btn-adicionar">Adicionar Passeio</button>
-            <div id="lista-passeios-disponiveis">
-                <h4>Selecione mais passeios:</h4>
-                <ul id="passeios-disponiveis"></ul>
-                <button onclick="confirmarSelecao()" class="btn-adicionar">Confirmar Seleção</button>
+            <span onclick="closeModal()">×</span>
+            <h3 id="modal-title">Book Tours</h3>
+            <div id="tour-list"></div>
+            <button onclick="showTourList()" class="btn-add">Add Tour</button>
+            <div id="available-tours">
+                <h4>Select more tours:</h4>
+                <ul id="tours-available"></ul>
+                <button onclick="confirmSelection()" class="btn-add">Confirm Selection</button>
             </div>
             <div class="form-group">
-                <label for="nome-modal">Nome:</label>
-                <input type="text" id="nome-modal" required>
+                <label for="name-modal">Name:</label>
+                <input type="text" id="name-modal" required>
             </div>
             <div class="form-group">
-                <label for="telefone-modal">Telefone:</label>
-                <input type="tel" id="telefone-modal" required>
+                <label for="phone-modal">Phone:</label>
+                <input type="tel" id="phone-modal" required>
             </div>
             <div class="form-group">
-                <label for="email-modal">E-mail:</label>
+                <label for="email-modal">Email:</label>
                 <input type="email" id="email-modal" required>
             </div>
             <div class="form-group">
-                <label for="data-modal">Data:</label>
-                <input type="date" id="data-modal" required>
+                <label for="date-modal">Date:</label>
+                <input type="date" id="date-modal" required>
             </div>
             <div class="form-group">
-                <label for="pessoas-modal">Quantidade de Pessoas:</label>
-                <input type="number" id="pessoas-modal" min="1" required>
+                <label for="people-modal">Number of People:</label>
+                <input type="number" id="people-modal" min="1" required>
             </div>
             <div class="button-group">
-                <button onclick="enviarWhatsApp()">Confirmar Reserva</button>
-                <button onclick="fecharModal()" class="btn-cancelar">Cancelar</button>
+                <button onclick="sendWhatsApp()">Confirm Booking</button>
+                <button onclick="closeModal()" class="btn-cancel">Cancel</button>
             </div>
         </div>
     </div>
 
-    <!-- Seção de Trilhas -->
-    <section id="trilhas" class="trilhas">
-        <h2>Trilhas</h2>
-        <div class="trilhas-container">
-            <div class="trilha-card">
-                <img src="https://source.unsplash.com/400x300/?hiking-trail" alt="Trilha do Costão de Itacoatiara">
-                <h3>Trilha do Costão de Itacoatiara</h3>
-                <p>Uma trilha desafiadora com vista para o mar.</p>
-                <p class="dificuldade">Dificuldade: Alta</p>
-                <button onclick="abrirModal('Trilha do Costão de Itacoatiara', 50)">Reservar</button>
+    <!-- Hikes Section -->
+    <section id="hikes" class="hikes">
+        <h2>Hiking Trails</h2>
+        <div class="hikes-container">
+            <div class="hike-card">
+                <img src="https://source.unsplash.com/400x300/?hiking-trail" alt="Itacoatiara Costão Trail">
+                <h3>Itacoatiara Costão Trail</h3>
+                <p>A challenging trail with ocean views.</p>
+                <p class="difficulty">Difficulty: High</p>
+                <button onclick="openModal('Itacoatiara Costão Trail', 50)">Book</button>
             </div>
-            <div class="trilha-card">
-                <img src="https://source.unsplash.com/400x300/?hiking" alt="Trilha da Pedra da Tartaruga">
-                <h3>Trilha da Pedra da Tartaruga</h3>
-                <p>Uma trilha moderada com vista panorâmica de Niterói.</p>
-                <p class="dificuldade">Dificuldade: Média</p>
-                <button onclick="abrirModal('Trilha da Pedra da Tartaruga', 40)">Reservar</button>
+            <div class="hike-card">
+                <img src="https://source.unsplash.com/400x300/?hiking" alt="Turtle Rock Trail">
+                <h3>Turtle Rock Trail</h3>
+                <p>A moderate trail with panoramic views of Niterói.</p>
+                <p class="difficulty">Difficulty: Medium</p>
+                <button onclick="openModal('Turtle Rock Trail', 40)">Book</button>
             </div>
-            <div class="trilha-card">
-                <img src="https://source.unsplash.com/400x300/?mountain-trail" alt="Trilha do Morro da Urca">
-                <h3>Trilha do Morro da Urca</h3>
-                <p>Uma trilha leve com vista para o Pão de Açúcar.</p>
-                <p class="dificuldade">Dificuldade: Baixa</p>
-                <button onclick="abrirModal('Trilha do Morro da Urca', 30)">Reservar</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Seção de Depoimentos -->
-    <section id="depoimentos" class="depoimentos">
-        <h2>Depoimentos</h2>
-        <div class="depoimentos-container">
-            <div class="depoimento-card">
-                <p>"Adoramos o passeio ao Cristo Redentor! O guia foi muito atencioso."</p>
-                <p class="autor">- Ana Silva</p>
-            </div>
-            <div class="depoimento-card">
-                <p>"Pão de Açúcar é imperdível! Recomendo a todos."</p>
-                <p class="autor">- João Souza</p>
+            <div class="hike-card">
+                <img src="https://source.unsplash.com/400x300/?mountain-trail" alt="Urca Hill Trail">
+                <h3>Urca Hill Trail</h3>
+                <p>An easy trail with views of Sugarloaf Mountain.</p>
+                <p class="difficulty">Difficulty: Low</p>
+                <button onclick="openModal('Urca Hill Trail', 30)">Book</button>
             </div>
         </div>
     </section>
 
-    <!-- Seção de Contato -->
-    <section id="contato" class="contato">
-        <h2>Contato</h2>
-        <form id="form-contato">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" required>
-            <label for="email">E-mail:</label>
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <h2>Testimonials</h2>
+        <div class="testimonials-container">
+            <div class="testimonial-card">
+                <p>"We loved the Christ the Redeemer tour! The guide was very attentive."</p>
+                <p class="author">- Ana Silva</p>
+            </div>
+            <div class="testimonial-card">
+                <p>"Sugarloaf Mountain is a must-see! I recommend it to everyone."</p>
+                <p class="author">- João Souza</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2>Contact Us</h2>
+        <form id="contact-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
-            <label for="mensagem">Mensagem:</label>
-            <textarea id="mensagem" name="mensagem" required></textarea>
-            <button type="submit">Enviar</button>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            <button type="submit">Send</button>
         </form>
     </section>
 
-    <!-- Rodapé -->
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 TripDecoder. Todos os direitos reservados.</p>
+        <p>&copy; 2025 TripDecoder. All rights reserved.</p>
     </footer>
 
-    <!-- Script JavaScript -->
+    <!-- JavaScript -->
     <script>
-        let passeiosSelecionados = [];
-        let precosSelecionados = [];
+        let selectedTours = [];
+        let selectedPrices = [];
 
-        // Lista de passeios disponíveis
-        const passeiosDisponiveis = [
-            { nome: "Praia de Icaraí", preco: 80 },
-            { nome: "Fortaleza de Santa Cruz", preco: 100 },
-            { nome: "Museu de Arte Contemporânea (MAC)", preco: 120 },
-            { nome: "Cristo Redentor", preco: 150 },
-            { nome: "Pão de Açúcar", preco: 120 },
-            { nome: "Praia de Copacabana", preco: 90 },
-            { nome: "Trilha do Costão de Itacoatiara", preco: 50 },
-            { nome: "Trilha da Pedra da Tartaruga", preco: 40 },
-            { nome: "Trilha do Morro da Urca", preco: 30 }
+        // List of available tours
+        const availableTours = [
+            { name: "Icaraí Beach", price: 80 },
+            { name: "Santa Cruz Fortress", price: 100 },
+            { name: "Contemporary Art Museum (MAC)", price: 120 },
+            { name: "Christ the Redeemer", price: 150 },
+            { name: "Sugarloaf Mountain", price: 120 },
+            { name: "Copacabana Beach", price: 90 },
+            { name: "Itacoatiara Costão Trail", price: 50 },
+            { name: "Turtle Rock Trail", price: 40 },
+            { name: "Urca Hill Trail", price: 30 }
         ];
 
-        function abrirModal(nomePasseio, preco) {
-            const index = passeiosSelecionados.indexOf(nomePasseio);
+        function openModal(tourName, price) {
+            const index = selectedTours.indexOf(tourName);
             if (index === -1) {
-                passeiosSelecionados.push(nomePasseio);
-                precosSelecionados.push(preco);
+                selectedTours.push(tourName);
+                selectedPrices.push(price);
             } else {
-                passeiosSelecionados.splice(index, 1);
-                precosSelecionados.splice(index, 1);
+                selectedTours.splice(index, 1);
+                selectedPrices.splice(index, 1);
             }
-            atualizarListaPasseios();
+            updateTourList();
             document.getElementById('modal').style.display = 'flex';
         }
 
-        function mostrarListaPasseios() {
-            const listaPasseiosDisponiveis = document.getElementById('passeios-disponiveis');
-            listaPasseiosDisponiveis.innerHTML = ''; // Limpa a lista atual
+        function showTourList() {
+            const toursAvailableList = document.getElementById('tours-available');
+            toursAvailableList.innerHTML = ''; // Clear current list
 
-            // Filtra os passeios disponíveis que ainda não foram selecionados
-            const passeiosNaoSelecionados = passeiosDisponiveis.filter(passeio => 
-                !passeiosSelecionados.includes(passeio.nome)
+            // Filter available tours that haven't been selected yet
+            const notSelectedTours = availableTours.filter(tour => 
+                !selectedTours.includes(tour.name)
             );
 
-            // Adiciona os passeios disponíveis à lista
-            passeiosNaoSelecionados.forEach(passeio => {
+            // Add available tours to the list
+            notSelectedTours.forEach(tour => {
                 const item = document.createElement('li');
                 item.innerHTML = `
-                    <input type="checkbox" id="passeio-${passeio.nome.replace(/\s+/g, '-')}" value="${passeio.nome}">
-                    <label for="passeio-${passeio.nome.replace(/\s+/g, '-')}">${passeio.nome} - R$ ${passeio.preco.toFixed(2)}</label>
+                    <input type="checkbox" id="tour-${tour.name.replace(/\s+/g, '-')}" value="${tour.name}">
+                    <label for="tour-${tour.name.replace(/\s+/g, '-')}">${tour.name} - $ ${tour.price.toFixed(2)}</label>
                 `;
-                listaPasseiosDisponiveis.appendChild(item);
+                toursAvailableList.appendChild(item);
             });
 
-            // Exibe a lista de passeios disponíveis
-            document.getElementById('lista-passeios-disponiveis').style.display = 'block';
+            // Show the available tours list
+            document.getElementById('available-tours').style.display = 'block';
         }
 
-        function confirmarSelecao() {
-            const checkboxes = document.querySelectorAll('#passeios-disponiveis input[type="checkbox"]');
+        function confirmSelection() {
+            const checkboxes = document.querySelectorAll('#tours-available input[type="checkbox"]');
             checkboxes.forEach(checkbox => {
                 if (checkbox.checked) {
-                    const passeio = passeiosDisponiveis.find(p => p.nome === checkbox.value);
-                    if (passeio && !passeiosSelecionados.includes(passeio.nome)) {
-                        passeiosSelecionados.push(passeio.nome);
-                        precosSelecionados.push(passeio.preco);
+                    const tour = availableTours.find(t => t.name === checkbox.value);
+                    if (tour && !selectedTours.includes(tour.name)) {
+                        selectedTours.push(tour.name);
+                        selectedPrices.push(tour.price);
                     }
                 }
             });
-            atualizarListaPasseios();
-            document.getElementById('lista-passeios-disponiveis').style.display = 'none';
+            updateTourList();
+            document.getElementById('available-tours').style.display = 'none';
         }
 
-        function removerPasseio(nomePasseio) {
-            const index = passeiosSelecionados.indexOf(nomePasseio);
+        function removeTour(tourName) {
+            const index = selectedTours.indexOf(tourName);
             if (index !== -1) {
-                passeiosSelecionados.splice(index, 1);
-                precosSelecionados.splice(index, 1);
-                atualizarListaPasseios();
+                selectedTours.splice(index, 1);
+                selectedPrices.splice(index, 1);
+                updateTourList();
             }
         }
 
-        function atualizarListaPasseios() {
-            const listaPasseios = document.getElementById('lista-passeios');
-            listaPasseios.innerHTML = '';
+        function updateTourList() {
+            const tourList = document.getElementById('tour-list');
+            tourList.innerHTML = '';
 
-            if (passeiosSelecionados.length === 0) {
-                listaPasseios.innerHTML = '<p style="text-align: center; color: #aaa;">Nenhum passeio selecionado</p>';
+            if (selectedTours.length === 0) {
+                tourList.innerHTML = '<p style="text-align: center; color: #aaa;">No tours selected</p>';
             } else {
-                passeiosSelecionados.forEach((passeio, index) => {
+                selectedTours.forEach((tour, index) => {
                     const item = document.createElement('div');
-                    item.className = 'item-passeio';
+                    item.className = 'tour-item';
                     item.innerHTML = `
-                        <span>${passeio} - R$ ${precosSelecionados[index].toFixed(2)}</span>
-                        <button onclick="removerPasseio('${passeio}')">Remover</button>
+                        <span>${tour} - $ ${selectedPrices[index].toFixed(2)}</span>
+                        <button onclick="removeTour('${tour}')">Remove</button>
                     `;
-                    listaPasseios.appendChild(item);
+                    tourList.appendChild(item);
                 });
             }
 
-            document.getElementById('modal-titulo').textContent = `Reservar Passeios (${passeiosSelecionados.length} selecionados)`;
+            document.getElementById('modal-title').textContent = `Book Tours (${selectedTours.length} selected)`;
         }
 
-        function fecharModal() {
-            passeiosSelecionados = [];
-            precosSelecionados = [];
+        function closeModal() {
+            selectedTours = [];
+            selectedPrices = [];
             document.getElementById('modal').style.display = 'none';
-            document.getElementById('lista-passeios-disponiveis').style.display = 'none';
+            document.getElementById('available-tours').style.display = 'none';
         }
 
-        function enviarWhatsApp() {
-            const nome = document.getElementById('nome-modal').value;
-            const telefone = document.getElementById('telefone-modal').value;
+        function sendWhatsApp() {
+            const name = document.getElementById('name-modal').value;
+            const phone = document.getElementById('phone-modal').value;
             const email = document.getElementById('email-modal').value;
-            const data = document.getElementById('data-modal').value;
-            const pessoas = parseInt(document.getElementById('pessoas-modal').value);
+            const date = document.getElementById('date-modal').value;
+            const people = parseInt(document.getElementById('people-modal').value);
 
-            if (!nome || !telefone || !email || !data || !pessoas || passeiosSelecionados.length === 0) {
-                alert('Por favor, preencha todos os campos e selecione pelo menos um passeio.');
+            if (!name || !phone || !email || !date || !people || selectedTours.length === 0) {
+                alert('Please fill all fields and select at least one tour.');
                 return;
             }
 
-            if (!validarTelefone(telefone)) {
-                alert('Por favor, insira um número de telefone válido (10 ou 11 dígitos).');
+            if (!validatePhone(phone)) {
+                alert('Please enter a valid phone number (10 or 11 digits).');
                 return;
             }
 
-            const precoTotal = precosSelecionados.reduce((total, preco) => total + preco, 0) * pessoas;
+            const totalPrice = selectedPrices.reduce((total, price) => total + price, 0) * people;
             
-            let mensagem = `*Nova Reserva - TripDecoder*\n\n`;
-            mensagem += `*Passeios selecionados:*\n`;
-            mensagem += passeiosSelecionados.map((passeio, index) => 
-                `- ${passeio}: R$ ${precosSelecionados[index].toFixed(2)} por pessoa`
+            let message = `*New Booking - TripDecoder*\n\n`;
+            message += `*Selected tours:*\n`;
+            message += selectedTours.map((tour, index) => 
+                `- ${tour}: $ ${selectedPrices[index].toFixed(2)} per person`
             ).join('\n');
             
-            mensagem += `\n\n*Detalhes da reserva:*\n`;
-            mensagem += `👤 *Nome:* ${nome}\n`;
-            mensagem += `📞 *Telefone:* ${telefone}\n`;
-            mensagem += `📧 *E-mail:* ${email}\n`;
-            mensagem += `📅 *Data:* ${formatarData(data)}\n`;
-            mensagem += `👥 *Quantidade de pessoas:* ${pessoas}\n`;
-            mensagem += `💵 *Total:* R$ ${precoTotal.toFixed(2)}\n\n`;
-            mensagem += `_Esta mensagem foi enviada através do site TripDecoder_`;
+            message += `\n\n*Booking details:*\n`;
+            message += `👤 *Name:* ${name}\n`;
+            message += `📞 *Phone:* ${phone}\n`;
+            message += `📧 *Email:* ${email}\n`;
+            message += `📅 *Date:* ${formatDate(date)}\n`;
+            message += `👥 *Number of people:* ${people}\n`;
+            message += `💵 *Total:* $ ${totalPrice.toFixed(2)}\n\n`;
+            message += `_This message was sent through the TripDecoder website_`;
 
-            const numeroWhatsApp = '5521990455492';
-            const mensagemCodificada = encodeURIComponent(mensagem);
-            const linkWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensagemCodificada}`;
+            const whatsAppNumber = '5521990455492';
+            const encodedMessage = encodeURIComponent(message);
+            const whatsAppLink = `https://wa.me/${whatsAppNumber}?text=${encodedMessage}`;
 
-            window.open(linkWhatsApp, '_blank');
-            fecharModal();
+            window.open(whatsAppLink, '_blank');
+            closeModal();
         }
 
-        function validarTelefone(telefone) {
-            // Remove todos os caracteres não numéricos
-            const numeroLimpo = telefone.replace(/\D/g, '');
-            // Verifica se tem 10 ou 11 dígitos (com DDD)
-            return numeroLimpo.length >= 10 && numeroLimpo.length <= 11;
+        function validatePhone(phone) {
+            // Remove all non-numeric characters
+            const cleanNumber = phone.replace(/\D/g, '');
+            // Check if it has 10 or 11 digits (with area code)
+            return cleanNumber.length >= 10 && cleanNumber.length <= 11;
         }
 
-        function formatarData(dataString) {
-            const data = new Date(dataString);
-            return data.toLocaleDateString('pt-BR', {
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', {
                 day: '2-digit',
                 month: '2-digit',
                 year: 'numeric'
             });
         }
 
-        document.getElementById('form-contato').addEventListener('submit', function (event) {
+        document.getElementById('contact-form').addEventListener('submit', function (event) {
             event.preventDefault();
-            alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
-            document.getElementById('form-contato').reset();
+            alert('Message sent successfully! We will contact you soon.');
+            document.getElementById('contact-form').reset();
         });
 
-        // Fechar modal ao clicar fora do conteúdo
+        // Close modal when clicking outside content
         document.getElementById('modal').addEventListener('click', function(e) {
             if (e.target === this) {
-                fecharModal();
+                closeModal();
             }
         });
     </script>
