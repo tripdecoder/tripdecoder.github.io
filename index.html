@@ -594,6 +594,28 @@
                 <p class="price">$90.00</p>
                 <button onclick="openModal('Copacabana Beach', 90)">Book</button>
             </div>
+            <!-- New Tours Added Here -->
+            <div class="tour-card">
+                <img src="Selaronstairs.jpeg" alt="Colorful Selarón Steps in Rio de Janeiro">
+                <h3>Selarón Steps</h3>
+                <p>The famous colorful staircase created by artist Jorge Selarón.</p>
+                <p class="price">$75.00</p>
+                <button onclick="openModal('Selarón Steps', 75)">Book</button>
+            </div>
+            <div class="tour-card">
+                <img src="Arcosdalapa.jpg" alt="Arches of Lapa aqueduct in Rio">
+                <h3>Arcos da Lapa</h3>
+                <p>Historic aqueduct and vibrant nightlife district in downtown Rio.</p>
+                <p class="price">$85.00</p>
+                <button onclick="openModal('Arcos da Lapa', 85)">Book</button>
+            </div>
+            <div class="tour-card">
+                <img src="Museu_do_Amanhã.jpg" alt="Futuristic Museum of Tomorrow building">
+                <h3>Museum of Tomorrow</h3>
+                <p>Science museum exploring sustainability and future possibilities.</p>
+                <p class="price">$110.00</p>
+                <button onclick="openModal('Museum of Tomorrow', 110)">Book</button>
+            </div>
         </div>
     </section>
 
@@ -703,7 +725,7 @@
         let selectedTours = [];
         let selectedPrices = [];
 
-        // List of available tours
+        // List of available tours (updated with new tours)
         const availableTours = [
             { name: "Icaraí Beach", price: 80 },
             { name: "Ilha de Paquetá", price: 100 },
@@ -711,6 +733,9 @@
             { name: "Christ the Redeemer", price: 150 },
             { name: "Sugarloaf Mountain", price: 120 },
             { name: "Copacabana Beach", price: 90 },
+            { name: "Selarón Steps", price: 75 },
+            { name: "Arcos da Lapa", price: 85 },
+            { name: "Museum of Tomorrow", price: 110 },
             { name: "Itacoatiara Costão Trail", price: 50 },
             { name: "Turtle Rock Trail", price: 40 },
             { name: "Urca Hill Trail", price: 30 }
