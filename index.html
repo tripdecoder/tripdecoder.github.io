@@ -6,66 +6,96 @@
     <title>TripDecoder - Tours in Rio de Janeiro and Niterói</title>
     <link rel="shortcut icon" href="tripdecoder.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS Styles (Would be better as external file) -->
     <style>
-        /* General styles */
+        /* ========== BASE STYLES ========== */
+        :root {
+            --primary-color: #00bcd4;
+            --primary-dark: #0097a7;
+            --secondary-color: #ff4d4d;
+            --secondary-dark: #cc0000;
+            --success-color: #4CAF50;
+            --success-dark: #45a049;
+            --bg-dark: #121212;
+            --bg-medium: #1f1f1f;
+            --bg-light: #2c3e50;
+            --text-light: #e0e0e0;
+            --text-white: #ffffff;
+            --border-color: #444;
+        }
+        
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            background-color: #121212;
-            color: #e0e0e0;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
         }
-
+        
+        /* ========== LAYOUT STYLES ========== */
+        .container {
+            padding: 0 10%;
+            margin: 0 auto;
+        }
+        
+        section {
+            padding: 50px 0;
+        }
+        
+        /* ========== HEADER & NAVIGATION ========== */
         header {
-            background-color: #1f1f1f;
-            color: #fff;
-            padding: 20px 10%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
+            background-color: var(--bg-medium);
+            color: var(--text-white);
+            padding: 20px 0;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-
-        .logo {
+        
+        .header-content {
             display: flex;
             flex-direction: column;
             align-items: center;
+        }
+        
+        .logo {
+            text-align: center;
             margin-bottom: 20px;
         }
-
+        
         .logo img {
             width: 300px;
             margin-bottom: 10px;
         }
-
+        
         .logo h1 {
             font-size: 2rem;
             margin: 0;
-            color: #FFFFFF;
+            color: var(--text-white);
             font-weight: 600;
         }
-
+        
         nav ul {
             list-style: none;
             display: flex;
             gap: 20px;
             padding: 0;
+            margin: 0;
         }
-
+        
         nav ul li a {
-            color: #e0e0e0;
+            color: var(--text-light);
             text-decoration: none;
             font-weight: 600;
             transition: color 0.3s;
         }
-
+        
         nav ul li a:hover {
-            color: #00bcd4;
+            color: var(--primary-color);
         }
-
-        /* Hero Section */
+        
+        /* ========== HERO SECTION ========== */
         .hero {
             background: url('https://source.unsplash.com/1600x900/?rio-de-janeiro,night') no-repeat center center/cover;
             height: 60vh;
@@ -73,106 +103,110 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            color: #fff;
-            padding: 0 10%;
+            color: var(--text-white);
         }
-
+        
         .hero-content h2 {
             font-size: 2.5rem;
             margin-bottom: 10px;
-            color: #fff;
         }
-
+        
         .hero-content p {
             font-size: 1.2rem;
             margin-bottom: 20px;
         }
-
+        
+        /* ========== COMMON COMPONENTS ========== */
         .btn {
-            background-color: #00bcd4;
-            color: #fff;
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--text-white);
             padding: 10px 20px;
             text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
         }
-
+        
         .btn:hover {
-            background-color: #0097a7;
+            background-color: var(--primary-dark);
         }
-
-        /* Tours Section */
-        .tours {
-            padding: 50px 10%;
-            text-align: center;
-            background-color: #1f1f1f;
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
         }
-
-        .tours h2 {
+        
+        .btn-secondary:hover {
+            background-color: var(--secondary-dark);
+        }
+        
+        .btn-success {
+            background-color: var(--success-color);
+        }
+        
+        .btn-success:hover {
+            background-color: var(--success-dark);
+        }
+        
+        .section-title {
             font-size: 2rem;
             margin-bottom: 30px;
-            color: #00bcd4;
+            color: var(--primary-color);
+            text-align: center;
         }
-
-        .tours-container {
+        
+        .cards-container {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
             justify-content: center;
         }
-
-        .tour-card {
-            background-color: #2c3e50;
+        
+        .card {
+            background-color: var(--bg-light);
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             width: 300px;
             padding: 20px;
             transition: transform 0.3s;
         }
-
-        .tour-card:hover {
+        
+        .card:hover {
             transform: translateY(-10px);
         }
-
-        .tour-card img {
+        
+        .card img {
             width: 100%;
             border-radius: 10px;
             margin-bottom: 15px;
+            height: 200px;
+            object-fit: cover;
         }
-
-        .tour-card h3 {
+        
+        .card h3 {
             font-size: 1.5rem;
             margin-bottom: 10px;
-            color: #00bcd4;
+            color: var(--primary-color);
         }
-
-        .tour-card p {
-            font-size: 1rem;
+        
+        .card p {
             margin-bottom: 10px;
-            color: #e0e0e0;
         }
-
-        .tour-card .price {
+        
+        .price {
             font-size: 1.2rem;
             font-weight: 600;
-            color: #00bcd4;
+            color: var(--primary-color);
         }
-
-        .tour-card button {
-            background-color: #00bcd4;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
+        
+        /* ========== TOURS SECTION ========== */
+        .tours {
+            background-color: var(--bg-medium);
         }
-
-        .tour-card button:hover {
-            background-color: #0097a7;
-        }
-
-        /* Booking Modal - ADJUSTED */
+        
+        /* ========== MODAL STYLES ========== */
         .modal {
             display: none;
             position: fixed;
@@ -185,9 +219,9 @@
             align-items: center;
             z-index: 1000;
         }
-
+        
         .modal-content {
-            background-color: #1f1f1f;
+            background-color: var(--bg-medium);
             padding: 25px;
             border-radius: 10px;
             width: 90%;
@@ -198,321 +232,113 @@
             position: relative;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
         }
-
-        .modal-content span {
+        
+        .modal-close {
             position: absolute;
             top: 15px;
             right: 15px;
             cursor: pointer;
             font-size: 1.8rem;
-            color: #e0e0e0;
+            color: var(--text-light);
             transition: color 0.3s;
-        }
-
-        .modal-content span:hover {
-            color: #ff4d4d;
-        }
-
-        .modal-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: #00bcd4;
-        }
-
-        #tour-list {
-            max-height: 200px;
-            overflow-y: auto;
-            margin-bottom: 20px;
-            background-color: #2c3e50;
-            border-radius: 8px;
-            padding: 10px;
-        }
-
-        .tour-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            border-bottom: 1px solid #444;
-        }
-
-        .tour-item:last-child {
-            border-bottom: none;
-        }
-
-        .tour-item button {
-            background-color: #ff4d4d;
-            color: #fff;
+            background: none;
             border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            font-size: 0.9rem;
-        }
-
-        .tour-item button:hover {
-            background-color: #cc0000;
-        }
-
-        .btn-add {
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin-bottom: 20px;
-            width: 100%;
-            font-weight: 600;
-        }
-
-        .btn-add:hover {
-            background-color: #45a049;
-        }
-
-        #available-tours {
-            margin-bottom: 20px;
-            display: none;
-            background-color: #2c3e50;
-            padding: 15px;
-            border-radius: 8px;
-        }
-
-        #available-tours h4 {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            color: #00bcd4;
-        }
-
-        #available-tours ul {
-            list-style: none;
             padding: 0;
-            margin: 0;
         }
-
-        #available-tours ul li {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            border-bottom: 1px solid #444;
+        
+        .modal-close:hover {
+            color: var(--secondary-color);
         }
-
-        #available-tours ul li:last-child {
-            border-bottom: none;
-        }
-
-        #available-tours ul li label {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        #available-tours ul li input[type="checkbox"] {
-            margin-right: 10px;
-        }
-
+        
         .form-group {
             margin-bottom: 15px;
             text-align: left;
         }
-
+        
         .form-group label {
             display: block;
             margin-bottom: 8px;
-            color: #e0e0e0;
+            color: var(--text-light);
             font-weight: 500;
         }
-
-        .modal-content input {
+        
+        .form-control {
             width: 100%;
             padding: 12px;
             margin-bottom: 5px;
-            border: 1px solid #444;
+            border: 1px solid var(--border-color);
             border-radius: 5px;
-            background-color: #2c3e50;
-            color: #e0e0e0;
+            background-color: var(--bg-light);
+            color: var(--text-light);
             font-size: 1rem;
             box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
-
-        .modal-content input:focus {
+        
+        .form-control:focus {
             outline: none;
-            border-color: #00bcd4;
+            border-color: var(--primary-color);
         }
-
+        
         .button-group {
             display: flex;
             gap: 10px;
             margin-top: 20px;
         }
-
-        .modal-content button {
-            background-color: #00bcd4;
-            color: #fff;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
+        
+        /* ========== TESTIMONIALS ========== */
+        .testimonial-card {
+            background-color: var(--bg-medium);
+        }
+        
+        .testimonial-card .author {
+            color: var(--primary-color);
             font-weight: 600;
-            flex: 1;
         }
-
-        .modal-content button.btn-cancel {
-            background-color: #ff4d4d;
-        }
-
-        .modal-content button:hover {
-            background-color: #0097a7;
-        }
-
-        .modal-content button.btn-cancel:hover {
-            background-color: #cc0000;
-        }
-
-        /* Other sections (Hikes, Testimonials, Contact) */
-        .hikes, .testimonials, .contact {
-            padding: 50px 10%;
-            text-align: center;
-            background-color: #121212;
-        }
-
-        .hikes h2, .testimonials h2, .contact h2 {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: #00bcd4;
-        }
-
-        .hikes-container, .testimonials-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
-
-        .hike-card, .testimonial-card {
-            background-color: #1f1f1f;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: 300px;
-            padding: 20px;
-        }
-
-        .hike-card h3, .testimonial-card .author {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: #00bcd4;
-        }
-
-        .hike-card p, .testimonial-card p {
-            font-size: 1rem;
-            margin-bottom: 10px;
-            color: #e0e0e0;
-        }
-
-        .hike-card .difficulty {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #00bcd4;
-        }
-
-        .hike-card button, .testimonial-card button {
-            background-color: #00bcd4;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .hike-card button:hover, .testimonial-card button:hover {
-            background-color: #0097a7;
-        }
-
-        /* Contact Form */
-        #contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        #contact-form input, #contact-form textarea {
-            padding: 10px;
-            border: 1px solid #444;
-            border-radius: 5px;
-            font-size: 1rem;
-            background-color: #1f1f1f;
-            color: #e0e0e0;
-        }
-
-        #contact-form button {
-            background-color: #00bcd4;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        #contact-form button:hover {
-            background-color: #0097a7;
-        }
-
-        /* Footer */
+        
+        /* ========== FOOTER ========== */
         footer {
-            background-color: #1f1f1f;
-            color: #e0e0e0;
+            background-color: var(--bg-medium);
+            color: var(--text-light);
             text-align: center;
             padding: 20px;
             margin-top: 50px;
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
         }
-
-        /* Responsiveness */
+        
+        /* ========== RESPONSIVE STYLES ========== */
         @media (max-width: 768px) {
-            header {
+            .header-content {
                 flex-direction: column;
                 text-align: center;
             }
-
+            
             nav ul {
                 flex-direction: column;
                 gap: 10px;
             }
-
+            
             .hero-content h2 {
                 font-size: 2rem;
             }
-
+            
             .hero-content p {
                 font-size: 1rem;
             }
-
-            .tours-container, .hikes-container, .testimonials-container {
+            
+            .cards-container {
                 flex-direction: column;
                 align-items: center;
             }
-
+            
             .logo img {
-                width: 120px;
+                width: 200px;
             }
-
-            .logo h1 {
-                font-size: 1.8rem;
-            }
-
+            
             .button-group {
                 flex-direction: column;
             }
-
+            
             .modal-content {
                 width: 95%;
                 padding: 20px;
@@ -523,18 +349,20 @@
 <body>
     <!-- Header -->
     <header>
-        <div class="logo">
-            <img src="tripdecoder.ico" alt="TripDecoder Logo">
-            <h1>TripDecoder</h1>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="tripdecoder.ico" alt="TripDecoder Logo">
+                <h1>TripDecoder</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#tours">Tours</a></li>
+                    <li><a href="#hikes">Hikes</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#tours">Tours</a></li>
-                <li><a href="#hikes">Hikes</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
     </header>
 
     <!-- Hero Section -->
@@ -548,356 +376,446 @@
 
     <!-- Tours Section -->
     <section id="tours" class="tours">
-        <h2>Our Tours</h2>
-        <div class="tours-container">
-            <!-- Niterói Attractions -->
-            <div class="tour-card">
-                <img src="Icaraí Beach.jpg" alt="Icaraí Beach with view of Sugarloaf Mountain">
-                <h3>Icaraí Beach</h3>
-                <p>One of the most famous beaches in Niterói with views of Sugarloaf Mountain.</p>
-                <p class="price">$80.00</p>
-                <button onclick="openModal('Icaraí Beach', 80)">Book</button>
-            </div>
-            <div class="tour-card">
-                <img src="Ilha-de-Paqueta.jpg" alt="Ilha de Paquetá with bicycles and palm trees">
-                <h3>Ilha de Paquetá</h3>
-                <p>A car-free island paradise in Guanabara Bay with colonial architecture.</p>
-                <p class="price">$100.00</p>
-                <button onclick="openModal('Ilha de Paquetá', 100)">Book</button>
-            </div>
-            <div class="tour-card">
-                <img src="Contemporary Art Museum (MAC).jpg" alt="Contemporary Art Museum (MAC) Niterói">
-                <h3>Contemporary Art Museum (MAC)</h3>
-                <p>An icon of modern architecture with amazing exhibitions.</p>
-                <p class="price">$120.00</p>
-                <button onclick="openModal('Contemporary Art Museum', 120)">Book</button>
-            </div>
-            <!-- Rio de Janeiro Attractions -->
-            <div class="tour-card">
-                <img src="Christ the Redeemer.jpg" alt="Christ the Redeemer statue overlooking Rio">
-                <h3>Christ the Redeemer</h3>
-                <p>One of the most famous landmarks in the world.</p>
-                <p class="price">$150.00</p>
-                <button onclick="openModal('Christ the Redeemer', 150)">Book</button>
-            </div>
-            <div class="tour-card">
-                <img src="Sugarloaf Mountain.jpg" alt="Sugarloaf Mountain cable car view">
-                <h3>Sugarloaf Mountain</h3>
-                <p>Enjoy an incredible view of Rio de Janeiro city.</p>
-                <p class="price">$120.00</p>
-                <button onclick="openModal('Sugarloaf Mountain', 120)">Book</button>
-            </div>
-            <div class="tour-card">
-                <img src="Copacabana Beach.jpg" alt="Copacabana Beach with iconic wave pattern">
-                <h3>Copacabana Beach</h3>
-                <p>One of the most famous beaches in the world.</p>
-                <p class="price">$90.00</p>
-                <button onclick="openModal('Copacabana Beach', 90)">Book</button>
-            </div>
-            <!-- New Tours Added Here -->
-            <div class="tour-card">
-                <img src="Selaronstairs.jpeg" alt="Colorful Selarón Steps in Rio de Janeiro">
-                <h3>Selarón Steps</h3>
-                <p>The famous colorful staircase created by artist Jorge Selarón.</p>
-                <p class="price">$75.00</p>
-                <button onclick="openModal('Selarón Steps', 75)">Book</button>
-            </div>
-            <div class="tour-card">
-                <img src="Arcosdalapa.jpg" alt="Arches of Lapa aqueduct in Rio">
-                <h3>Arcos da Lapa</h3>
-                <p>Historic aqueduct and vibrant nightlife district in downtown Rio.</p>
-                <p class="price">$85.00</p>
-                <button onclick="openModal('Arcos da Lapa', 85)">Book</button>
-            </div>
-            <div class="tour-card">
-                <img src="Museu_do_Amanhã.jpg" alt="Futuristic Museum of Tomorrow building">
-                <h3>Museum of Tomorrow</h3>
-                <p>Science museum exploring sustainability and future possibilities.</p>
-                <p class="price">$110.00</p>
-                <button onclick="openModal('Museum of Tomorrow', 110)">Book</button>
+        <div class="container">
+            <h2 class="section-title">Our Tours</h2>
+            <div class="cards-container" id="tours-container">
+                <!-- Tours will be populated by JavaScript -->
             </div>
         </div>
     </section>
 
-    <!-- Booking Modal - ADJUSTED -->
-    <div id="modal" class="modal">
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="modal">
         <div class="modal-content">
-            <span onclick="closeModal()">×</span>
+            <button class="modal-close" onclick="BookingModal.close()">×</button>
             <h3 id="modal-title">Book Tours</h3>
             <div id="tour-list"></div>
-            <button onclick="showTourList()" class="btn-add">Add Tour</button>
+            <button onclick="BookingModal.showAvailableTours()" class="btn btn-success">Add Tour</button>
             <div id="available-tours">
                 <h4>Select more tours:</h4>
                 <ul id="tours-available"></ul>
-                <button onclick="confirmSelection()" class="btn-add">Confirm Selection</button>
+                <button onclick="BookingModal.confirmSelection()" class="btn btn-success">Confirm Selection</button>
             </div>
-            <div class="form-group">
-                <label for="name-modal">Name:</label>
-                <input type="text" id="name-modal" required>
-            </div>
-            <div class="form-group">
-                <label for="phone-modal">Phone:</label>
-                <input type="tel" id="phone-modal" required>
-            </div>
-            <div class="form-group">
-                <label for="email-modal">Email:</label>
-                <input type="email" id="email-modal" required>
-            </div>
-            <div class="form-group">
-                <label for="date-modal">Date:</label>
-                <input type="date" id="date-modal" required>
-            </div>
-            <div class="form-group">
-                <label for="people-modal">Number of People:</label>
-                <input type="number" id="people-modal" min="1" required>
-            </div>
-            <div class="button-group">
-                <button onclick="sendWhatsApp()">Confirm Booking</button>
-                <button onclick="closeModal()" class="btn-cancel">Cancel</button>
-            </div>
+            <form id="booking-form">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="people">Number of People:</label>
+                    <input type="number" id="people" min="1" class="form-control" required>
+                </div>
+                <div class="button-group">
+                    <button type="button" onclick="BookingModal.submitForm()" class="btn">Confirm Booking</button>
+                    <button type="button" onclick="BookingModal.close()" class="btn btn-secondary">Cancel</button>
+                </div>
+            </form>
         </div>
     </div>
 
     <!-- Hikes Section -->
     <section id="hikes" class="hikes">
-        <h2>Hiking Trails</h2>
-        <div class="hikes-container">
-            <div class="hike-card">
-                <img src="https://source.unsplash.com/400x300/?hiking-trail" alt="Itacoatiara Costão Trail">
-                <h3>Itacoatiara Costão Trail</h3>
-                <p>A challenging trail with ocean views.</p>
-                <p class="difficulty">Difficulty: High</p>
-                <button onclick="openModal('Itacoatiara Costão Trail', 50)">Book</button>
-            </div>
-            <div class="hike-card">
-                <img src="https://source.unsplash.com/400x300/?hiking" alt="Turtle Rock Trail">
-                <h3>Turtle Rock Trail</h3>
-                <p>A moderate trail with panoramic views of Niterói.</p>
-                <p class="difficulty">Difficulty: Medium</p>
-                <button onclick="openModal('Turtle Rock Trail', 40)">Book</button>
-            </div>
-            <div class="hike-card">
-                <img src="https://source.unsplash.com/400x300/?mountain-trail" alt="Urca Hill Trail">
-                <h3>Urca Hill Trail</h3>
-                <p>An easy trail with views of Sugarloaf Mountain.</p>
-                <p class="difficulty">Difficulty: Low</p>
-                <button onclick="openModal('Urca Hill Trail', 30)">Book</button>
+        <div class="container">
+            <h2 class="section-title">Hiking Trails</h2>
+            <div class="cards-container" id="hikes-container">
+                <!-- Hikes will be populated by JavaScript -->
             </div>
         </div>
     </section>
 
     <!-- Testimonials Section -->
     <section id="testimonials" class="testimonials">
-        <h2>Testimonials</h2>
-        <div class="testimonials-container">
-            <div class="testimonial-card">
-                <p>"We loved the Christ the Redeemer tour! The guide was very attentive."</p>
-                <p class="author">- Ana Silva</p>
-            </div>
-            <div class="testimonial-card">
-                <p>"Sugarloaf Mountain is a must-see! I recommend it to everyone."</p>
-                <p class="author">- João Souza</p>
+        <div class="container">
+            <h2 class="section-title">Testimonials</h2>
+            <div class="cards-container">
+                <div class="card testimonial-card">
+                    <p>"We loved the Christ the Redeemer tour! The guide was very attentive."</p>
+                    <p class="author">- Ana Silva</p>
+                </div>
+                <div class="card testimonial-card">
+                    <p>"Sugarloaf Mountain is a must-see! I recommend it to everyone."</p>
+                    <p class="author">- João Souza</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="contact">
-        <h2>Contact Us</h2>
-        <form id="contact-form">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" required></textarea>
-            <button type="submit">Send</button>
-        </form>
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="contact-name">Name:</label>
+                    <input type="text" id="contact-name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-email">Email:</label>
+                    <input type="email" id="contact-email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-message">Message:</label>
+                    <textarea id="contact-message" class="form-control" required></textarea>
+                </div>
+                <button type="submit" class="btn">Send</button>
+            </form>
+        </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 TripDecoder. All rights reserved.</p>
+        <div class="container">
+            <p>&copy; 2025 TripDecoder. All rights reserved.</p>
+        </div>
     </footer>
 
     <!-- JavaScript -->
     <script>
-        let selectedTours = [];
-        let selectedPrices = [];
-
-        // List of available tours (updated with new tours)
-        const availableTours = [
-            { name: "Icaraí Beach", price: 80 },
-            { name: "Ilha de Paquetá", price: 100 },
-            { name: "Contemporary Art Museum (MAC)", price: 120 },
-            { name: "Christ the Redeemer", price: 150 },
-            { name: "Sugarloaf Mountain", price: 120 },
-            { name: "Copacabana Beach", price: 90 },
-            { name: "Selarón Steps", price: 75 },
-            { name: "Arcos da Lapa", price: 85 },
-            { name: "Museum of Tomorrow", price: 110 },
-            { name: "Itacoatiara Costão Trail", price: 50 },
-            { name: "Turtle Rock Trail", price: 40 },
-            { name: "Urca Hill Trail", price: 30 }
+        // ========== DATA ==========
+        const tourData = [
+            {
+                name: "Icaraí Beach",
+                description: "One of the most famous beaches in Niterói with views of Sugarloaf Mountain.",
+                price: 80,
+                image: "Icaraí Beach.jpg",
+                alt: "Icaraí Beach with view of Sugarloaf Mountain",
+                type: "tour"
+            },
+            {
+                name: "Ilha de Paquetá",
+                description: "A car-free island paradise in Guanabara Bay with colonial architecture.",
+                price: 100,
+                image: "Ilha-de-Paqueta.jpg",
+                alt: "Ilha de Paquetá with bicycles and palm trees",
+                type: "tour"
+            },
+            {
+                name: "Contemporary Art Museum (MAC)",
+                description: "An icon of modern architecture with amazing exhibitions.",
+                price: 120,
+                image: "Contemporary Art Museum (MAC).jpg",
+                alt: "Contemporary Art Museum (MAC) Niterói",
+                type: "tour"
+            },
+            {
+                name: "Christ the Redeemer",
+                description: "One of the most famous landmarks in the world.",
+                price: 150,
+                image: "Christ the Redeemer.jpg",
+                alt: "Christ the Redeemer statue overlooking Rio",
+                type: "tour"
+            },
+            {
+                name: "Sugarloaf Mountain",
+                description: "Enjoy an incredible view of Rio de Janeiro city.",
+                price: 120,
+                image: "Sugarloaf Mountain.jpg",
+                alt: "Sugarloaf Mountain cable car view",
+                type: "tour"
+            },
+            {
+                name: "Copacabana Beach",
+                description: "One of the most famous beaches in the world.",
+                price: 90,
+                image: "Copacabana Beach.jpg",
+                alt: "Copacabana Beach with iconic wave pattern",
+                type: "tour"
+            },
+            {
+                name: "Selarón Steps",
+                description: "The famous colorful staircase created by artist Jorge Selarón.",
+                price: 75,
+                image: "Selaronstairs.jpeg",
+                alt: "Colorful Selarón Steps in Rio de Janeiro",
+                type: "tour"
+            },
+            {
+                name: "Arcos da Lapa",
+                description: "Historic aqueduct and vibrant nightlife district in downtown Rio.",
+                price: 85,
+                image: "Arcosdalapa.jpg",
+                alt: "Arches of Lapa aqueduct in Rio",
+                type: "tour"
+            },
+            {
+                name: "Museum of Tomorrow",
+                description: "Science museum exploring sustainability and future possibilities.",
+                price: 110,
+                image: "Museu_do_Amanhã.jpg",
+                alt: "Futuristic Museum of Tomorrow building",
+                type: "tour"
+            }
         ];
 
-        function openModal(tourName, price) {
-            const index = selectedTours.indexOf(tourName);
-            if (index === -1) {
-                selectedTours.push(tourName);
-                selectedPrices.push(price);
-            } else {
-                selectedTours.splice(index, 1);
-                selectedPrices.splice(index, 1);
+        const hikeData = [
+            {
+                name: "Itacoatiara Costão Trail",
+                description: "A challenging trail with ocean views.",
+                price: 50,
+                difficulty: "High",
+                image: "https://source.unsplash.com/400x300/?hiking-trail",
+                alt: "Itacoatiara Costão Trail",
+                type: "hike"
+            },
+            {
+                name: "Turtle Rock Trail",
+                description: "A moderate trail with panoramic views of Niterói.",
+                price: 40,
+                difficulty: "Medium",
+                image: "https://source.unsplash.com/400x300/?hiking",
+                alt: "Turtle Rock Trail",
+                type: "hike"
+            },
+            {
+                name: "Urca Hill Trail",
+                description: "An easy trail with views of Sugarloaf Mountain.",
+                price: 30,
+                difficulty: "Low",
+                image: "https://source.unsplash.com/400x300/?mountain-trail",
+                alt: "Urca Hill Trail",
+                type: "hike"
             }
-            updateTourList();
-            document.getElementById('modal').style.display = 'flex';
-        }
+        ];
 
-        function showTourList() {
-            const toursAvailableList = document.getElementById('tours-available');
-            toursAvailableList.innerHTML = ''; // Clear current list
-
-            // Filter available tours that haven't been selected yet
-            const notSelectedTours = availableTours.filter(tour => 
-                !selectedTours.includes(tour.name)
-            );
-
-            // Add available tours to the list
-            notSelectedTours.forEach(tour => {
-                const item = document.createElement('li');
-                item.innerHTML = `
-                    <input type="checkbox" id="tour-${tour.name.replace(/\s+/g, '-')}" value="${tour.name}">
-                    <label for="tour-${tour.name.replace(/\s+/g, '-')}">${tour.name} - $ ${tour.price.toFixed(2)}</label>
-                `;
-                toursAvailableList.appendChild(item);
-            });
-
-            // Show the available tours list
-            document.getElementById('available-tours').style.display = 'block';
-        }
-
-        function confirmSelection() {
-            const checkboxes = document.querySelectorAll('#tours-available input[type="checkbox"]');
-            checkboxes.forEach(checkbox => {
-                if (checkbox.checked) {
-                    const tour = availableTours.find(t => t.name === checkbox.value);
-                    if (tour && !selectedTours.includes(tour.name)) {
-                        selectedTours.push(tour.name);
-                        selectedPrices.push(tour.price);
-                    }
-                }
-            });
-            updateTourList();
-            document.getElementById('available-tours').style.display = 'none';
-        }
-
-        function removeTour(tourName) {
-            const index = selectedTours.indexOf(tourName);
-            if (index !== -1) {
-                selectedTours.splice(index, 1);
-                selectedPrices.splice(index, 1);
-                updateTourList();
-            }
-        }
-
-        function updateTourList() {
-            const tourList = document.getElementById('tour-list');
-            tourList.innerHTML = '';
-
-            if (selectedTours.length === 0) {
-                tourList.innerHTML = '<p style="text-align: center; color: #aaa;">No tours selected</p>';
-            } else {
-                selectedTours.forEach((tour, index) => {
-                    const item = document.createElement('div');
-                    item.className = 'tour-item';
-                    item.innerHTML = `
-                        <span>${tour} - $ ${selectedPrices[index].toFixed(2)}</span>
-                        <button onclick="removeTour('${tour}')">Remove</button>
-                    `;
-                    tourList.appendChild(item);
+        // ========== UTILITY FUNCTIONS ==========
+        const Utils = {
+            validatePhone: (phone) => {
+                const cleanNumber = phone.replace(/\D/g, '');
+                return cleanNumber.length >= 10 && cleanNumber.length <= 11;
+            },
+            
+            formatDate: (dateString) => {
+                const date = new Date(dateString);
+                return date.toLocaleDateString('en-US', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric'
                 });
-            }
-
-            document.getElementById('modal-title').textContent = `Book Tours (${selectedTours.length} selected)`;
-        }
-
-        function closeModal() {
-            selectedTours = [];
-            selectedPrices = [];
-            document.getElementById('modal').style.display = 'none';
-            document.getElementById('available-tours').style.display = 'none';
-        }
-
-        function sendWhatsApp() {
-            const name = document.getElementById('name-modal').value;
-            const phone = document.getElementById('phone-modal').value;
-            const email = document.getElementById('email-modal').value;
-            const date = document.getElementById('date-modal').value;
-            const people = parseInt(document.getElementById('people-modal').value);
-
-            if (!name || !phone || !email || !date || !people || selectedTours.length === 0) {
-                alert('Please fill all fields and select at least one tour.');
-                return;
-            }
-
-            if (!validatePhone(phone)) {
-                alert('Please enter a valid phone number (10 or 11 digits).');
-                return;
-            }
-
-            const totalPrice = selectedPrices.reduce((total, price) => total + price, 0) * people;
+            },
             
-            let message = `*New Booking - TripDecoder*\n\n`;
-            message += `*Selected tours:*\n`;
-            message += selectedTours.map((tour, index) => 
-                `- ${tour}: $ ${selectedPrices[index].toFixed(2)} per person`
-            ).join('\n');
+            createCard: (item) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                
+                let buttonText = "Book";
+                let extraInfo = `<p class="price">$${item.price.toFixed(2)}</p>`;
+                
+                if (item.type === "hike") {
+                    buttonText = "Book Hike";
+                    extraInfo = `
+                        <p class="difficulty">Difficulty: ${item.difficulty}</p>
+                        <p class="price">$${item.price.toFixed(2)}</p>
+                    `;
+                }
+                
+                card.innerHTML = `
+                    <img src="${item.image}" alt="${item.alt}">
+                    <h3>${item.name}</h3>
+                    <p>${item.description}</p>
+                    ${extraInfo}
+                    <button onclick="BookingModal.open('${item.name}', ${item.price})">${buttonText}</button>
+                `;
+                
+                return card;
+            }
+        };
+
+        // ========== BOOKING MODAL ==========
+        const BookingModal = {
+            selectedTours: [],
+            selectedPrices: [],
+            availableTours: [...tourData, ...hikeData],
             
-            message += `\n\n*Booking details:*\n`;
-            message += `👤 *Name:* ${name}\n`;
-            message += `📞 *Phone:* ${phone}\n`;
-            message += `📧 *Email:* ${email}\n`;
-            message += `📅 *Date:* ${formatDate(date)}\n`;
-            message += `👥 *Number of people:* ${people}\n`;
-            message += `💵 *Total:* $ ${totalPrice.toFixed(2)}\n\n`;
-            message += `_This message was sent through the TripDecoder website_`;
+            init: function() {
+                this.cacheDom();
+                this.bindEvents();
+            },
+            
+            cacheDom: function() {
+                this.modal = document.getElementById('booking-modal');
+                this.modalTitle = document.getElementById('modal-title');
+                this.tourList = document.getElementById('tour-list');
+                this.availableToursSection = document.getElementById('available-tours');
+                this.toursAvailableList = document.getElementById('tours-available');
+                this.bookingForm = document.getElementById('booking-form');
+            },
+            
+            bindEvents: function() {
+                this.modal.addEventListener('click', (e) => {
+                    if (e.target === this.modal) {
+                        this.close();
+                    }
+                });
+            },
+            
+            open: function(tourName, price) {
+                const index = this.selectedTours.indexOf(tourName);
+                
+                if (index === -1) {
+                    this.selectedTours.push(tourName);
+                    this.selectedPrices.push(price);
+                } else {
+                    this.selectedTours.splice(index, 1);
+                    this.selectedPrices.splice(index, 1);
+                }
+                
+                this.updateTourList();
+                this.modal.style.display = 'flex';
+            },
+            
+            close: function() {
+                this.selectedTours = [];
+                this.selectedPrices = [];
+                this.modal.style.display = 'none';
+                this.availableToursSection.style.display = 'none';
+                this.bookingForm.reset();
+            },
+            
+            showAvailableTours: function() {
+                this.toursAvailableList.innerHTML = '';
+                
+                const notSelectedTours = this.availableTours.filter(tour => 
+                    !this.selectedTours.includes(tour.name)
+                );
+                
+                notSelectedTours.forEach(tour => {
+                    const item = document.createElement('li');
+                    item.innerHTML = `
+                        <input type="checkbox" id="tour-${tour.name.replace(/\s+/g, '-')}" value="${tour.name}">
+                        <label for="tour-${tour.name.replace(/\s+/g, '-')}">
+                            ${tour.name} - $${tour.price.toFixed(2)}
+                        </label>
+                    `;
+                    this.toursAvailableList.appendChild(item);
+                });
+                
+                this.availableToursSection.style.display = 'block';
+            },
+            
+            confirmSelection: function() {
+                const checkboxes = document.querySelectorAll('#tours-available input[type="checkbox"]');
+                
+                checkboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        const tour = this.availableTours.find(t => t.name === checkbox.value);
+                        if (tour && !this.selectedTours.includes(tour.name)) {
+                            this.selectedTours.push(tour.name);
+                            this.selectedPrices.push(tour.price);
+                        }
+                    }
+                });
+                
+                this.updateTourList();
+                this.availableToursSection.style.display = 'none';
+            },
+            
+            removeTour: function(tourName) {
+                const index = this.selectedTours.indexOf(tourName);
+                if (index !== -1) {
+                    this.selectedTours.splice(index, 1);
+                    this.selectedPrices.splice(index, 1);
+                    this.updateTourList();
+                }
+            },
+            
+            updateTourList: function() {
+                this.tourList.innerHTML = '';
+                
+                if (this.selectedTours.length === 0) {
+                    this.tourList.innerHTML = '<p style="text-align: center; color: #aaa;">No tours selected</p>';
+                } else {
+                    this.selectedTours.forEach((tour, index) => {
+                        const item = document.createElement('div');
+                        item.className = 'tour-item';
+                        item.innerHTML = `
+                            <span>${tour} - $${this.selectedPrices[index].toFixed(2)}</span>
+                            <button onclick="BookingModal.removeTour('${tour}')">Remove</button>
+                        `;
+                        this.tourList.appendChild(item);
+                    });
+                }
+                
+                this.modalTitle.textContent = `Book Tours (${this.selectedTours.length} selected)`;
+            },
+            
+            submitForm: function() {
+                const name = document.getElementById('name').value;
+                const phone = document.getElementById('phone').value;
+                const email = document.getElementById('email').value;
+                const date = document.getElementById('date').value;
+                const people = parseInt(document.getElementById('people').value);
+                
+                if (!name || !phone || !email || !date || !people || this.selectedTours.length === 0) {
+                    alert('Please fill all fields and select at least one tour.');
+                    return;
+                }
+                
+                if (!Utils.validatePhone(phone)) {
+                    alert('Please enter a valid phone number (10 or 11 digits).');
+                    return;
+                }
+                
+                const totalPrice = this.selectedPrices.reduce((total, price) => total + price, 0) * people;
+                
+                let message = `*New Booking - TripDecoder*\n\n`;
+                message += `*Selected tours:*\n`;
+                message += this.selectedTours.map((tour, index) => 
+                    `- ${tour}: $${this.selectedPrices[index].toFixed(2)} per person`
+                ).join('\n');
+                
+                message += `\n\n*Booking details:*\n`;
+                message += `👤 *Name:* ${name}\n`;
+                message += `📞 *Phone:* ${phone}\n`;
+                message += `📧 *Email:* ${email}\n`;
+                message += `📅 *Date:* ${Utils.formatDate(date)}\n`;
+                message += `👥 *Number of people:* ${people}\n`;
+                message += `💵 *Total:* $${totalPrice.toFixed(2)}\n\n`;
+                message += `_This message was sent through the TripDecoder website_`;
+                
+                const whatsAppNumber = '5521990455492';
+                const encodedMessage = encodeURIComponent(message);
+                const whatsAppLink = `https://wa.me/${whatsAppNumber}?text=${encodedMessage}`;
+                
+                window.open(whatsAppLink, '_blank');
+                this.close();
+            }
+        };
 
-            const whatsAppNumber = '5521990455492';
-            const encodedMessage = encodeURIComponent(message);
-            const whatsAppLink = `https://wa.me/${whatsAppNumber}?text=${encodedMessage}`;
-
-            window.open(whatsAppLink, '_blank');
-            closeModal();
-        }
-
-        function validatePhone(phone) {
-            // Remove all non-numeric characters
-            const cleanNumber = phone.replace(/\D/g, '');
-            // Check if it has 10 or 11 digits (with area code)
-            return cleanNumber.length >= 10 && cleanNumber.length <= 11;
-        }
-
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            return date.toLocaleDateString('en-US', {
-                day: '2-digit',
-                month: '2-digit',
-                year: 'numeric'
+        // ========== INITIALIZATION ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize modal
+            BookingModal.init();
+            
+            // Populate tours
+            const toursContainer = document.getElementById('tours-container');
+            tourData.forEach(tour => {
+                toursContainer.appendChild(Utils.createCard(tour));
             });
-        }
-
-        document.getElementById('contact-form').addEventListener('submit', function (event) {
-            event.preventDefault();
-            alert('Message sent successfully! We will contact you soon.');
-            document.getElementById('contact-form').reset();
-        });
-
-        // Close modal when clicking outside content
-        document.getElementById('modal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
+            
+            // Populate hikes
+            const hikesContainer = document.getElementById('hikes-container');
+            hikeData.forEach(hike => {
+                hikesContainer.appendChild(Utils.createCard(hike));
+            });
+            
+            // Contact form submission
+            document.getElementById('contact-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Message sent successfully! We will contact you soon.');
+                this.reset();
+            });
         });
     </script>
 </body>
