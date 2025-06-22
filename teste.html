@@ -1,640 +1,915 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TripDecoder | Passeios Exclusivos em Niterói</title>
-    <meta name="description" content="Passeios personalizados em Niterói: Horto do Fonseca, MAC, Campo de São Bento, Trilha do Costão e almoço na Praia de Itacoatiara">
+    <meta name="description" content="Book tours and hiking trails in Rio de Janeiro and Niterói with TripDecoder. Discover local attractions with expert guides.">
+    <meta name="keywords" content="Rio de Janeiro tours, Niterói tours, hiking trails, travel, tourism">
+    <meta name="author" content="TripDecoder">
+    <title>TripDecoder - Tours in Rio de Janeiro and Niterói</title>
     <link rel="shortcut icon" href="tripdecoder.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" media="print" onload="this.media='all'">
+
+    <!-- Inlined CSS -->
     <style>
-        /* Reset & Base Styles */
-        * {
+        /* ========== BASE STYLES ========== */
+        :root {
+            --primary-color: #00bcd4;
+            --primary-dark: #0097a7;
+            --secondary-color: #ff4d4d;
+            --secondary-dark: #cc0000;
+            --success-color: #4CAF50;
+            --success-dark: #45a049;
+            --bg-dark: #121212;
+            --bg-medium: #1f1f1f;
+            --bg-light: #2c3e50;
+            --text-light: #e0e0e0;
+            --text-white: #ffffff;
+            --border-color: #444;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        body {
-            background-color: #f8f9fa;
-            color: #333;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
             line-height: 1.6;
         }
-        
-        /* Video Hero Section */
-        .video-hero {
-            position: relative;
-            height: 80vh;
-            max-height: 800px;
-            overflow: hidden;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+
+        /* ========== LAYOUT STYLES ========== */
+        .container {
+            padding: 0 10%;
+            margin: 0 auto;
+            max-width: 1200px;
         }
-        
-        .video-hero video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            z-index: -1;
+
+        section {
+            padding: 50px 0;
         }
-        
-        .hero-overlay {
-            height: 100%;
+
+        /* ========== HEADER & NAVIGATION ========== */
+        header {
+            background-color: var(--bg-medium);
+            color: var(--text-white);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
             display: flex;
             flex-direction: column;
+            align-items: center;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            width: 300px;
+            margin-bottom: 10px;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            margin: 0;
+            color: var(--text-white);
+            font-weight: 600;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover, nav ul li a:focus {
+            color: var(--primary-color);
+            outline: none;
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero {
+            background: url('https://source.unsplash.com/1600x900/?rio-de-janeiro,night') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
-            color: white;
-            padding: 0 20px;
+            color: var(--text-white);
         }
-        
-        .logo {
-            margin-bottom: 20px;
-        }
-        
-        .logo img {
-            height: 80px;
+
+        .hero-content h2 {
+            font-size: 2.5rem;
             margin-bottom: 10px;
         }
-        
-        .hero-overlay h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-        }
-        
-        .hero-overlay p {
+
+        .hero-content p {
             font-size: 1.2rem;
-            max-width: 600px;
-            margin-bottom: 30px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
         }
-        
-        .cta-button {
-            background-color: #00bcd4;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 50px;
+
+        /* ========== COMMON COMPONENTS ========== */
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--text-white);
+            padding: 10px 20px;
             text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
+            border-radius: 5px;
+            transition: background-color 0.3s;
             border: none;
             cursor: pointer;
+            font-family: 'Poppins', sans-serif;
         }
-        
-        .cta-button:hover {
-            background-color: #0097a7;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 188, 212, 0.4);
+
+        .btn:hover, .btn:focus {
+            background-color: var(--primary-dark);
+            outline: none;
         }
-        
-        /* Tour Highlights */
-        .highlights {
-            padding: 60px 20px;
-            background-color: white;
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
         }
-        
+
+        .btn-secondary:hover, .btn-secondary:focus {
+            background-color: var(--secondary-dark);
+        }
+
+        .btn-success {
+            background-color: var(--success-color);
+        }
+
+        .btn-success:hover, .btn-success:focus {
+            background-color: var(--success-dark);
+        }
+
         .section-title {
-            text-align: center;
-            margin-bottom: 40px;
             font-size: 2rem;
-            color: #2C3E50;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            text-align: center;
         }
-        
-        .highlight-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
+
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
         }
-        
-        .highlight-card {
-            background-color: #fff;
+
+        .card {
+            background-color: var(--bg-light);
             border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-            border: 1px solid #e0e0e0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            padding: 20px;
+            transition: transform 0.3s;
         }
-        
-        .highlight-card:hover {
+
+        .card:hover, .card:focus-within {
             transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
-        
-        .highlight-card img {
+
+        .card img {
             width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
             height: 200px;
             object-fit: cover;
         }
-        
-        .highlight-content {
-            padding: 20px;
-        }
-        
-        .highlight-content h3 {
-            color: #00bcd4;
+
+        .card h3 {
+            font-size: 1.5rem;
             margin-bottom: 10px;
-            font-size: 1.4rem;
+            color: var(--primary-color);
         }
-        
-        .highlight-content p {
-            color: #666;
-            margin-bottom: 15px;
+
+        .card p {
+            margin-bottom: 10px;
         }
-        
-        .info-button {
-            background-color: #00bcd4;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
+
+        .price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
         }
-        
-        .info-button:hover {
-            background-color: #0097a7;
+
+        .difficulty {
+            font-size: 1rem;
+            color: var(--text-light);
         }
-        
-        /* Quotation Form */
-        .quotation {
-            padding: 60px 20px;
-            background-color: #1f1f1f;
-            color: white;
+
+        /* ========== TOURS SECTION ========== */
+        .tours {
+            background-color: var(--bg-medium);
         }
-        
-        .form-container {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #2c3e50;
-            padding: 30px;
+
+        /* ========== MODAL STYLES ========== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: var(--bg-medium);
+            padding: 25px;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .form-title {
-            color: #00bcd4;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
             text-align: center;
-            margin-bottom: 30px;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            cursor: pointer;
             font-size: 1.8rem;
+            color: var(--text-light);
+            transition: color 0.3s;
+            background: none;
+            border: none;
+            padding: 0;
         }
-        
+
+        .modal-close:hover, .modal-close:focus {
+            color: var(--secondary-color);
+            outline: none;
+        }
+
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            text-align: left;
         }
-        
+
         .form-group label {
             display: block;
             margin-bottom: 8px;
-            color: #e0e0e0;
-            font-weight: bold;
+            color: var(--text-light);
+            font-weight: 500;
         }
-        
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
+
+        .form-control {
             width: 100%;
             padding: 12px;
-            border: 1px solid #444;
+            margin-bottom: 5px;
+            border: 1px solid var(--border-color);
             border-radius: 5px;
+            background-color: var(--bg-light);
+            color: var(--text-light);
             font-size: 1rem;
-            background-color: #1f1f1f;
-            color: white;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
-        
-        .form-group textarea {
-            min-height: 100px;
-            resize: vertical;
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
         }
-        
-        .form-submit {
-            width: 100%;
-            padding: 15px;
-            background-color: #00bcd4;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        .form-submit:hover {
-            background-color: #0097a7;
-        }
-        
-        /* Testimonials */
-        .testimonials {
-            padding: 60px 20px;
-            background-color: #f5f5f5;
-        }
-        
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .testimonial-card {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .testimonial-text {
-            font-style: italic;
-            margin-bottom: 20px;
-            color: #555;
-        }
-        
-        .testimonial-author {
-            font-weight: bold;
-            color: #00bcd4;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: #1f1f1f;
-            color: white;
-            text-align: center;
-            padding: 30px 20px;
-        }
-        
-        .footer-logo {
-            margin-bottom: 20px;
-        }
-        
-        .footer-logo img {
-            height: 60px;
-        }
-        
-        .social-links {
-            margin: 20px 0;
-        }
-        
-        .social-links a {
-            color: white;
-            margin: 0 10px;
-            font-size: 1.5rem;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .social-links a:hover {
-            color: #00bcd4;
-        }
-        
-        .footer-links {
-            margin: 20px 0;
-        }
-        
-        .footer-links a {
-            color: #e0e0e0;
-            margin: 0 15px;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-links a:hover {
-            color: #00bcd4;
-        }
-        
-        .copyright {
+
+        .button-group {
+            display: flex;
+            gap: 10px;
             margin-top: 20px;
-            color: #aaa;
-            font-size: 0.9rem;
         }
-        
-        /* Responsive Adjustments */
+
+        /* ========== TESTIMONIALS ========== */
+        .testimonial-card {
+            background-color: var(--bg-medium);
+        }
+
+        .testimonial-card .author {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background-color: var(--bg-medium);
+            color: var(--text-light);
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ========== RESPONSIVE STYLES ========== */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .container {
+                padding: 0 5%;
+            }
+            .cards-container {
+                gap: 15px;
+            }
+            .card {
+                width: 280px;
+            }
+        }
+
         @media (max-width: 768px) {
-            .hero-overlay h1 {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .hero-content h2 {
                 font-size: 2rem;
             }
-            
-            .hero-overlay p {
+            .hero-content p {
                 font-size: 1rem;
             }
-            
+            .cards-container {
+                flex-direction: column;
+                align-items: center;
+            }
             .logo img {
-                height: 60px;
+                width: 200px;
+            }
+            .button-group {
+                flex-direction: column;
+            }
+            .modal-content {
+                width: 95%;
+                padding: 20px;
             }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Video Hero Section -->
-    <section class="video-hero">
-        <video autoplay muted loop>
-            <source src="https://example.com/niteroi-tour-video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="hero-overlay">
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
             <div class="logo">
-                <img src="tripdecoder.ico" alt="TripDecoder Logo">
+                <img src="tripdecoder.ico" alt="TripDecoder Logo" loading="lazy">
+                <h1>TripDecoder</h1>
             </div>
-            <h1>Descubra Niterói com a TripDecoder</h1>
-            <p>Passeios exclusivos pelo Horto do Fonseca, MAC, Campo de São Bento e trilha no Costão de Itacoatiara com almoço na praia</p>
-            <button class="cta-button" id="hero-cta">Solicitar Cotação</button>
+            <nav>
+                <ul>
+                    <li><a href="#tours">Tours</a></li>
+                    <li><a href="#hikes">Hikes</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-    </section>
-    
-    <!-- Tour Highlights -->
-    <section class="highlights">
-        <h2 class="section-title">Nossos Passeios em Niterói</h2>
-        <div class="highlight-grid">
-            <div class="highlight-card">
-                <img src="https://source.unsplash.com/600x400/?botanical-garden" alt="Horto do Fonseca">
-                <div class="highlight-content">
-                    <h3>Horto do Fonseca</h3>
-                    <p>Um dos jardins mais bonitos de Niterói, com espécies raras e paisagens deslumbrantes. Visita guiada com especialista em botânica local.</p>
-                    <button class="info-button" onclick="abrirModal('Horto do Fonseca')">Mais informações</button>
-                </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" aria-label="Hero section">
+            <picture>
+                <source srcset="https://source.unsplash.com/1600x900/?rio-de-janeiro,night" type="image/webp">
+                <img src="https://source.unsplash.com/1600x900/?rio-de-janeiro,night" alt="Rio de Janeiro skyline at night" loading="lazy">
+            </picture>
+            <div class="hero-content">
+                <h2>Discover Rio de Janeiro and Niterói with locals!</h2>
+                <p>Book now your tours to the main attractions and hiking trails.</p>
+                <a href="#tours" class="btn">Book Now</a>
             </div>
-            <div class="highlight-card">
-                <img src="https://source.unsplash.com/600x400/?modern-art-museum" alt="Museu de Arte Contemporânea">
-                <div class="highlight-content">
-                    <h3>Museu de Arte Contemporânea (MAC)</h3>
-                    <p>Ícone da arquitetura moderna com exposições de arte de renome internacional. Tour com guia especializado em arte contemporânea.</p>
-                    <button class="info-button" onclick="abrirModal('Museu de Arte Contemporânea')">Mais informações</button>
-                </div>
+        </section>
+
+        <!-- Tours Section -->
+        <section id="tours" class="tours" aria-label="Tours section">
+            <div class="container">
+                <h2 class="section-title">Our Tours</h2>
+                <div class="cards-container" id="tours-container"></div>
             </div>
-            <div class="highlight-card">
-                <img src="https://source.unsplash.com/600x400/?park" alt="Campo de São Bento">
-                <div class="highlight-content">
-                    <h3>Campo de São Bento</h3>
-                    <p>O parque mais tradicional de Niterói, com natureza exuberante no coração da cidade. Passeio histórico-cultural pela área.</p>
-                    <button class="info-button" onclick="abrirModal('Campo de São Bento')">Mais informações</button>
+        </section>
+
+        <!-- Booking Modal -->
+        <div id="booking-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <div class="modal-content">
+                <button class="modal-close" aria-label="Close modal" onclick="BookingModal.close()">×</button>
+                <h3 id="modal-title">Book Tours</h3>
+                <div id="tour-list"></div>
+                <button onclick="BookingModal.showAvailableTours()" class="btn btn-success">Add Tour</button>
+                <div id="available-tours" style="display: none;">
+                    <h4>Select more tours:</h4>
+                    <ul id="tours-available"></ul>
+                    <button onclick="BookingModal.confirmSelection()" class="btn btn-success">Confirm Selection</button>
                 </div>
-            </div>
-            <div class="highlight-card">
-                <img src="https://source.unsplash.com/600x400/?hiking-trail" alt="Trilha do Costão de Itacoatiara">
-                <div class="highlight-content">
-                    <h3>Trilha do Costão</h3>
-                    <p>Aventura com vista para o mar em uma das trilhas mais bonitas da região. Guia credenciado e equipamento de segurança incluso.</p>
-                    <button class="info-button" onclick="abrirModal('Trilha do Costão')">Mais informações</button>
-                </div>
-            </div>
-            <div class="highlight-card">
-                <img src="https://source.unsplash.com/600x400/?beach-restaurant" alt="Almoço na Praia de Itacoatiara">
-                <div class="highlight-content">
-                    <h3>Almoço na Praia</h3>
-                    <p>Experiência gastronômica com os melhores frutos do mar à beira mar. Opções vegetarianas disponíveis.</p>
-                    <button class="info-button" onclick="abrirModal('Almoço na Praia')">Mais informações</button>
-                </div>
-            </div>
-            <div class="highlight-card">
-                <img src="https://source.unsplash.com/600x400/?tour-group" alt="Pacote Completo">
-                <div class="highlight-content">
-                    <h3>Pacote Completo</h3>
-                    <p>Combine os melhores passeios de Niterói em um roteiro personalizado. Transporte, guia exclusivo e alimentação inclusos.</p>
-                    <button class="info-button" onclick="abrirModal('Pacote Completo')">Mais informações</button>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Quotation Form -->
-    <section class="quotation">
-        <div class="form-container">
-            <h2 class="form-title">Solicite sua Cotação</h2>
-            <form id="quotation-form">
-                <div class="form-group">
-                    <label for="name">Nome Completo</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">E-mail</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Telefone</label>
-                    <input type="tel" id="phone" name="phone" required>
-                </div>
-                <div class="form-group">
-                    <label for="date">Data Pretendida</label>
-                    <input type="date" id="date" name="date" required>
-                </div>
-                <div class="form-group">
-                    <label for="people">Quantidade de Pessoas</label>
-                    <input type="number" id="people" name="people" min="1" required>
-                </div>
-                <div class="form-group">
-                    <label for="tour">Passeio de Interesse</label>
-                    <select id="tour" name="tour" required>
-                        <option value="">Selecione um passeio</option>
-                        <option value="Horto do Fonseca">Horto do Fonseca</option>
-                        <option value="Museu de Arte Contemporânea">MAC</option>
-                        <option value="Campo de São Bento">Campo de São Bento</option>
-                        <option value="Trilha do Costão">Trilha do Costão</option>
-                        <option value="Almoço na Praia">Almoço na Praia</option>
-                        <option value="Pacote Completo">Pacote Completo</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="message">Mensagem Adicional</label>
-                    <textarea id="message" name="message"></textarea>
-                </div>
-                <button type="submit" class="form-submit">Enviar Solicitação</button>
-            </form>
-        </div>
-    </section>
-    
-    <!-- Testimonials -->
-    <section class="testimonials">
-        <h2 class="section-title">O que nossos clientes dizem</h2>
-        <div class="testimonial-grid">
-            <div class="testimonial-card">
-                <p class="testimonial-text">"A trilha do Costão com a TripDecoder foi incrível! Os guias conhecem cada detalhe do lugar e nos levaram a pontos com vistas deslumbrantes que não encontraríamos sozinhos."</p>
-                <p class="testimonial-author">- Mariana R.</p>
-            </div>
-            <div class="testimonial-card">
-                <p class="testimonial-text">"O almoço na Praia de Itacoatiara foi o ponto alto do nosso dia. Comida fresca, ambiente incrível e atendimento impecável da equipe TripDecoder."</p>
-                <p class="testimonial-author">- Carlos A.</p>
-            </div>
-            <div class="testimonial-card">
-                <p class="testimonial-text">"Conheci o MAC e o Horto do Fonseca de uma maneira completamente nova com os guias da TripDecoder. Histórias e detalhes que enriqueceram muito a experiência."</p>
-                <p class="testimonial-author">- Juliana M.</p>
+                <form id="booking-form">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" class="form-control" required aria-label="Full Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone:</label>
+                        <input type="tel" id="phone" class="form-control" required aria-label="Phone Number">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" class="form-control" required aria-label="Email Address">
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date:</label>
+                        <input type="date" id="date" class="form-control" required aria-label="Tour Date">
+                    </div>
+                    <div class="form-group">
+                        <label for="people">Number of People:</label>
+                        <input type="number" id="people" min="1" class="form-control" required aria-label="Number of People">
+                    </div>
+                    <div class="button-group">
+                        <button type="button" onclick="BookingModal.submitForm()" class="btn">Confirm Booking</button>
+                        <button type="button" onclick="BookingModal.close()" class="btn btn-secondary">Cancel</button>
+                    </div>
+                </form>
             </div>
         </div>
-    </section>
-    
+
+        <!-- Hikes Section -->
+        <section id="hikes" class="hikes" aria-label="Hikes section">
+            <div class="container">
+                <h2 class="section-title">Hiking Trails</h2>
+                <div class="cards-container" id="hikes-container"></div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="testimonials" aria-label="Testimonials section">
+            <div class="container">
+                <h2 class="section-title">Testimonials</h2>
+                <div class="cards-container">
+                    <article class="card testimonial-card">
+                        <p>"We loved the Christ the Redeemer tour! The guide was very attentive."</p>
+                        <p class="author">- Ana Silva</p>
+                    </article>
+                    <article class="card testimonial-card">
+                        <p>"Sugarloaf Mountain is a must-see! I recommend it to everyone."</p>
+                        <p class="author">- João Souza</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact" aria-label="Contact section">
+            <div class="container">
+                <h2 class="section-title">Contact Us</h2>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="contact-name">Name:</label>
+                        <input type="text" id="contact-name" class="form-control" required aria-label="Contact Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email">Email:</label>
+                        <input type="email" id="contact-email" class="form-control" required aria-label="Contact Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-message">Message:</label>
+                        <textarea id="contact-message" class="form-control" required aria-label="Contact Message"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
     <!-- Footer -->
     <footer>
-        <div class="footer-logo">
-            <img src="tripdecoder.ico" alt="TripDecoder">
+        <div class="container">
+            <p>© 2025 TripDecoder. All rights reserved.</p>
         </div>
-        <div class="social-links">
-            <a href="#"><i class="fab fa-whatsapp"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-facebook"></i></a>
-        </div>
-        <div class="footer-links">
-            <a href="#passeios">Passeios</a>
-            <a href="#trilhas">Trilhas</a>
-            <a href="#contato">Contato</a>
-            <a href="#sobre">Sobre Nós</a>
-        </div>
-        <p class="copyright">&copy; 2023 TripDecoder. Todos os direitos reservados.</p>
     </footer>
 
-    <!-- Information Modal -->
-    <div id="info-modal" class="modal" style="display:none;">
-        <div class="modal-content">
-            <span onclick="fecharModal()">×</span>
-            <h3 id="modal-tour-title"></h3>
-            <div id="modal-tour-description"></div>
-            <button class="cta-button" onclick="scrollToForm()">Solicitar Cotação</button>
-        </div>
-    </div>
-    
-    <script>
-        // Smooth scroll to form
-        document.getElementById('hero-cta').addEventListener('click', function() {
-            document.querySelector('.quotation').scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-        
-        // Form submission
-        document.getElementById('quotation-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const date = document.getElementById('date').value;
-            const people = document.getElementById('people').value;
-            const tour = document.getElementById('tour').value;
-            const message = document.getElementById('message').value;
-            
-            // Format date
-            const formattedDate = new Date(date).toLocaleDateString('pt-BR');
-            
-            // Create WhatsApp message
-            const whatsappMessage = `📅 *Cotação TripDecoder* 📅\n\n` +
-                                   `🟢 *Passeio selecionado:* ${tour}\n` +
-                                   `👤 *Nome:* ${name}\n` +
-                                   `📞 *Telefone:* ${phone}\n` +
-                                   `✉ *E-mail:* ${email}\n` +
-                                   `📅 *Data:* ${formattedDate}\n` +
-                                   `👥 *Pessoas:* ${people}\n\n` +
-                                   `💬 *Mensagem:*\n${message || 'Nenhuma mensagem adicional'}\n\n` +
-                                   `_Enviado via site TripDecoder_`;
-            
-            // Encode for URL
-            const encodedMessage = encodeURIComponent(whatsappMessage);
-            
-            // Open WhatsApp
-            window.open(`https://wa.me/5521999999999?text=${encodedMessage}`, '_blank');
-            
-            // Reset form
-            this.reset();
-            
-            // Show confirmation
-            alert('Solicitação enviada! Entraremos em contato em breve para confirmar os detalhes.');
-        });
-        
-        // Set minimum date to today
-        const today = new Date().toISOString().split('T')[0];
-        document.getElementById('date').min = today;
-        
-        // Tour information modal
-        const tourDescriptions = {
-            "Horto do Fonseca": `
-                <p>O Horto do Fonseca é um jardim botânico com mais de 8 mil m² de área verde, abrigando diversas espécies de plantas ornamentais, medicinais e frutíferas.</p>
-                <p><strong>Duração:</strong> Aproximadamente 2 horas</p>
-                <p><strong>Inclui:</strong> Guia especializado em botânica, água mineral</p>
-                <p><strong>Recomendações:</strong> Levar protetor solar e calçado confortável</p>
-            `,
-            "Museu de Arte Contemporânea": `
-                <p>O MAC é um marco da arquitetura moderna brasileira, projetado por Oscar Niemeyer, com exposições temporárias e acervo permanente de arte contemporânea.</p>
-                <p><strong>Duração:</strong> Aproximadamente 3 horas</p>
-                <p><strong>Inclui:</strong> Ingresso, guia especializado em arte</p>
-                <p><strong>Dias de funcionamento:</strong> Quarta a segunda-feira</p>
-            `,
-            "Campo de São Bento": `
-                <p>Parque urbano histórico com jardins, lago, playground e áreas de convivência. Um oásis verde no centro de Niterói com muita história para contar.</p>
-                <p><strong>Duração:</strong> Aproximadamente 1h30</p>
-                <p><strong>Inclui:</strong> Guia local, roteiro histórico</p>
-                <p><strong>Melhor horário:</strong> Manhã ou final de tarde</p>
-            `,
-            "Trilha do Costão": `
-                <p>Trilha moderada com vistas espetaculares do oceano. O percurso inclui passagem por piscinas naturais e mirantes exclusivos.</p>
-                <p><strong>Duração:</strong> Aproximadamente 4 horas</p>
-                <p><strong>Inclui:</strong> Guia credenciado, equipamento de segurança, seguro</p>
-                <p><strong>Nível de dificuldade:</strong> Moderado</p>
-            `,
-            "Almoço na Praia": `
-                <p>Experiência gastronômica em restaurante à beira-mar com os melhores frutos do mar da região. Opções para todos os gostos e dietas.</p>
-                <p><strong>Duração:</strong> Aproximadamente 2 horas</p>
-                <p><strong>Inclui:</strong> Refeição completa (entrada, prato principal e sobremesa), 1 bebida</p>
-                <p><strong>Opções:</strong> Frutos do mar, vegetariano, infantil</p>
-            `,
-            "Pacote Completo": `
-                <p>Roteiro personalizado que combina os melhores atrativos de Niterói em um dia inesquecível. Podemos incluir transporte privativo e guia exclusivo.</p>
-                <p><strong>Duração:</strong> Personalizado (normalmente 6-8 horas)</p>
-                <p><strong>Pode incluir:</strong> Transporte, guia exclusivo, alimentação, ingressos</p>
-                <p><strong>Personalização:</strong> Conte-nos seu interesse para criarmos o roteiro ideal</p>
-            `
-        };
-        
-        function abrirModal(tourName) {
-            document.getElementById('modal-tour-title').textContent = tourName;
-            document.getElementById('modal-tour-description').innerHTML = tourDescriptions[tourName];
-            document.getElementById('info-modal').style.display = 'flex';
-        }
-        
-        function fecharModal() {
-            document.getElementById('info-modal').style.display = 'none';
-        }
-        
-        function scrollToForm() {
-            fecharModal();
-            document.querySelector('.quotation').scrollIntoView({
-                behavior: 'smooth'
-            });
-            // Auto-fill the tour selection
-            const tourName = document.getElementById('modal-tour-title').textContent;
-            document.getElementById('tour').value = tourName;
-        }
-        
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            const modal = document.getElementById('info-modal');
-            if (event.target == modal) {
-                fecharModal();
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TouristAttraction",
+        "name": "TripDecoder Tours",
+        "description": "Guided tours and hiking trails in Rio de Janeiro and Niterói.",
+        "offers": [
+            {
+                "@type": "Offer",
+                "name": "Christ the Redeemer Tour",
+                "price": "150",
+                "priceCurrency": "USD"
             }
-        }
-        
-        // Add animation to cards when scrolling
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = 'translateY(0)';
+        ]
+    }
+    </script>
+
+    <!-- Inlined JavaScript -->
+    <script>
+        // ========== DATA ==========
+        const tourData = [
+            {
+                name: "Icaraí Beach",
+                description: "One of the most famous beaches in Niterói with views of Sugarloaf Mountain.",
+                price: 80,
+                image: "Icaraí Beach.jpg",
+                alt: "Icaraí Beach with view of Sugarloaf Mountain",
+                type: "tour"
+            },
+            {
+                name: "Ilha de Paquetá",
+                description: "A car-free island paradise in Guanabara Bay with colonial architecture.",
+                price: 100,
+                image: "Ilha-de-Paqueta.jpg",
+                alt: "Ilha de Paquetá with bicycles and palm trees",
+                type: "tour"
+            },
+            {
+                name: "Contemporary Art Museum (MAC)",
+                description: "An icon of modern architecture with amazing exhibitions.",
+                price: 120,
+                image: "Contemporary Art Museum (MAC).jpg",
+                alt: "Contemporary Art Museum (MAC) Niterói",
+                type: "tour"
+            },
+            {
+                name: "Christ the Redeemer",
+                description: "One of the most famous landmarks in the world.",
+                price: 150,
+                image: "Christ the Redeemer.jpg",
+                alt: "Christ the Redeemer statue overlooking Rio",
+                type: "tour"
+            },
+            {
+                name: "Sugarloaf Mountain",
+                description: "Enjoy an incredible view of Rio de Janeiro city.",
+                price: 120,
+                image: "Sugarloaf Mountain.jpg",
+                alt: "Sugarloaf Mountain cable car view",
+                type: "tour"
+            },
+            {
+                name: "Copacabana Beach",
+                description: "One of the most famous beaches in the world.",
+                price: 90,
+                image: "Copacabana Beach.jpg",
+                alt: "Copacabana Beach with views",
+                type: "tour"
+            },
+            {
+                name: "Selarón Steps",
+                description: "The famous colorful staircase created by artist Jorge Selarón.",
+                price: 75,
+                image: "Selarón.jpg",
+                alt: "Selarón Steps with view",
+                type: "tour"
+            },
+            {
+                name: "Arcos da Lapa",
+                description: "Historic aqueduct in downtown Rio.",
+                price: 85,
+                image: "Arcos-da-lapa.jpg",
+                alt: "Arcos da lapa with view",
+                type: "tour"
+            },
+            {
+                name: "Museum of Tomorrow",
+                description: "Science museum exploring sustainability and future possibilities.",
+                price: 110,
+                image: "Museu_do_Amanhã.jpg",
+                alt: "Museum of Tomorrow with view",
+                type: "tour"
+            }
+        ];
+
+        const hikeData = [
+            {
+                name: "Itacoatiara Costão Trail",
+                description: "A challenging trail with ocean views.",
+                price: 50,
+                difficulty: "High",
+                image: "https://source.unsplash.com/400x300/?hiking-trail",
+                alt: "Itacoatiara Costão Trail with ocean views",
+                type: "hike"
+            },
+            {
+                name: "Turtle Rock Trail",
+                description: "A moderate trail with panoramic views of Niterói.",
+                price: 40,
+                difficulty: "Medium",
+                image: "https://source.unsplash.com/400x300/?hiking",
+                alt: "Turtle Rock Trail with panoramic views",
+                type: "hike"
+            },
+            {
+                name: "Urca Hill Trail",
+                description: "An easy trail with views of Sugarloaf Mountain.",
+                price: 30,
+                difficulty: "Low",
+                image: "https://source.unsplash.com/400x300/?mountain-trail",
+                alt: "Urca Hill Trail with views of Sugarloaf Mountain",
+                type: "hike"
+            }
+        ];
+
+        // ========== UTILITY FUNCTIONS ==========
+        const Utils = {
+            validatePhone: (phone) => {
+                const cleanNumber = phone.replace(/\D/g, '');
+                return cleanNumber.length >= 10 && cleanNumber.length <= 11;
+            },
+            formatDate: (dateString) => {
+                const date = new Date(dateString);
+                return date.toLocaleDateString('en-US', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric'
+                });
+            },
+            sanitizeInput: (input) => {
+                return input.replace(/[<>&]/g, (char) => ({
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '&': '&amp;'
+                }[char]));
+            },
+            createCard: (item) => {
+                const card = document.createElement('article');
+                card.className = 'card';
+
+                let buttonText = "Book Tour";
+                let extraInfo = `<p class="price">$${item.price.toFixed(2)}</p>`;
+
+                if (item.type === "hike") {
+                    buttonText = "Book Hike";
+                    extraInfo = `
+                        <p class="difficulty">Difficulty: ${item.difficulty}</p>
+                        <p class="price">$${item.price.toFixed(2)}</p>
+                    `;
                 }
+
+                card.innerHTML = `
+                    <img src="${item.image}" alt="${item.alt}" loading="lazy">
+                    <h3 class="name">${item.name}</h3>
+                    <p>${item.description}</p>
+                    ${extraInfo}
+                    <button class="book-btn">${buttonText}</button>
+                `;
+
+                return card;
+            }
+        };
+
+        // ========== BOOKING MODAL ==========
+        const BookingModal = {
+            selectedTours: [],
+            selectedPrices: [],
+            availableTours: [...tourData, ...hikeData],
+
+            init: function() {
+                this.cacheDom();
+                this.bindEvents();
+            },
+
+            cacheDom: function() {
+                this.modal = document.getElementById('booking-modal');
+                this.modalTitle = document.getElementById('modal-title');
+                this.tourList = document.getElementById('tour-list');
+                this.availableToursContainer = document.getElementById('available-tours');
+                this.toursAvailableList = document.getElementById('tours-available');
+                this.bookingForm = document.getElementById('booking-form');
+            },
+
+            bindEvents: function() {
+                this.modal.addEventListener('mousedown', (e) => {
+                    if (e.target === this.modal) {
+                        this.close();
+                    }
+                });
+
+                this.modal.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        this.close();
+                    }
+                });
+
+                // Debounce phone validation
+                const debounce = (func, wait) => {
+                    let timeout;
+                    return (...args) => {
+                        clearTimeout(timeout);
+                        timeout = setTimeout(() => func(...args), wait);
+                    };
+                };
+
+                this.bookingForm.querySelector('#phone').addEventListener('input', debounce(() => {
+                    const phone = this.bookingForm.querySelector('#phone').value;
+                    if (!Utils.validatePhone(phone)) {
+                        this.bookingForm.querySelector('#phone').setCustomValidity('Invalid phone number (10 or 11 digits)');
+                    } else {
+                        this.bookingForm.querySelector('#phone').setCustomValidity('');
+                    }
+                }, 300));
+            },
+
+            open: function(tourName, price) {
+                const index = this.selectedTours.indexOf(tourName);
+
+                if (index === -1) {
+                    this.selectedTours.push(tourName);
+                    this.selectedPrices.push(price);
+                } else {
+                    this.selectedTours.splice(index, 1);
+                    this.selectedPrices.splice(index, 1);
+                }
+
+                this.updateTourList();
+                this.modal.style.display = 'flex';
+                this.modal.querySelector('.modal-content').focus();
+            },
+
+            close: function() {
+                this.selectedTours = [];
+                this.selectedPrices = [];
+                this.modal.style.display = 'none';
+                this.availableToursContainer.style.display = 'none';
+                this.bookingForm.reset();
+                this.bookingForm.querySelectorAll('input').forEach(input => input.setCustomValidity(''));
+            },
+
+            showAvailableTours: function() {
+                this.toursAvailableList.innerHTML = '';
+
+                const notSelectedTours = this.availableTours.filter(tour => 
+                    !this.selectedTours.includes(tour.name)
+                );
+
+                notSelectedTours.forEach(tour => {
+                    const item = document.createElement('li');
+                    item.innerHTML = `
+                        <input type="checkbox" id="tour-${tour.name.replace(/\s+/g, '-')}" value="${tour.name}">
+                        <label for="tour-${tour.name.replace(/\s+/g, '-')}">
+                            ${tour.name} - $${tour.price.toFixed(2)}
+                        </label>
+                    `;
+                    this.toursAvailableList.appendChild(item);
+                });
+
+                this.availableToursContainer.style.display = 'block';
+            },
+
+            confirmSelection: function() {
+                const checkboxes = document.querySelectorAll('#tours-available input[type="checkbox"]');
+
+                checkboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        const tour = this.availableTours.find(t => t.name === checkbox.value);
+                        if (tour && !this.selectedTours.includes(tour.name)) {
+                            this.selectedTours.push(tour.name);
+                            this.selectedPrices.push(tour.price);
+                        }
+                    }
+                });
+
+                this.updateTourList();
+                this.availableToursContainer.style.display = 'none';
+            },
+
+            removeTour: function(tourName) {
+                const index = this.selectedTours.indexOf(tourName);
+                if (index !== -1) {
+                    this.selectedTours.splice(index, 1);
+                    this.selectedPrices.splice(index, 1);
+                    this.updateTourList();
+                }
+            },
+
+            updateTourList: function() {
+                this.tourList.innerHTML = '';
+
+                if (this.selectedTours.length === 0) {
+                    this.tourList.innerHTML = '<p style="text-align: center; color: #aaa;">No tours selected</p>';
+                } else {
+                    this.selectedTours.forEach((tour, index) => {
+                        const item = document.createElement('div');
+                        item.className = 'tour-item';
+                        item.innerHTML = `
+                            <span>${tour} - $${this.selectedPrices[index].toFixed(2)}</span>
+                            <button onclick="BookingModal.removeTour('${tour}')">Remove</button>
+                        `;
+                        this.tourList.appendChild(item);
+                    });
+                }
+
+                this.modalTitle.textContent = `Book Tours (${this.selectedTours.length} selected)`;
+            },
+
+            submitForm: function() {
+                try {
+                    const name = Utils.sanitizeInput(this.bookingForm.querySelector('#name').value.trim());
+                    const phone = this.bookingForm.querySelector('#phone').value.trim();
+                    const email = Utils.sanitizeInput(this.bookingForm.querySelector('#email').value.trim());
+                    const date = this.bookingForm.querySelector('#date').value;
+                    const people = parseInt(this.bookingForm.querySelector('#people').value);
+
+                    if (!name || !phone || !email || !date || !people || this.selectedTours.length === 0) {
+                        throw new Error('Please fill all fields and select at least one tour.');
+                    }
+
+                    if (!Utils.validatePhone(phone)) {
+                        throw new Error('Please enter a valid phone number (10 or 11 digits).');
+                    }
+
+                    const totalPrice = this.selectedPrices.reduce((sum, price) => sum + price, 0) * people;
+
+                    let message = `*New Booking - TripDecoder*\n\n`;
+                    message += `*Selected tours:*\n`;
+                    message += this.selectedTours.map((tour, index) => 
+                        `- ${tour} - $${this.selectedTours[index].toFixed(2)} per person`
+                    ).join('\n');
+
+                    message += `\n\n*Booking Details:*\n`;
+                    message += `👤 *Name:* ${name}\n`;
+                    message += `📞 *Phone:* ${phone}\n`;
+                    message += `📧 *Email:* ${email}\n`;
+                    message += `📅 *Date:* ${Utils.formatDate(date)}\n`;
+                    message += `👥 *People:* ${people}\n`;
+                    message += `💵 *Total:* $${totalPrice.toFixed(2)}\n\n`;
+                    message += `_This message was sent through the TripDecoder website_`;
+                    
+                    const whatsAppNumber = '5521990455492';
+                    const encodedMessage = encodeURIComponent(message);
+                    const whatsAppLink = `https://wa.me/${whatsAppNumber}?text=${encodedMessage}`;
+
+                    window.open(whatsAppLink, '_blank');
+                    this.close();
+                } catch (error) {
+                    console.error('Booking error:', error);
+                    alert(error.message);
+                }
+            },
+        };
+
+        // ========== INITIALIZATION ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize booking modal
+            BookingModal.init();
+
+            // Populate tours with event delegation
+            const toursContainer = document.getElementById('tours-container');
+            tourData.forEach(tour => {
+                toursContainer.appendChild(Utils.createCard(tour));
             });
-        }, { threshold: 0.1 });
-        
-        document.querySelectorAll('.highlight-card, .testimonial-card').forEach(card => {
-            card.style.opacity = 0;
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'all 0.5s ease';
-            observer.observe(card);
+
+            toursContainer.addEventListener('click', (e => {
+                if (e.target.classList.contains('book-btn')) {
+                    const card = e.target.closest('.card');
+                    const tourName = document.card.querySelector('h3.name').value.textContent;
+                    const price = parseFloat(card.querySelector('.price').value.textContent.replace('$', ''));
+                    BookingModal.open(tourName, 'toursContainer);
+                }
+            }));
+
+            // Populate hikes with event delegation
+            const hikesContainer = document.getElementById('hikes-container');
+            hikeData.forEach(hike => {
+                hikesContainer.appendChild(Utils.createCard(hike));
+            });
+
+            hikesContainer.addEventListener('click', (e => {
+                if (e.target.classList.contains('book-btn')) {
+                    const card = e.target.closest('.card');
+                    const tourName = document.card.querySelector('.name').value.textContent;
+                    const price = parseFloat(card.querySelector('.price')).value.textContent.replace('$', ''));
+                    BookingModal.open(tourName, 'price');
+                }
+            }));
+
+            // Contact form submission
+            document.getElementById('contact-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Message sent successfully! We will contact you soon.');
+                this.reset();
+            });
         });
     </script>
 </body>
-</html
+                            </html
