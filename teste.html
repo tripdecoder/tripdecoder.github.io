@@ -105,7 +105,7 @@
 
         /* ========== HERO SECTION ========== */
         .hero {
-            background: url('https://source.unsplash.com/1600x900/?rio-de-janeiro,night') no-repeat center center/cover;
+            background: url('https://images.unsplash.com/photo-1516306580123-e6e52b1b7b5f') no-repeat center center/cover;
             height: 60vh;
             display: flex;
             justify-content: center;
@@ -371,7 +371,7 @@
     <header>
         <div class="container header-content">
             <div class="logo">
-                <img src="tripdecoder.ico" alt="TripDecoder Logo" loading="lazy">
+                <img src="tripdecoder.ico" alt="TripDecoder Logo" loading="lazy" onerror="console.error('Failed to load logo image:', this.src)">
                 <h1>TripDecoder</h1>
             </div>
             <nav>
@@ -390,8 +390,8 @@
         <!-- Hero Section -->
         <section class="hero" aria-label="Hero section">
             <picture>
-                <source srcset="https://source.unsplash.com/1600x900/?rio-de-janeiro,night" type="image/webp">
-                <img src="https://source.unsplash.com/1600x900/?rio-de-janeiro,night" alt="Rio de Janeiro skyline at night" loading="lazy">
+                <source srcset="https://images.unsplash.com/photo-1516306580123-e6e52b1b7b5f" type="image/webp">
+                <img src="https://images.unsplash.com/photo-1516306580123-e6e52b1b7b5f" alt="Rio de Janeiro skyline at night" loading="lazy" onerror="console.error('Failed to load hero image:', this.src)">
             </picture>
             <div class="hero-content">
                 <h2>Discover Rio de Janeiro and Niterói with locals!</h2>
@@ -530,7 +530,7 @@
                 name: "Icaraí Beach",
                 description: "One of the most famous beaches in Niterói with views of Sugarloaf Mountain.",
                 price: 80,
-                image: "Icaraí Beach.jpg",
+                image: "https://source.unsplash.com/400x300/?beach,rio-de-janeiro",
                 alt: "Icaraí Beach with view of Sugarloaf Mountain",
                 type: "tour"
             },
@@ -538,7 +538,7 @@
                 name: "Ilha de Paquetá",
                 description: "A car-free island paradise in Guanabara Bay with colonial architecture.",
                 price: 100,
-                image: "Ilha-de-Paqueta.jpg",
+                image: "https://source.unsplash.com/400x300/?island,paradise",
                 alt: "Ilha de Paquetá with bicycles and palm trees",
                 type: "tour"
             },
@@ -546,7 +546,7 @@
                 name: "Contemporary Art Museum (MAC)",
                 description: "An icon of modern architecture with amazing exhibitions.",
                 price: 120,
-                image: "Contemporary Art Museum (MAC).jpg",
+                image: "https://source.unsplash.com/400x300/?museum,modern-architecture",
                 alt: "Contemporary Art Museum (MAC) Niterói",
                 type: "tour"
             },
@@ -554,7 +554,7 @@
                 name: "Christ the Redeemer",
                 description: "One of the most famous landmarks in the world.",
                 price: 150,
-                image: "Christ the Redeemer.jpg",
+                image: "https://source.unsplash.com/400x300/?christ-the-redeemer",
                 alt: "Christ the Redeemer statue overlooking Rio",
                 type: "tour"
             },
@@ -562,7 +562,7 @@
                 name: "Sugarloaf Mountain",
                 description: "Enjoy an incredible view of Rio de Janeiro city.",
                 price: 120,
-                image: "Sugarloaf Mountain.jpg",
+                image: "https://source.unsplash.com/400x300/?sugarloaf-mountain",
                 alt: "Sugarloaf Mountain cable car view",
                 type: "tour"
             },
@@ -570,32 +570,32 @@
                 name: "Copacabana Beach",
                 description: "One of the most famous beaches in the world.",
                 price: 90,
-                image: "Copacabana Beach.jpg",
-                alt: "Copacabana Beach with views",
+                image: "https://source.unsplash.com/400x300/?copacabana-beach",
+                alt: "Copacabana Beach with iconic wave pattern",
                 type: "tour"
             },
             {
                 name: "Selarón Steps",
                 description: "The famous colorful staircase created by artist Jorge Selarón.",
                 price: 75,
-                image: "Selarón.jpg",
-                alt: "Selarón Steps with view",
+                image: "https://source.unsplash.com/400x300/?selarón-steps",
+                alt: "Colorful Selarón Steps in Rio de Janeiro",
                 type: "tour"
             },
             {
                 name: "Arcos da Lapa",
-                description: "Historic aqueduct in downtown Rio.",
+                description: "Historic aqueduct and vibrant nightlife district in downtown Rio.",
                 price: 85,
-                image: "Arcos-da-lapa.jpg",
-                alt: "Arcos da lapa with view",
+                image: "https://source.unsplash.com/400x300/?aqueduct,rio-de-janeiro",
+                alt: "Arches of Lapa aqueduct in Rio",
                 type: "tour"
             },
             {
                 name: "Museum of Tomorrow",
                 description: "Science museum exploring sustainability and future possibilities.",
                 price: 110,
-                image: "Museu_do_Amanhã.jpg",
-                alt: "Museum of Tomorrow with view",
+                image: "https://source.unsplash.com/400x300/?museum-of-tomorrow",
+                alt: "Futuristic Museum of Tomorrow building",
                 type: "tour"
             }
         ];
@@ -667,11 +667,11 @@
                 }
 
                 card.innerHTML = `
-                    <img src="${item.image}" alt="${item.alt}" loading="lazy">
-                    <h3 class="name">${item.name}</h3>
+                    <img src="${item.image}" alt="${item.alt}" loading="lazy" onerror="console.error('Failed to load image: ${item.image}')">
+                    <h3>${item.name}</h3>
                     <p>${item.description}</p>
                     ${extraInfo}
-                    <button class="book-btn">${buttonText}</button>
+                    <button class="btn book-btn">${buttonText}</button>
                 `;
 
                 return card;
@@ -743,173 +743,4 @@
 
                 this.updateTourList();
                 this.modal.style.display = 'flex';
-                this.modal.querySelector('.modal-content').focus();
-            },
-
-            close: function() {
-                this.selectedTours = [];
-                this.selectedPrices = [];
-                this.modal.style.display = 'none';
-                this.availableToursContainer.style.display = 'none';
-                this.bookingForm.reset();
-                this.bookingForm.querySelectorAll('input').forEach(input => input.setCustomValidity(''));
-            },
-
-            showAvailableTours: function() {
-                this.toursAvailableList.innerHTML = '';
-
-                const notSelectedTours = this.availableTours.filter(tour => 
-                    !this.selectedTours.includes(tour.name)
-                );
-
-                notSelectedTours.forEach(tour => {
-                    const item = document.createElement('li');
-                    item.innerHTML = `
-                        <input type="checkbox" id="tour-${tour.name.replace(/\s+/g, '-')}" value="${tour.name}">
-                        <label for="tour-${tour.name.replace(/\s+/g, '-')}">
-                            ${tour.name} - $${tour.price.toFixed(2)}
-                        </label>
-                    `;
-                    this.toursAvailableList.appendChild(item);
-                });
-
-                this.availableToursContainer.style.display = 'block';
-            },
-
-            confirmSelection: function() {
-                const checkboxes = document.querySelectorAll('#tours-available input[type="checkbox"]');
-
-                checkboxes.forEach(checkbox => {
-                    if (checkbox.checked) {
-                        const tour = this.availableTours.find(t => t.name === checkbox.value);
-                        if (tour && !this.selectedTours.includes(tour.name)) {
-                            this.selectedTours.push(tour.name);
-                            this.selectedPrices.push(tour.price);
-                        }
-                    }
-                });
-
-                this.updateTourList();
-                this.availableToursContainer.style.display = 'none';
-            },
-
-            removeTour: function(tourName) {
-                const index = this.selectedTours.indexOf(tourName);
-                if (index !== -1) {
-                    this.selectedTours.splice(index, 1);
-                    this.selectedPrices.splice(index, 1);
-                    this.updateTourList();
-                }
-            },
-
-            updateTourList: function() {
-                this.tourList.innerHTML = '';
-
-                if (this.selectedTours.length === 0) {
-                    this.tourList.innerHTML = '<p style="text-align: center; color: #aaa;">No tours selected</p>';
-                } else {
-                    this.selectedTours.forEach((tour, index) => {
-                        const item = document.createElement('div');
-                        item.className = 'tour-item';
-                        item.innerHTML = `
-                            <span>${tour} - $${this.selectedPrices[index].toFixed(2)}</span>
-                            <button onclick="BookingModal.removeTour('${tour}')">Remove</button>
-                        `;
-                        this.tourList.appendChild(item);
-                    });
-                }
-
-                this.modalTitle.textContent = `Book Tours (${this.selectedTours.length} selected)`;
-            },
-
-            submitForm: function() {
-                try {
-                    const name = Utils.sanitizeInput(this.bookingForm.querySelector('#name').value.trim());
-                    const phone = this.bookingForm.querySelector('#phone').value.trim();
-                    const email = Utils.sanitizeInput(this.bookingForm.querySelector('#email').value.trim());
-                    const date = this.bookingForm.querySelector('#date').value;
-                    const people = parseInt(this.bookingForm.querySelector('#people').value);
-
-                    if (!name || !phone || !email || !date || !people || this.selectedTours.length === 0) {
-                        throw new Error('Please fill all fields and select at least one tour.');
-                    }
-
-                    if (!Utils.validatePhone(phone)) {
-                        throw new Error('Please enter a valid phone number (10 or 11 digits).');
-                    }
-
-                    const totalPrice = this.selectedPrices.reduce((sum, price) => sum + price, 0) * people;
-
-                    let message = `*New Booking - TripDecoder*\n\n`;
-                    message += `*Selected tours:*\n`;
-                    message += this.selectedTours.map((tour, index) => 
-                        `- ${tour} - $${this.selectedTours[index].toFixed(2)} per person`
-                    ).join('\n');
-
-                    message += `\n\n*Booking Details:*\n`;
-                    message += `👤 *Name:* ${name}\n`;
-                    message += `📞 *Phone:* ${phone}\n`;
-                    message += `📧 *Email:* ${email}\n`;
-                    message += `📅 *Date:* ${Utils.formatDate(date)}\n`;
-                    message += `👥 *People:* ${people}\n`;
-                    message += `💵 *Total:* $${totalPrice.toFixed(2)}\n\n`;
-                    message += `_This message was sent through the TripDecoder website_`;
-                    
-                    const whatsAppNumber = '5521990455492';
-                    const encodedMessage = encodeURIComponent(message);
-                    const whatsAppLink = `https://wa.me/${whatsAppNumber}?text=${encodedMessage}`;
-
-                    window.open(whatsAppLink, '_blank');
-                    this.close();
-                } catch (error) {
-                    console.error('Booking error:', error);
-                    alert(error.message);
-                }
-            },
-        };
-
-        // ========== INITIALIZATION ==========
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize booking modal
-            BookingModal.init();
-
-            // Populate tours with event delegation
-            const toursContainer = document.getElementById('tours-container');
-            tourData.forEach(tour => {
-                toursContainer.appendChild(Utils.createCard(tour));
-            });
-
-            toursContainer.addEventListener('click', (e => {
-                if (e.target.classList.contains('book-btn')) {
-                    const card = e.target.closest('.card');
-                    const tourName = document.card.querySelector('h3.name').value.textContent;
-                    const price = parseFloat(card.querySelector('.price').value.textContent.replace('$', ''));
-                    BookingModal.open(tourName, 'toursContainer);
-                }
-            }));
-
-            // Populate hikes with event delegation
-            const hikesContainer = document.getElementById('hikes-container');
-            hikeData.forEach(hike => {
-                hikesContainer.appendChild(Utils.createCard(hike));
-            });
-
-            hikesContainer.addEventListener('click', (e => {
-                if (e.target.classList.contains('book-btn')) {
-                    const card = e.target.closest('.card');
-                    const tourName = document.card.querySelector('.name').value.textContent;
-                    const price = parseFloat(card.querySelector('.price')).value.textContent.replace('$', ''));
-                    BookingModal.open(tourName, 'price');
-                }
-            }));
-
-            // Contact form submission
-            document.getElementById('contact-form').addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('Message sent successfully! We will contact you soon.');
-                this.reset();
-            });
-        });
-    </script>
-</body>
-                            </html
+                this.modal.querySelector('.Hermes
