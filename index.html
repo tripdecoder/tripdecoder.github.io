@@ -185,7 +185,7 @@
         
         /* ========== HERO SECTION ========== */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://source.unsplash.com/1600x900/?rio-de-janeiro,night') no-repeat center center/cover;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://source.unsplash.com/1600x900/?rio-de-janeiro') no-repeat center center/cover;
             height: 70vh;
             display: flex;
             justify-content: center;
@@ -303,6 +303,17 @@
         .card-img-container {
             height: 200px;
             overflow: hidden;
+            position: relative;
+        }
+        
+        .card-img-container::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
         }
         
         .card img {
@@ -1259,7 +1270,7 @@
                     name: "Cristo Redentor",
                     description: "Visite uma das Novas Sete Maravilhas do Mundo com acesso prioritário e comentários especializados.",
                     price: 150,
-                    image: "https://source.unsplash.com/400x300/?christ-redeemer-rio",
+                    image: "Christ the Redeemer.jpg",
                     alt: "Cristo Redentor no Corcovado",
                     type: "tour",
                     duration: "4 horas",
@@ -1269,7 +1280,7 @@
                     name: "Pão de Açúcar",
                     description: "Desfrute de vistas deslumbrantes de 360° do Rio deste marco icônico via bondinho.",
                     price: 120,
-                    image: "https://source.unsplash.com/400x300/?sugarloaf-mountain-rio",
+                    image: "Sugarloaf Mountain.jpg",
                     alt: "Vista do bondinho do Pão de Açúcar",
                     type: "tour",
                     duration: "3 horas",
@@ -1279,7 +1290,7 @@
                     name: "Praia de Copacabana",
                     description: "Vivencie a energia de uma das praias mais famosas do mundo com um guia local.",
                     price: 90,
-                    image: "https://source.unsplash.com/400x300/?copacabana-beach",
+                    image: "Copacabana Beach.jpg",
                     alt: "Praia de Copacabana com seu calçadão",
                     type: "tour",
                     duration: "2.5 horas",
@@ -1289,11 +1300,61 @@
                     name: "Escadaria Selarón",
                     description: "Descubra a história vibrante por trás desses famosos degraus coloridos criados pelo artista Jorge Selarón.",
                     price: 75,
-                    image: "https://source.unsplash.com/400x300/?selaron-steps-rio",
+                    image: "Selaronstairs.jpeg",
                     alt: "Escadaria colorida de Selarón no Rio de Janeiro",
                     type: "tour",
                     duration: "2 horas",
                     includes: ["História da arte", "Sessão de fotos", "Tour pelo bairro local"]
+                },
+                {
+                    name: "Arcos da Lapa",
+                    description: "Explore o aqueduto histórico e o vibrante distrito de vida noturna no centro do Rio.",
+                    price: 85,
+                    image: "Arcosdalapa.jpg",
+                    alt: "Arcos da Lapa no Rio de Janeiro",
+                    type: "tour",
+                    duration: "3 horas",
+                    includes: ["Contexto histórico", "Tour noturno", "Visita a bar local"]
+                },
+                {
+                    name: "Museu do Amanhã",
+                    description: "Explore sustentabilidade e possibilidades futuras nesta maravilha arquitetônica.",
+                    price: 110,
+                    image: "Museu_do_Amanhã.jpg",
+                    alt: "Museu do Amanhã no Rio de Janeiro",
+                    type: "tour",
+                    duration: "3.5 horas",
+                    includes: ["Ingressos do museu", "Guia científico", "Exposições interativas"]
+                },
+                {
+                    name: "Praia de Icaraí",
+                    description: "Relaxe em uma das praias mais famosas de Niterói com vistas deslumbrantes do Pão de Açúcar.",
+                    price: 80,
+                    image: "Icaraí Beach.jpg",
+                    alt: "Praia de Icaraí com vista do Pão de Açúcar",
+                    type: "tour",
+                    duration: "2 horas",
+                    includes: ["Guia da praia", "Dicas locais", "Pontos de vista cênica"]
+                },
+                {
+                    name: "Ilha de Paquetá",
+                    description: "Escape para este paraíso sem carros na Baía de Guanabara com arquitetura colonial.",
+                    price: 100,
+                    image: "Ilha-de-Paqueta.jpg",
+                    alt: "Ilha de Paquetá com bicicletas e coqueiros",
+                    type: "tour",
+                    duration: "6 horas",
+                    includes: ["Passagens de balsa", "Aluguel de bicicleta", "Guia da ilha"]
+                },
+                {
+                    name: "Museu de Arte Contemporânea (MAC)",
+                    description: "Experiencie um ícone da arquitetura moderna com exposições incríveis e vistas panorâmicas.",
+                    price: 120,
+                    image: "Contemporary Art Museum (MAC).jpg",
+                    alt: "Museu de Arte Contemporânea (MAC) Niterói",
+                    type: "tour",
+                    duration: "2.5 horas",
+                    includes: ["Ingressos do museu", "Tour de arquitetura", "Acesso ao mirante"]
                 }
             ],
             en: [
@@ -1301,7 +1362,7 @@
                     name: "Christ the Redeemer",
                     description: "Visit one of the New Seven Wonders of the World with skip-the-line access and expert commentary.",
                     price: 150,
-                    image: "https://source.unsplash.com/400x300/?christ-redeemer-rio",
+                    image: "Christ the Redeemer.jpg",
                     alt: "Christ the Redeemer at Corcovado",
                     type: "tour",
                     duration: "4 hours",
@@ -1311,7 +1372,7 @@
                     name: "Sugarloaf Mountain",
                     description: "Enjoy breathtaking 360° views of Rio from this iconic landmark via cable car.",
                     price: 120,
-                    image: "https://source.unsplash.com/400x300/?sugarloaf-mountain-rio",
+                    image: "Sugarloaf Mountain.jpg",
                     alt: "Sugarloaf Mountain cable car view",
                     type: "tour",
                     duration: "3 hours",
@@ -1321,7 +1382,7 @@
                     name: "Copacabana Beach",
                     description: "Experience the energy of one of the world's most famous beaches with a local guide.",
                     price: 90,
-                    image: "https://source.unsplash.com/400x300/?copacabana-beach",
+                    image: "Copacabana Beach.jpg",
                     alt: "Copacabana Beach with its iconic wave pattern",
                     type: "tour",
                     duration: "2.5 hours",
@@ -1331,11 +1392,61 @@
                     name: "Selarón Steps",
                     description: "Discover the vibrant story behind these famous colorful steps created by artist Jorge Selarón.",
                     price: 75,
-                    image: "https://source.unsplash.com/400x300/?selaron-steps-rio",
+                    image: "Selaronstairs.jpeg",
                     alt: "Colorful Selarón Steps in Rio de Janeiro",
                     type: "tour",
                     duration: "2 hours",
                     includes: ["Art history", "Photo session", "Local neighborhood tour"]
+                },
+                {
+                    name: "Arcos da Lapa",
+                    description: "Explore the historic aqueduct and vibrant nightlife district in downtown Rio.",
+                    price: 85,
+                    image: "Arcosdalapa.jpg",
+                    alt: "Arches of Lapa in Rio de Janeiro",
+                    type: "tour",
+                    duration: "3 hours",
+                    includes: ["Historical context", "Evening tour", "Local bar visit"]
+                },
+                {
+                    name: "Museum of Tomorrow",
+                    description: "Explore sustainability and future possibilities at this architectural marvel.",
+                    price: 110,
+                    image: "Museu_do_Amanhã.jpg",
+                    alt: "Museum of Tomorrow in Rio de Janeiro",
+                    type: "tour",
+                    duration: "3.5 hours",
+                    includes: ["Museum tickets", "Science guide", "Interactive exhibits"]
+                },
+                {
+                    name: "Icaraí Beach",
+                    description: "Relax at one of Niterói's most famous beaches with stunning views of Sugarloaf Mountain.",
+                    price: 80,
+                    image: "Icaraí Beach.jpg",
+                    alt: "Icaraí Beach with view of Sugarloaf Mountain",
+                    type: "tour",
+                    duration: "2 hours",
+                    includes: ["Beach guide", "Local tips", "Scenic viewpoints"]
+                },
+                {
+                    name: "Ilha de Paquetá",
+                    description: "Escape to this car-free island paradise in Guanabara Bay with colonial architecture.",
+                    price: 100,
+                    image: "Ilha-de-Paqueta.jpg",
+                    alt: "Ilha de Paquetá with bicycles and palm trees",
+                    type: "tour",
+                    duration: "6 hours",
+                    includes: ["Ferry tickets", "Bike rental", "Island guide"]
+                },
+                {
+                    name: "Contemporary Art Museum (MAC)",
+                    description: "Experience an icon of modern architecture with amazing exhibitions and panoramic views.",
+                    price: 120,
+                    image: "Contemporary Art Museum (MAC).jpg",
+                    alt: "Contemporary Art Museum (MAC) Niterói",
+                    type: "tour",
+                    duration: "2.5 hours",
+                    includes: ["Museum tickets", "Architecture tour", "Viewpoint access"]
                 }
             ],
             fr: [
@@ -1343,7 +1454,7 @@
                     name: "Christ Rédempteur",
                     description: "Visitez l'une des sept nouvelles merveilles du monde avec accès coupe-file et commentaires d'expert.",
                     price: 150,
-                    image: "https://source.unsplash.com/400x300/?christ-redeemer-rio",
+                    image: "Christ the Redeemer.jpg",
                     alt: "Christ Rédempteur au Corcovado",
                     type: "tour",
                     duration: "4 heures",
@@ -1353,7 +1464,7 @@
                     name: "Pain de Sucre",
                     description: "Profitez de vues à 360° époustouflantes sur Rio depuis ce lieu emblématique via le téléphérique.",
                     price: 120,
-                    image: "https://source.unsplash.com/400x300/?sugarloaf-mountain-rio",
+                    image: "Sugarloaf Mountain.jpg",
                     alt: "Vue du téléphérique du Pain de Sucre",
                     type: "tour",
                     duration: "3 heures",
@@ -1363,7 +1474,7 @@
                     name: "Plage de Copacabana",
                     description: "Vivez l'énergie de l'une des plages les plus célèbres au monde avec un guide local.",
                     price: 90,
-                    image: "https://source.unsplash.com/400x300/?copacabana-beach",
+                    image: "Copacabana Beach.jpg",
                     alt: "Plage de Copacabana avec sa promenade emblématique",
                     type: "tour",
                     duration: "2.5 heures",
@@ -1373,11 +1484,61 @@
                     name: "Escalier Selarón",
                     description: "Découvrez l'histoire vibrante derrière ces célèbres marches colorées créées par l'artiste Jorge Selarón.",
                     price: 75,
-                    image: "https://source.unsplash.com/400x300/?selaron-steps-rio",
+                    image: "Selaronstairs.jpeg",
                     alt: "Escalier coloré de Selarón à Rio de Janeiro",
                     type: "tour",
                     duration: "2 heures",
                     includes: ["Histoire de l'art", "Séance photo", "Visite du quartier local"]
+                },
+                {
+                    name: "Arcos da Lapa",
+                    description: "Explorez l'aqueduc historique et le quartier animé de la vie nocturne au centre-ville de Rio.",
+                    price: 85,
+                    image: "Arcosdalapa.jpg",
+                    alt: "Arches de Lapa à Rio de Janeiro",
+                    type: "tour",
+                    duration: "3 heures",
+                    includes: ["Contexte historique", "Visite nocturne", "Visite d'un bar local"]
+                },
+                {
+                    name: "Musée de Demain",
+                    description: "Explorez la durabilité et les possibilités futures dans cette merveille architecturale.",
+                    price: 110,
+                    image: "Museu_do_Amanhã.jpg",
+                    alt: "Musée de Demain à Rio de Janeiro",
+                    type: "tour",
+                    duration: "3.5 heures",
+                    includes: ["Billets du musée", "Guide scientifique", "Expositions interactives"]
+                },
+                {
+                    name: "Plage d'Icaraí",
+                    description: "Détendez-vous sur l'une des plages les plus célèbres de Niterói avec des vues imprenables sur le Pain de Sucre.",
+                    price: 80,
+                    image: "Icaraí Beach.jpg",
+                    alt: "Plage d'Icaraí avec vue sur le Pain de Sucre",
+                    type: "tour",
+                    duration: "2 heures",
+                    includes: ["Guide de plage", "Conseils locaux", "Points de vue panoramiques"]
+                },
+                {
+                    name: "Île de Paquetá",
+                    description: "Échappez-vous vers ce paradis insulaire sans voiture dans la Baie de Guanabara avec une architecture coloniale.",
+                    price: 100,
+                    image: "Ilha-de-Paqueta.jpg",
+                    alt: "Île de Paquetá avec vélos et palmiers",
+                    type: "tour",
+                    duration: "6 heures",
+                    includes: ["Billets de ferry", "Location de vélo", "Guide de l'île"]
+                },
+                {
+                    name: "Musée d'Art Contemporain (MAC)",
+                    description: "Vivez une icône de l'architecture moderne avec des expositions incroyables et des vues panoramiques.",
+                    price: 120,
+                    image: "Contemporary Art Museum (MAC).jpg",
+                    alt: "Musée d'Art Contemporain (MAC) Niterói",
+                    type: "tour",
+                    duration: "2.5 heures",
+                    includes: ["Billets du musée", "Visite architecturale", "Accès au point de vue"]
                 }
             ]
         };
@@ -1389,22 +1550,11 @@
                     description: "Uma trilha costeira desafiadora com vistas espetaculares do oceano e formações rochosas.",
                     price: 50,
                     difficulty: "Alta",
-                    image: "https://source.unsplash.com/400x300/?hiking-trail,coast",
+                    image: "costão.jpg",
                     alt: "Trilha do Costão de Itacoatiara",
                     type: "hike",
                     duration: "4 horas",
                     includes: ["Guia certificado", "Equipamento de segurança", "Lanche"]
-                },
-                {
-                    name: "Trilha da Pedra da Tartaruga",
-                    description: "Uma caminhada moderada com vistas panorâmicas de Niterói e da Baía de Guanabara.",
-                    price: 40,
-                    difficulty: "Média",
-                    image: "https://source.unsplash.com/400x300/?hiking,mountain",
-                    alt: "Trilha da Pedra da Tartaruga",
-                    type: "hike",
-                    duration: "3 horas",
-                    includes: ["Guia da trilha", "Água", "Primeiros socorros"]
                 }
             ],
             en: [
@@ -1413,22 +1563,11 @@
                     description: "A challenging coastal trail with spectacular ocean views and rock formations.",
                     price: 50,
                     difficulty: "High",
-                    image: "https://source.unsplash.com/400x300/?hiking-trail,coast",
+                    image: "costão.jpg",
                     alt: "Itacoatiara Costão Trail",
                     type: "hike",
                     duration: "4 hours",
                     includes: ["Certified guide", "Safety equipment", "Snacks"]
-                },
-                {
-                    name: "Turtle Rock Trail",
-                    description: "A moderate hike with panoramic views of Niterói and Guanabara Bay.",
-                    price: 40,
-                    difficulty: "Medium",
-                    image: "https://source.unsplash.com/400x300/?hiking,mountain",
-                    alt: "Turtle Rock Trail",
-                    type: "hike",
-                    duration: "3 hours",
-                    includes: ["Trail guide", "Water", "First aid"]
                 }
             ],
             fr: [
@@ -1437,22 +1576,11 @@
                     description: "Un sentier côtier difficile avec des vues spectaculaires sur l'océan et des formations rocheuses.",
                     price: 50,
                     difficulty: "Élevée",
-                    image: "https://source.unsplash.com/400x300/?hiking-trail,coast",
+                    image: "costão.jpg",
                     alt: "Sentier du Costão d'Itacoatiara",
                     type: "hike",
                     duration: "4 heures",
                     includes: ["Guide certifié", "Équipement de sécurité", "Collation"]
-                },
-                {
-                    name: "Sentier de la Pierre de la Tortue",
-                    description: "Une randonnée modérée avec des vues panoramiques sur Niterói et la Baie de Guanabara.",
-                    price: 40,
-                    difficulty: "Moyenne",
-                    image: "https://source.unsplash.com/400x300/?hiking,mountain",
-                    alt: "Sentier de la Pierre de la Tortue",
-                    type: "hike",
-                    duration: "3 heures",
-                    includes: ["Guide de sentier", "Eau", "Premiers secours"]
                 }
             ]
         };
