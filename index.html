@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TripDecoder - Tours in Rio de Janeiro and Niterói | Book Now</title>
-    <meta name="description" content="Discover Rio de Janeiro and Niterói with local guides. Book tours to Christ the Redeemer, Sugarloaf Mountain, beaches, and hiking trails. Best prices guaranteed.">
+    <title>TripDecoder - Tours no Rio de Janeiro e Niterói | Reserve Agora</title>
+    <meta name="description" content="Descubra o Rio de Janeiro e Niterói com guias locais. Reserve tours para o Cristo Redentor, Pão de Açúcar, praias e trilhas. Melhores preços garantidos.">
     <link rel="shortcut icon" href="tripdecoder.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Schema.org markup for Google -->
     <script type="application/ld+json">
@@ -14,7 +15,7 @@
       "@context": "https://schema.org",
       "@type": "TravelAgency",
       "name": "TripDecoder",
-      "description": "Local tours and hiking experiences in Rio de Janeiro and Niterói",
+      "description": "Passeios locais e experiências de trilha no Rio de Janeiro e Niterói",
       "url": "https://tripdecoder.com",
       "telephone": "+55-21-99045-5492",
       "address": {
@@ -25,7 +26,7 @@
       "areaServed": ["Rio de Janeiro", "Niterói"],
       "offers": {
         "@type": "Offer",
-        "description": "Tours and hiking experiences"
+        "description": "Passeios e experiências de trilha"
       }
     }
     </script>
@@ -50,15 +51,16 @@
         
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
         
         body {
             font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
             background-color: var(--bg-dark);
             color: var(--text-light);
             line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
         }
         
         /* ========== LAYOUT STYLES ========== */
@@ -70,6 +72,36 @@
         
         section {
             padding: 60px 0;
+        }
+        
+        /* ========== LANGUAGE SWITCHER ========== */
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            background: var(--bg-medium);
+            border-radius: 30px;
+            padding: 5px;
+            box-shadow: var(--shadow);
+        }
+        
+        .lang-btn {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .lang-btn.active {
+            background: var(--primary-color);
+            color: var(--text-white);
         }
         
         /* ========== HEADER & NAVIGATION ========== */
@@ -691,6 +723,11 @@
             .footer-content {
                 grid-template-columns: 1fr;
             }
+            
+            .language-switcher {
+                top: 10px;
+                right: 10px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -705,24 +742,36 @@
             .btn {
                 padding: 10px 20px;
             }
+            
+            .language-switcher {
+                flex-direction: column;
+                border-radius: 10px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <button class="lang-btn active" data-lang="pt">PT</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+    </div>
+
     <!-- Header -->
     <header>
         <div class="container header-content">
             <div class="logo">
                 <img src="tripdecoder.ico" alt="TripDecoder Logo">
-                <h1>TripDecoder</h1>
+                <h1 data-i18n="site-title">TripDecoder</h1>
             </div>
             <button class="mobile-menu-btn" id="mobile-menu-toggle">☰</button>
             <nav id="main-nav">
                 <ul>
-                    <li><a href="#tours">Tours</a></li>
-                    <li><a href="#hikes">Hikes</a></li>
-                    <li><a href="#testimonials">Reviews</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#tours" data-i18n="nav-tours">Passeios</a></li>
+                    <li><a href="#hikes" data-i18n="nav-hikes">Trilhas</a></li>
+                    <li><a href="#testimonials" data-i18n="nav-testimonials">Depoimentos</a></li>
+                    <li><a href="#contact" data-i18n="nav-contact">Contato</a></li>
                 </ul>
             </nav>
         </div>
@@ -731,9 +780,9 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h2>Discover Rio de Janeiro and Niterói with Local Experts!</h2>
-            <p>Experience the best tours, hikes and attractions with certified local guides</p>
-            <a href="#tours" class="btn btn-large">Explore Tours</a>
+            <h2 data-i18n="hero-title">Descubra o Rio de Janeiro e Niterói com Especialistas Locais!</h2>
+            <p data-i18n="hero-subtitle">Vivencie os melhores passeios, trilhas e atrações com guias locais certificados</p>
+            <a href="#tours" class="btn btn-large" data-i18n="hero-cta">Explorar Passeios</a>
         </div>
     </section>
 
@@ -741,8 +790,8 @@
     <section>
         <div class="container">
             <div class="special-offer">
-                <h3>🔥 Special Limited Time Offer!</h3>
-                <p>Book 2 tours and get 15% off your second booking. Use code: RIO15</p>
+                <h3 data-i18n="offer-title">🔥 Oferta Especial por Tempo Limitado!</h3>
+                <p data-i18n="offer-text">Reserve 2 passeios e ganhe 15% de desconto na segunda reserva. Use o código: RIO15</p>
             </div>
         </div>
     </section>
@@ -750,7 +799,7 @@
     <!-- Tours Section -->
     <section id="tours" class="tours">
         <div class="container">
-            <h2 class="section-title">Popular Tours</h2>
+            <h2 class="section-title" data-i18n="tours-title">Passeios Populares</h2>
             <div class="cards-container" id="tours-container">
                 <!-- Tours will be populated by JavaScript -->
             </div>
@@ -760,27 +809,27 @@
     <!-- Why Choose Us Section -->
     <section>
         <div class="container">
-            <h2 class="section-title">Why Choose TripDecoder</h2>
+            <h2 class="section-title" data-i18n="why-title">Por Que Escolher a TripDecoder</h2>
             <div class="features">
                 <div class="feature">
                     <div class="feature-icon">👨‍🏫</div>
-                    <h4>Local Expert Guides</h4>
-                    <p>Our guides are certified locals who know the hidden gems and best spots.</p>
+                    <h4 data-i18n="feature1-title">Guias Especialistas Locais</h4>
+                    <p data-i18n="feature1-text">Nossos guias são locais certificados que conhecem os tesouros escondidos e os melhores pontos.</p>
                 </div>
                 <div class="feature">
                     <div class="feature-icon">💰</div>
-                    <h4>Best Price Guarantee</h4>
-                    <p>We offer competitive prices with no hidden fees. Found a better price? We'll match it!</p>
+                    <h4 data-i18n="feature2-title">Melhor Preço Garantido</h4>
+                    <p data-i18n="feature2-text">Oferecemos preços competitivos sem taxas ocultas. Encontrou um preço melhor? Nós igualamos!</p>
                 </div>
                 <div class="feature">
                     <div class="feature-icon">🔄</div>
-                    <h4>Flexible Cancellation</h4>
-                    <p>Free cancellation up to 24 hours before your tour for a full refund.</p>
+                    <h4 data-i18n="feature3-title">Cancelamento Flexível</h4>
+                    <p data-i18n="feature3-text">Cancelamento gratuito até 24 horas antes do seu passeio para reembolso total.</p>
                 </div>
                 <div class="feature">
                     <div class="feature-icon">⭐</div>
-                    <h4>5-Star Rated</h4>
-                    <p>Rated 4.9/5 by over 1,000 travelers. Your satisfaction is our priority.</p>
+                    <h4 data-i18n="feature4-title">Avaliação 5 Estrelas</h4>
+                    <p data-i18n="feature4-text">Avaliada com 4.9/5 por mais de 1.000 viajantes. Sua satisfação é nossa prioridade.</p>
                 </div>
             </div>
         </div>
@@ -789,7 +838,7 @@
     <!-- Hikes Section -->
     <section id="hikes" class="hikes">
         <div class="container">
-            <h2 class="section-title">Adventure Hikes</h2>
+            <h2 class="section-title" data-i18n="hikes-title">Trilhas de Aventura</h2>
             <div class="cards-container" id="hikes-container">
                 <!-- Hikes will be populated by JavaScript -->
             </div>
@@ -799,19 +848,19 @@
     <!-- Testimonials Section -->
     <section id="testimonials" class="testimonials">
         <div class="container">
-            <h2 class="section-title">Customer Reviews</h2>
+            <h2 class="section-title" data-i18n="testimonials-title">Avaliações de Clientes</h2>
             <div class="cards-container">
                 <div class="card testimonial-card">
-                    <p>"We loved the Christ the Redeemer tour! The guide was very knowledgeable and made the experience unforgettable. Highly recommended!"</p>
-                    <p class="author">- Ana Silva ⭐⭐⭐⭐⭐</p>
+                    <p data-i18n="testimonial1-text">"Adoramos o passeio do Cristo Redentor! O guia era muito conhecedor e tornou a experiência inesquecível. Altamente recomendado!"</p>
+                    <p class="author" data-i18n="testimonial1-author">- Ana Silva ⭐⭐⭐⭐⭐</p>
                 </div>
                 <div class="card testimonial-card">
-                    <p>"Sugarloaf Mountain is a must-see! The sunset view was breathtaking. Our guide knew all the best photo spots. Will book again!"</p>
-                    <p class="author">- João Souza ⭐⭐⭐⭐⭐</p>
+                    <p data-i18n="testimonial2-text">"O Pão de Açúcar é imperdível! A vista do pôr do sol foi de tirar o fôlego. Nosso guia conhecia todos os melhores pontos para fotos. Vou reservar novamente!"</p>
+                    <p class="author" data-i18n="testimonial2-author">- João Souza ⭐⭐⭐⭐⭐</p>
                 </div>
                 <div class="card testimonial-card">
-                    <p>"The hiking trails were amazing! Our guide was very safety-conscious and shared interesting facts about the local flora and fauna."</p>
-                    <p class="author">- Maria Santos ⭐⭐⭐⭐</p>
+                    <p data-i18n="testimonial3-text">"As trilhas foram incríveis! Nosso guia era muito consciente com a segurança e compartilhou fatos interessantes sobre a flora e fauna local."</p>
+                    <p class="author" data-i18n="testimonial3-author">- Maria Santos ⭐⭐⭐⭐</p>
                 </div>
             </div>
         </div>
@@ -821,45 +870,45 @@
     <div id="booking-modal" class="modal">
         <div class="modal-content">
             <button class="modal-close" onclick="BookingModal.close()">×</button>
-            <h3 id="modal-title">Book Your Adventure</h3>
+            <h3 id="modal-title" data-i18n="modal-title">Reserve Sua Aventura</h3>
             <div id="tour-list"></div>
-            <button onclick="BookingModal.showAvailableTours()" class="btn btn-success">Add Another Tour</button>
+            <button onclick="BookingModal.showAvailableTours()" class="btn btn-success" data-i18n="modal-add-tour">Adicionar Outro Passeio</button>
             <div id="available-tours">
-                <h4>Select more tours:</h4>
+                <h4 data-i18n="modal-select-tours">Selecione mais passeios:</h4>
                 <ul id="tours-available"></ul>
-                <button onclick="BookingModal.confirmSelection()" class="btn btn-success">Confirm Selection</button>
+                <button onclick="BookingModal.confirmSelection()" class="btn btn-success" data-i18n="modal-confirm">Confirmar Seleção</button>
             </div>
             <form id="booking-form">
                 <div class="form-group">
-                    <label for="name">Full Name:</label>
-                    <input type="text" id="name" class="form-control" required placeholder="Your full name">
+                    <label for="name" data-i18n="form-name">Nome Completo:</label>
+                    <input type="text" id="name" class="form-control" required data-i18n-placeholder="form-name-placeholder">
                 </div>
                 <div class="form-group">
-                    <label for="phone">Phone Number:</label>
-                    <input type="tel" id="phone" class="form-control" required placeholder="+55 (21) 99999-9999">
+                    <label for="phone" data-i18n="form-phone">Número de Telefone:</label>
+                    <input type="tel" id="phone" class="form-control" required data-i18n-placeholder="form-phone-placeholder">
                 </div>
                 <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" class="form-control" required placeholder="your.email@example.com">
+                    <label for="email" data-i18n="form-email">Email:</label>
+                    <input type="email" id="email" class="form-control" required data-i18n-placeholder="form-email-placeholder">
                 </div>
                 <div class="form-group">
-                    <label for="date">Preferred Date:</label>
+                    <label for="date" data-i18n="form-date">Data Preferida:</label>
                     <input type="date" id="date" class="form-control" required min="">
                 </div>
                 <div class="form-group">
-                    <label for="people">Number of People:</label>
-                    <input type="number" id="people" min="1" max="15" class="form-control" required placeholder="1">
+                    <label for="people" data-i18n="form-people">Número de Pessoas:</label>
+                    <input type="number" id="people" min="1" max="15" class="form-control" required data-i18n-placeholder="form-people-placeholder">
                 </div>
                 <div class="form-group">
-                    <label for="special-requests">Special Requests (optional):</label>
-                    <textarea id="special-requests" class="form-control" placeholder="Any special requirements or requests..."></textarea>
+                    <label for="special-requests" data-i18n="form-requests">Pedidos Especiais (opcional):</label>
+                    <textarea id="special-requests" class="form-control" data-i18n-placeholder="form-requests-placeholder"></textarea>
                 </div>
                 <div class="button-group">
                     <button type="button" onclick="BookingModal.submitForm()" class="btn" id="submit-btn">
-                        <span id="submit-text">Complete Booking</span>
+                        <span id="submit-text" data-i18n="form-submit">Completar Reserva</span>
                         <span id="submit-loading" class="loading" style="display: none;"></span>
                     </button>
-                    <button type="button" onclick="BookingModal.close()" class="btn btn-secondary">Cancel</button>
+                    <button type="button" onclick="BookingModal.close()" class="btn btn-secondary" data-i18n="form-cancel">Cancelar</button>
                 </div>
             </form>
         </div>
@@ -868,34 +917,34 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
+            <h2 class="section-title" data-i18n="contact-title">Entre em Contato</h2>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
                 <div>
-                    <h3 style="color: var(--primary-color); margin-bottom: 20px;">Contact Information</h3>
-                    <p><strong>Phone:</strong> +55 (21) 99045-5492</p>
-                    <p><strong>Email:</strong> info@tripdecoder.com</p>
-                    <p><strong>Operating Hours:</strong> 8:00 AM - 10:00 PM (Local Time)</p>
+                    <h3 style="color: var(--primary-color); margin-bottom: 20px;" data-i18n="contact-info">Informações de Contato</h3>
+                    <p><strong data-i18n="contact-phone">Telefone:</strong> +55 (21) 99045-5492</p>
+                    <p><strong data-i18n="contact-email">Email:</strong> info@tripdecoder.com</p>
+                    <p><strong data-i18n="contact-hours">Horário de Funcionamento:</strong> 8:00 - 22:00 (Horário Local)</p>
                     <div class="social-links">
-                        <a href="#" aria-label="WhatsApp">💬</a>
-                        <a href="#" aria-label="Instagram">📷</a>
-                        <a href="#" aria-label="Facebook">👥</a>
-                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
                 <form id="contact-form">
                     <div class="form-group">
-                        <label for="contact-name">Name:</label>
+                        <label for="contact-name" data-i18n="form-name">Nome:</label>
                         <input type="text" id="contact-name" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label for="contact-email">Email:</label>
+                        <label for="contact-email" data-i18n="form-email">Email:</label>
                         <input type="email" id="contact-email" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label for="contact-message">Message:</label>
+                        <label for="contact-message" data-i18n="form-message">Mensagem:</label>
                         <textarea id="contact-message" class="form-control" rows="5" required></textarea>
                     </div>
-                    <button type="submit" class="btn">Send Message</button>
+                    <button type="submit" class="btn" data-i18n="form-send">Enviar Mensagem</button>
                 </form>
             </div>
         </div>
@@ -906,173 +955,600 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>TripDecoder</h3>
-                    <p>Your trusted local guide for tours and adventures in Rio de Janeiro and Niterói.</p>
+                    <h3 data-i18n="footer-about">TripDecoder</h3>
+                    <p data-i18n="footer-description">Seu guia local confiável para passeios e aventuras no Rio de Janeiro e Niterói.</p>
                 </div>
                 <div class="footer-column">
-                    <h3>Quick Links</h3>
+                    <h3 data-i18n="footer-links">Links Rápidos</h3>
                     <ul>
-                        <li><a href="#tours">Popular Tours</a></li>
-                        <li><a href="#hikes">Hiking Trails</a></li>
-                        <li><a href="#testimonials">Customer Reviews</a></li>
-                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#tours" data-i18n="nav-tours">Passeios Populares</a></li>
+                        <li><a href="#hikes" data-i18n="nav-hikes">Trilhas</a></li>
+                        <li><a href="#testimonials" data-i18n="nav-testimonials">Avaliações</a></li>
+                        <li><a href="#contact" data-i18n="nav-contact">Contato</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h3>Support</h3>
+                    <h3 data-i18n="footer-support">Suporte</h3>
                     <ul>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Cancellation Policy</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#" data-i18n="footer-faq">FAQ</a></li>
+                        <li><a href="#" data-i18n="footer-cancellation">Política de Cancelamento</a></li>
+                        <li><a href="#" data-i18n="footer-privacy">Política de Privacidade</a></li>
+                        <li><a href="#" data-i18n="footer-terms">Termos de Serviço</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h3>Newsletter</h3>
-                    <p>Subscribe for exclusive deals and travel tips!</p>
+                    <h3 data-i18n="footer-newsletter">Newsletter</h3>
+                    <p data-i18n="footer-subscribe">Inscreva-se para ofertas exclusivas e dicas de viagem!</p>
                     <form id="newsletter-form" style="display: flex; margin-top: 10px;">
-                        <input type="email" placeholder="Your email" style="flex-grow: 1; padding: 8px; border: 1px solid var(--border-color); border-radius: 5px 0 0 5px; background: var(--bg-light); color: var(--text-light);">
-                        <button type="submit" class="btn" style="border-radius: 0 5px 5px 0; padding: 8px 15px;">Join</button>
+                        <input type="email" data-i18n-placeholder="footer-email-placeholder" style="flex-grow: 1; padding: 8px; border: 1px solid var(--border-color); border-radius: 5px 0 0 5px; background: var(--bg-light); color: var(--text-light);">
+                        <button type="submit" class="btn" style="border-radius: 0 5px 5px 0; padding: 8px 15px;" data-i18n="footer-join">Inscrever</button>
                     </form>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 TripDecoder. All rights reserved.</p>
+                <p>&copy; 2025 TripDecoder. <span data-i18n="footer-rights">Todos os direitos reservados.</span></p>
             </div>
         </div>
     </footer>
 
     <!-- JavaScript -->
     <script>
-        // ========== DATA ==========
-        const tourData = [
-            {
-                name: "Christ the Redeemer",
-                description: "Visit one of the New Seven Wonders of the World with skip-the-line access and expert commentary.",
-                price: 150,
-                image: "Christ the Redeemer.jpg",
-                alt: "Christ the Redeemer statue overlooking Rio",
-                type: "tour",
-                duration: "4 hours",
-                includes: ["Hotel pickup", "Skip-the-line tickets", "Expert guide"]
+        // ========== LANGUAGE MANAGEMENT ==========
+        const translations = {
+            pt: {
+                // Navigation
+                "nav-tours": "Passeios",
+                "nav-hikes": "Trilhas",
+                "nav-testimonials": "Depoimentos",
+                "nav-contact": "Contato",
+                
+                // Hero Section
+                "hero-title": "Descubra o Rio de Janeiro e Niterói com Especialistas Locais!",
+                "hero-subtitle": "Vivencie os melhores passeios, trilhas e atrações com guias locais certificados",
+                "hero-cta": "Explorar Passeios",
+                
+                // Special Offer
+                "offer-title": "🔥 Oferta Especial por Tempo Limitado!",
+                "offer-text": "Reserve 2 passeios e ganhe 15% de desconto na segunda reserva. Use o código: RIO15",
+                
+                // Sections
+                "tours-title": "Passeios Populares",
+                "hikes-title": "Trilhas de Aventura",
+                "testimonials-title": "Avaliações de Clientes",
+                "why-title": "Por Que Escolher a TripDecoder",
+                "contact-title": "Entre em Contato",
+                
+                // Features
+                "feature1-title": "Guias Especialistas Locais",
+                "feature1-text": "Nossos guias são locais certificados que conhecem os tesouros escondidos e os melhores pontos.",
+                "feature2-title": "Melhor Preço Garantido",
+                "feature2-text": "Oferecemos preços competitivos sem taxas ocultas. Encontrou um preço melhor? Nós igualamos!",
+                "feature3-title": "Cancelamento Flexível",
+                "feature3-text": "Cancelamento gratuito até 24 horas antes do seu passeio para reembolso total.",
+                "feature4-title": "Avaliação 5 Estrelas",
+                "feature4-text": "Avaliada com 4.9/5 por mais de 1.000 viajantes. Sua satisfação é nossa prioridade.",
+                
+                // Testimonials
+                "testimonial1-text": "\"Adoramos o passeio do Cristo Redentor! O guia era muito conhecedor e tornou a experiência inesquecível. Altamente recomendado!\"",
+                "testimonial1-author": "- Ana Silva ⭐⭐⭐⭐⭐",
+                "testimonial2-text": "\"O Pão de Açúcar é imperdível! A vista do pôr do sol foi de tirar o fôlego. Nosso guia conhecia todos os melhores pontos para fotos. Vou reservar novamente!\"",
+                "testimonial2-author": "- João Souza ⭐⭐⭐⭐⭐",
+                "testimonial3-text": "\"As trilhas foram incríveis! Nosso guia era muito consciente com a segurança e compartilhou fatos interessantes sobre a flora e fauna local.\"",
+                "testimonial3-author": "- Maria Santos ⭐⭐⭐⭐",
+                
+                // Modal
+                "modal-title": "Reserve Sua Aventura",
+                "modal-add-tour": "Adicionar Outro Passeio",
+                "modal-select-tours": "Selecione mais passeios:",
+                "modal-confirm": "Confirmar Seleção",
+                
+                // Form
+                "form-name": "Nome Completo:",
+                "form-name-placeholder": "Seu nome completo",
+                "form-phone": "Número de Telefone:",
+                "form-phone-placeholder": "+55 (21) 99999-9999",
+                "form-email": "Email:",
+                "form-email-placeholder": "seu.email@exemplo.com",
+                "form-date": "Data Preferida:",
+                "form-people": "Número de Pessoas:",
+                "form-people-placeholder": "1",
+                "form-requests": "Pedidos Especiais (opcional):",
+                "form-requests-placeholder": "Algum requisito especial ou pedido...",
+                "form-submit": "Completar Reserva",
+                "form-cancel": "Cancelar",
+                "form-message": "Mensagem:",
+                "form-send": "Enviar Mensagem",
+                
+                // Contact
+                "contact-info": "Informações de Contato",
+                "contact-phone": "Telefone:",
+                "contact-email": "Email:",
+                "contact-hours": "Horário de Funcionamento:",
+                
+                // Footer
+                "footer-about": "TripDecoder",
+                "footer-description": "Seu guia local confiável para passeios e aventuras no Rio de Janeiro e Niterói.",
+                "footer-links": "Links Rápidos",
+                "footer-support": "Suporte",
+                "footer-faq": "FAQ",
+                "footer-cancellation": "Política de Cancelamento",
+                "footer-privacy": "Política de Privacidade",
+                "footer-terms": "Termos de Serviço",
+                "footer-newsletter": "Newsletter",
+                "footer-subscribe": "Inscreva-se para ofertas exclusivas e dicas de viagem!",
+                "footer-email-placeholder": "Seu email",
+                "footer-join": "Inscrever",
+                "footer-rights": "Todos os direitos reservados."
             },
-            {
-                name: "Sugarloaf Mountain",
-                description: "Enjoy breathtaking 360° views of Rio from this iconic landmark via cable car.",
-                price: 120,
-                image: "Sugarloaf Mountain.jpg",
-                alt: "Sugarloaf Mountain cable car view",
-                type: "tour",
-                duration: "3 hours",
-                includes: ["Cable car tickets", "Guide", "Photo opportunities"]
+            en: {
+                // Navigation
+                "nav-tours": "Tours",
+                "nav-hikes": "Hikes",
+                "nav-testimonials": "Reviews",
+                "nav-contact": "Contact",
+                
+                // Hero Section
+                "hero-title": "Discover Rio de Janeiro and Niterói with Local Experts!",
+                "hero-subtitle": "Experience the best tours, hikes and attractions with certified local guides",
+                "hero-cta": "Explore Tours",
+                
+                // Special Offer
+                "offer-title": "🔥 Special Limited Time Offer!",
+                "offer-text": "Book 2 tours and get 15% off your second booking. Use code: RIO15",
+                
+                // Sections
+                "tours-title": "Popular Tours",
+                "hikes-title": "Adventure Hikes",
+                "testimonials-title": "Customer Reviews",
+                "why-title": "Why Choose TripDecoder",
+                "contact-title": "Get In Touch",
+                
+                // Features
+                "feature1-title": "Local Expert Guides",
+                "feature1-text": "Our guides are certified locals who know the hidden gems and best spots.",
+                "feature2-title": "Best Price Guarantee",
+                "feature2-text": "We offer competitive prices with no hidden fees. Found a better price? We'll match it!",
+                "feature3-title": "Flexible Cancellation",
+                "feature3-text": "Free cancellation up to 24 hours before your tour for a full refund.",
+                "feature4-title": "5-Star Rated",
+                "feature4-text": "Rated 4.9/5 by over 1,000 travelers. Your satisfaction is our priority.",
+                
+                // Testimonials
+                "testimonial1-text": "\"We loved the Christ the Redeemer tour! The guide was very knowledgeable and made the experience unforgettable. Highly recommended!\"",
+                "testimonial1-author": "- Ana Silva ⭐⭐⭐⭐⭐",
+                "testimonial2-text": "\"Sugarloaf Mountain is a must-see! The sunset view was breathtaking. Our guide knew all the best photo spots. Will book again!\"",
+                "testimonial2-author": "- João Souza ⭐⭐⭐⭐⭐",
+                "testimonial3-text": "\"The hiking trails were amazing! Our guide was very safety-conscious and shared interesting facts about the local flora and fauna.\"",
+                "testimonial3-author": "- Maria Santos ⭐⭐⭐⭐",
+                
+                // Modal
+                "modal-title": "Book Your Adventure",
+                "modal-add-tour": "Add Another Tour",
+                "modal-select-tours": "Select more tours:",
+                "modal-confirm": "Confirm Selection",
+                
+                // Form
+                "form-name": "Full Name:",
+                "form-name-placeholder": "Your full name",
+                "form-phone": "Phone Number:",
+                "form-phone-placeholder": "+55 (21) 99999-9999",
+                "form-email": "Email:",
+                "form-email-placeholder": "your.email@example.com",
+                "form-date": "Preferred Date:",
+                "form-people": "Number of People:",
+                "form-people-placeholder": "1",
+                "form-requests": "Special Requests (optional):",
+                "form-requests-placeholder": "Any special requirements or requests...",
+                "form-submit": "Complete Booking",
+                "form-cancel": "Cancel",
+                "form-message": "Message:",
+                "form-send": "Send Message",
+                
+                // Contact
+                "contact-info": "Contact Information",
+                "contact-phone": "Phone:",
+                "contact-email": "Email:",
+                "contact-hours": "Operating Hours:",
+                
+                // Footer
+                "footer-about": "TripDecoder",
+                "footer-description": "Your trusted local guide for tours and adventures in Rio de Janeiro and Niterói.",
+                "footer-links": "Quick Links",
+                "footer-support": "Support",
+                "footer-faq": "FAQ",
+                "footer-cancellation": "Cancellation Policy",
+                "footer-privacy": "Privacy Policy",
+                "footer-terms": "Terms of Service",
+                "footer-newsletter": "Newsletter",
+                "footer-subscribe": "Subscribe for exclusive deals and travel tips!",
+                "footer-email-placeholder": "Your email",
+                "footer-join": "Join",
+                "footer-rights": "All rights reserved."
             },
-            {
-                name: "Copacabana Beach",
-                description: "Experience the energy of one of the world's most famous beaches with a local guide.",
-                price: 90,
-                image: "Copacabana Beach.jpg",
-                alt: "Copacabana Beach with iconic wave pattern",
-                type: "tour",
-                duration: "2.5 hours",
-                includes: ["Beach guide", "Local snacks", "Cultural insights"]
-            },
-            {
-                name: "Selarón Steps",
-                description: "Discover the vibrant story behind these famous colorful steps created by artist Jorge Selarón.",
-                price: 75,
-                image: "Selaronstairs.jpeg",
-                alt: "Colorful Selarón Steps in Rio de Janeiro",
-                type: "tour",
-                duration: "2 hours",
-                includes: ["Art history", "Photo session", "Local neighborhood tour"]
-            },
-            {
-                name: "Arcos da Lapa",
-                description: "Explore the historic aqueduct and vibrant nightlife district in downtown Rio.",
-                price: 85,
-                image: "Arcosdalapa.jpg",
-                alt: "Arches of Lapa aqueduct in Rio",
-                type: "tour",
-                duration: "3 hours",
-                includes: ["Historical context", "Evening tour", "Local bar visit"]
-            },
-            {
-                name: "Museum of Tomorrow",
-                description: "Explore sustainability and future possibilities at this architectural marvel.",
-                price: 110,
-                image: "Museu_do_Amanhã.jpg",
-                alt: "Futuristic Museum of Tomorrow building",
-                type: "tour",
-                duration: "3.5 hours",
-                includes: ["Museum tickets", "Science guide", "Interactive exhibits"]
-            },
-            {
-                name: "Icaraí Beach",
-                description: "Relax at one of Niterói's most famous beaches with stunning views of Sugarloaf Mountain.",
-                price: 80,
-                image: "Icaraí Beach.jpg",
-                alt: "Icaraí Beach with view of Sugarloaf Mountain",
-                type: "tour",
-                duration: "2 hours",
-                includes: ["Beach guide", "Local tips", "Scenic viewpoints"]
-            },
-            {
-                name: "Ilha de Paquetá",
-                description: "Escape to this car-free island paradise in Guanabara Bay with colonial architecture.",
-                price: 100,
-                image: "Ilha-de-Paqueta.jpg",
-                alt: "Ilha de Paquetá with bicycles and palm trees",
-                type: "tour",
-                duration: "6 hours",
-                includes: ["Ferry tickets", "Bike rental", "Island guide"]
-            },
-            {
-                name: "Contemporary Art Museum (MAC)",
-                description: "Experience an icon of modern architecture with amazing exhibitions and panoramic views.",
-                price: 120,
-                image: "Contemporary Art Museum (MAC).jpg",
-                alt: "Contemporary Art Museum (MAC) Niterói",
-                type: "tour",
-                duration: "2.5 hours",
-                includes: ["Museum tickets", "Architecture tour", "Viewpoint access"]
+            fr: {
+                // Navigation
+                "nav-tours": "Visites",
+                "nav-hikes": "Randonnées",
+                "nav-testimonials": "Témoignages",
+                "nav-contact": "Contact",
+                
+                // Hero Section
+                "hero-title": "Découvrez Rio de Janeiro et Niterói avec des Experts Locaux !",
+                "hero-subtitle": "Vivez les meilleures visites, randonnées et attractions avec des guides locaux certifiés",
+                "hero-cta": "Explorer les Visites",
+                
+                // Special Offer
+                "offer-title": "🔥 Offre Spéciale Temps Limitée !",
+                "offer-text": "Réservez 2 visites et obtenez 15% de réduction sur votre deuxième réservation. Utilisez le code: RIO15",
+                
+                // Sections
+                "tours-title": "Visites Populaires",
+                "hikes-title": "Randonnées d'Aventure",
+                "testimonials-title": "Avis des Clients",
+                "why-title": "Pourquoi Choisir TripDecoder",
+                "contact-title": "Contactez-Nous",
+                
+                // Features
+                "feature1-title": "Guides Experts Locaux",
+                "feature1-text": "Nos guides sont des locaux certifiés qui connaissent les joyaux cachés et les meilleurs endroits.",
+                "feature2-title": "Meilleur Prix Garanti",
+                "feature2-text": "Nous proposons des prix compétitifs sans frais cachés. Vous avez trouvé un meilleur prix ? Nous l'égalons !",
+                "feature3-title": "Annulation Flexible",
+                "feature3-text": "Annulation gratuite jusqu'à 24 heures avant votre visite pour un remboursement intégral.",
+                "feature4-title": "Note de 5 Étoiles",
+                "feature4-text": "Noté 4.9/5 par plus de 1 000 voyageurs. Votre satisfaction est notre priorité.",
+                
+                // Testimonials
+                "testimonial1-text": "\"Nous avons adoré la visite du Christ Rédempteur ! Le guide était très compétent et a rendu l'expérience inoubliable. Hautement recommandé !\"",
+                "testimonial1-author": "- Ana Silva ⭐⭐⭐⭐⭐",
+                "testimonial2-text": "\"Le Pain de Sucre est incontournable ! La vue du coucher de soleil était à couper le souffle. Notre guide connaissait tous les meilleurs spots photo. Je réserverai à nouveau !\"",
+                "testimonial2-author": "- João Souza ⭐⭐⭐⭐⭐",
+                "testimonial3-text": "\"Les sentiers de randonnée étaient incroyables ! Notre guide était très soucieux de la sécurité et a partagé des faits intéressants sur la flore et la faune locales.\"",
+                "testimonial3-author": "- Maria Santos ⭐⭐⭐⭐",
+                
+                // Modal
+                "modal-title": "Réservez Votre Aventure",
+                "modal-add-tour": "Ajouter une Autre Visite",
+                "modal-select-tours": "Sélectionnez plus de visites:",
+                "modal-confirm": "Confirmer la Sélection",
+                
+                // Form
+                "form-name": "Nom Complet:",
+                "form-name-placeholder": "Votre nom complet",
+                "form-phone": "Numéro de Téléphone:",
+                "form-phone-placeholder": "+55 (21) 99999-9999",
+                "form-email": "Email:",
+                "form-email-placeholder": "votre.email@exemple.com",
+                "form-date": "Date Préférée:",
+                "form-people": "Nombre de Personnes:",
+                "form-people-placeholder": "1",
+                "form-requests": "Demandes Spéciales (optionnel):",
+                "form-requests-placeholder": "Des exigences ou demandes spéciales...",
+                "form-submit": "Finaliser la Réservation",
+                "form-cancel": "Annuler",
+                "form-message": "Message:",
+                "form-send": "Envoyer le Message",
+                
+                // Contact
+                "contact-info": "Informations de Contact",
+                "contact-phone": "Téléphone:",
+                "contact-email": "Email:",
+                "contact-hours": "Heures d'Ouverture:",
+                
+                // Footer
+                "footer-about": "TripDecoder",
+                "footer-description": "Votre guide local de confiance pour des visites et aventures à Rio de Janeiro et Niterói.",
+                "footer-links": "Liens Rapides",
+                "footer-support": "Support",
+                "footer-faq": "FAQ",
+                "footer-cancellation": "Politique d'Annulation",
+                "footer-privacy": "Politique de Confidentialité",
+                "footer-terms": "Conditions d'Utilisation",
+                "footer-newsletter": "Newsletter",
+                "footer-subscribe": "Abonnez-vous pour des offres exclusives et des conseils de voyage !",
+                "footer-email-placeholder": "Votre email",
+                "footer-join": "S'abonner",
+                "footer-rights": "Tous droits réservés."
             }
-        ];
+        };
 
-        const hikeData = [
-            {
-                name: "Itacoatiara Costão Trail",
-                description: "A challenging coastal trail with spectacular ocean views and rock formations.",
-                price: 50,
-                difficulty: "High",
-                image: "https://source.unsplash.com/400x300/?hiking-trail,coast",
-                alt: "Itacoatiara Costão Trail",
-                type: "hike",
-                duration: "4 hours",
-                includes: ["Certified guide", "Safety equipment", "Snacks"]
+        // ========== TOUR DATA WITH MULTILINGUAL DESCRIPTIONS ==========
+        const tourData = {
+            pt: [
+                {
+                    name: "Cristo Redentor",
+                    description: "Visite uma das Novas Sete Maravilhas do Mundo com acesso prioritário e comentários especializados.",
+                    price: 150,
+                    image: "https://source.unsplash.com/400x300/?christ-redeemer-rio",
+                    alt: "Cristo Redentor no Corcovado",
+                    type: "tour",
+                    duration: "4 horas",
+                    includes: ["Busca no hotel", "Ingressos prioritários", "Guia especializado"]
+                },
+                {
+                    name: "Pão de Açúcar",
+                    description: "Desfrute de vistas deslumbrantes de 360° do Rio deste marco icônico via bondinho.",
+                    price: 120,
+                    image: "https://source.unsplash.com/400x300/?sugarloaf-mountain-rio",
+                    alt: "Vista do bondinho do Pão de Açúcar",
+                    type: "tour",
+                    duration: "3 horas",
+                    includes: ["Ingressos do bondinho", "Guia", "Oportunidades fotográficas"]
+                },
+                {
+                    name: "Praia de Copacabana",
+                    description: "Vivencie a energia de uma das praias mais famosas do mundo com um guia local.",
+                    price: 90,
+                    image: "https://source.unsplash.com/400x300/?copacabana-beach",
+                    alt: "Praia de Copacabana com seu calçadão",
+                    type: "tour",
+                    duration: "2.5 horas",
+                    includes: ["Guia da praia", "Petiscos locais", "Insights culturais"]
+                },
+                {
+                    name: "Escadaria Selarón",
+                    description: "Descubra a história vibrante por trás desses famosos degraus coloridos criados pelo artista Jorge Selarón.",
+                    price: 75,
+                    image: "https://source.unsplash.com/400x300/?selaron-steps-rio",
+                    alt: "Escadaria colorida de Selarón no Rio de Janeiro",
+                    type: "tour",
+                    duration: "2 horas",
+                    includes: ["História da arte", "Sessão de fotos", "Tour pelo bairro local"]
+                }
+            ],
+            en: [
+                {
+                    name: "Christ the Redeemer",
+                    description: "Visit one of the New Seven Wonders of the World with skip-the-line access and expert commentary.",
+                    price: 150,
+                    image: "https://source.unsplash.com/400x300/?christ-redeemer-rio",
+                    alt: "Christ the Redeemer at Corcovado",
+                    type: "tour",
+                    duration: "4 hours",
+                    includes: ["Hotel pickup", "Skip-the-line tickets", "Expert guide"]
+                },
+                {
+                    name: "Sugarloaf Mountain",
+                    description: "Enjoy breathtaking 360° views of Rio from this iconic landmark via cable car.",
+                    price: 120,
+                    image: "https://source.unsplash.com/400x300/?sugarloaf-mountain-rio",
+                    alt: "Sugarloaf Mountain cable car view",
+                    type: "tour",
+                    duration: "3 hours",
+                    includes: ["Cable car tickets", "Guide", "Photo opportunities"]
+                },
+                {
+                    name: "Copacabana Beach",
+                    description: "Experience the energy of one of the world's most famous beaches with a local guide.",
+                    price: 90,
+                    image: "https://source.unsplash.com/400x300/?copacabana-beach",
+                    alt: "Copacabana Beach with its iconic wave pattern",
+                    type: "tour",
+                    duration: "2.5 hours",
+                    includes: ["Beach guide", "Local snacks", "Cultural insights"]
+                },
+                {
+                    name: "Selarón Steps",
+                    description: "Discover the vibrant story behind these famous colorful steps created by artist Jorge Selarón.",
+                    price: 75,
+                    image: "https://source.unsplash.com/400x300/?selaron-steps-rio",
+                    alt: "Colorful Selarón Steps in Rio de Janeiro",
+                    type: "tour",
+                    duration: "2 hours",
+                    includes: ["Art history", "Photo session", "Local neighborhood tour"]
+                }
+            ],
+            fr: [
+                {
+                    name: "Christ Rédempteur",
+                    description: "Visitez l'une des sept nouvelles merveilles du monde avec accès coupe-file et commentaires d'expert.",
+                    price: 150,
+                    image: "https://source.unsplash.com/400x300/?christ-redeemer-rio",
+                    alt: "Christ Rédempteur au Corcovado",
+                    type: "tour",
+                    duration: "4 heures",
+                    includes: ["Prise en charge à l'hôtel", "Billets coupe-file", "Guide expert"]
+                },
+                {
+                    name: "Pain de Sucre",
+                    description: "Profitez de vues à 360° époustouflantes sur Rio depuis ce lieu emblématique via le téléphérique.",
+                    price: 120,
+                    image: "https://source.unsplash.com/400x300/?sugarloaf-mountain-rio",
+                    alt: "Vue du téléphérique du Pain de Sucre",
+                    type: "tour",
+                    duration: "3 heures",
+                    includes: ["Billets de téléphérique", "Guide", "Opportunités photos"]
+                },
+                {
+                    name: "Plage de Copacabana",
+                    description: "Vivez l'énergie de l'une des plages les plus célèbres au monde avec un guide local.",
+                    price: 90,
+                    image: "https://source.unsplash.com/400x300/?copacabana-beach",
+                    alt: "Plage de Copacabana avec sa promenade emblématique",
+                    type: "tour",
+                    duration: "2.5 heures",
+                    includes: ["Guide de plage", "Snacks locaux", "Aperçus culturels"]
+                },
+                {
+                    name: "Escalier Selarón",
+                    description: "Découvrez l'histoire vibrante derrière ces célèbres marches colorées créées par l'artiste Jorge Selarón.",
+                    price: 75,
+                    image: "https://source.unsplash.com/400x300/?selaron-steps-rio",
+                    alt: "Escalier coloré de Selarón à Rio de Janeiro",
+                    type: "tour",
+                    duration: "2 heures",
+                    includes: ["Histoire de l'art", "Séance photo", "Visite du quartier local"]
+                }
+            ]
+        };
+
+        const hikeData = {
+            pt: [
+                {
+                    name: "Trilha do Costão de Itacoatiara",
+                    description: "Uma trilha costeira desafiadora com vistas espetaculares do oceano e formações rochosas.",
+                    price: 50,
+                    difficulty: "Alta",
+                    image: "https://source.unsplash.com/400x300/?hiking-trail,coast",
+                    alt: "Trilha do Costão de Itacoatiara",
+                    type: "hike",
+                    duration: "4 horas",
+                    includes: ["Guia certificado", "Equipamento de segurança", "Lanche"]
+                },
+                {
+                    name: "Trilha da Pedra da Tartaruga",
+                    description: "Uma caminhada moderada com vistas panorâmicas de Niterói e da Baía de Guanabara.",
+                    price: 40,
+                    difficulty: "Média",
+                    image: "https://source.unsplash.com/400x300/?hiking,mountain",
+                    alt: "Trilha da Pedra da Tartaruga",
+                    type: "hike",
+                    duration: "3 horas",
+                    includes: ["Guia da trilha", "Água", "Primeiros socorros"]
+                }
+            ],
+            en: [
+                {
+                    name: "Itacoatiara Costão Trail",
+                    description: "A challenging coastal trail with spectacular ocean views and rock formations.",
+                    price: 50,
+                    difficulty: "High",
+                    image: "https://source.unsplash.com/400x300/?hiking-trail,coast",
+                    alt: "Itacoatiara Costão Trail",
+                    type: "hike",
+                    duration: "4 hours",
+                    includes: ["Certified guide", "Safety equipment", "Snacks"]
+                },
+                {
+                    name: "Turtle Rock Trail",
+                    description: "A moderate hike with panoramic views of Niterói and Guanabara Bay.",
+                    price: 40,
+                    difficulty: "Medium",
+                    image: "https://source.unsplash.com/400x300/?hiking,mountain",
+                    alt: "Turtle Rock Trail",
+                    type: "hike",
+                    duration: "3 hours",
+                    includes: ["Trail guide", "Water", "First aid"]
+                }
+            ],
+            fr: [
+                {
+                    name: "Sentier du Costão d'Itacoatiara",
+                    description: "Un sentier côtier difficile avec des vues spectaculaires sur l'océan et des formations rocheuses.",
+                    price: 50,
+                    difficulty: "Élevée",
+                    image: "https://source.unsplash.com/400x300/?hiking-trail,coast",
+                    alt: "Sentier du Costão d'Itacoatiara",
+                    type: "hike",
+                    duration: "4 heures",
+                    includes: ["Guide certifié", "Équipement de sécurité", "Collation"]
+                },
+                {
+                    name: "Sentier de la Pierre de la Tortue",
+                    description: "Une randonnée modérée avec des vues panoramiques sur Niterói et la Baie de Guanabara.",
+                    price: 40,
+                    difficulty: "Moyenne",
+                    image: "https://source.unsplash.com/400x300/?hiking,mountain",
+                    alt: "Sentier de la Pierre de la Tortue",
+                    type: "hike",
+                    duration: "3 heures",
+                    includes: ["Guide de sentier", "Eau", "Premiers secours"]
+                }
+            ]
+        };
+
+        // ========== LANGUAGE MANAGEMENT ==========
+        const LanguageManager = {
+            currentLang: 'pt',
+            
+            init: function() {
+                this.setLanguage('pt');
+                this.bindEvents();
             },
-            {
-                name: "Turtle Rock Trail",
-                description: "A moderate hike with panoramic views of Niterói and Guanabara Bay.",
-                price: 40,
-                difficulty: "Medium",
-                image: "https://source.unsplash.com/400x300/?hiking,mountain",
-                alt: "Turtle Rock Trail",
-                type: "hike",
-                duration: "3 hours",
-                includes: ["Trail guide", "Water", "First aid"]
+            
+            bindEvents: function() {
+                const langButtons = document.querySelectorAll('.lang-btn');
+                langButtons.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const lang = e.target.getAttribute('data-lang');
+                        this.setLanguage(lang);
+                    });
+                });
             },
-            {
-                name: "Urca Hill Trail",
-                description: "An easy trail with beautiful views of Sugarloaf Mountain and the surrounding area.",
-                price: 30,
-                difficulty: "Low",
-                image: "https://source.unsplash.com/400x300/?mountain-trail,forest",
-                alt: "Urca Hill Trail",
-                type: "hike",
-                duration: "2 hours",
-                includes: ["Nature guide", "Binoculars", "Local flora info"]
+            
+            setLanguage: function(lang) {
+                this.currentLang = lang;
+                
+                // Update active button
+                document.querySelectorAll('.lang-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('data-lang') === lang) {
+                        btn.classList.add('active');
+                    }
+                });
+                
+                // Update all elements with data-i18n attribute
+                document.querySelectorAll('[data-i18n]').forEach(element => {
+                    const key = element.getAttribute('data-i18n');
+                    if (translations[lang] && translations[lang][key]) {
+                        element.textContent = translations[lang][key];
+                    }
+                });
+                
+                // Update placeholder texts
+                document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+                    const key = element.getAttribute('data-i18n-placeholder');
+                    if (translations[lang] && translations[lang][key]) {
+                        element.placeholder = translations[lang][key];
+                    }
+                });
+                
+                // Update page title and meta description
+                document.title = lang === 'pt' 
+                    ? 'TripDecoder - Tours no Rio de Janeiro e Niterói | Reserve Agora'
+                    : lang === 'en'
+                    ? 'TripDecoder - Tours in Rio de Janeiro and Niterói | Book Now'
+                    : 'TripDecoder - Visites à Rio de Janeiro et Niterói | Réservez Maintenant';
+                
+                const metaDescription = document.querySelector('meta[name="description"]');
+                if (metaDescription) {
+                    metaDescription.content = lang === 'pt'
+                        ? 'Descubra o Rio de Janeiro e Niterói com guias locais. Reserve tours para o Cristo Redentor, Pão de Açúcar, praias e trilhas. Melhores preços garantidos.'
+                        : lang === 'en'
+                        ? 'Discover Rio de Janeiro and Niterói with local guides. Book tours to Christ the Redeemer, Sugarloaf Mountain, beaches and hiking trails. Best prices guaranteed.'
+                        : 'Découvrez Rio de Janeiro et Niterói avec des guides locaux. Réservez des visites du Christ Rédempteur, du Pain de Sucre, des plages et des sentiers de randonnée. Meilleurs prix garantis.';
+                }
+                
+                // Update tour and hike cards with new descriptions
+                this.updateTourCards(lang);
+            },
+            
+            updateTourCards: function(lang) {
+                // Clear existing cards
+                const toursContainer = document.getElementById('tours-container');
+                const hikesContainer = document.getElementById('hikes-container');
+                
+                toursContainer.innerHTML = '';
+                hikesContainer.innerHTML = '';
+                
+                // Populate tours with new language data
+                if (tourData[lang]) {
+                    tourData[lang].forEach(tour => {
+                        toursContainer.appendChild(Utils.createCard(tour, lang));
+                    });
+                }
+                
+                // Populate hikes with new language data
+                if (hikeData[lang]) {
+                    hikeData[lang].forEach(hike => {
+                        hikesContainer.appendChild(Utils.createCard(hike, lang));
+                    });
+                }
+                
+                // Update available tours in modal
+                BookingModal.updateAvailableTours(lang);
             }
-        ];
+        };
 
         // ========== UTILITY FUNCTIONS ==========
         const Utils = {
@@ -1097,22 +1573,38 @@
                 }).format(price);
             },
             
-            createCard: (item) => {
+            createCard: (item, lang) => {
                 const card = document.createElement('div');
-                card.className = 'card';
+                card.className = `card ${item.type === 'hike' ? 'hike-card' : 'tour-card'}`;
                 
-                let buttonText = "Book Now";
+                let buttonText = lang === 'pt' ? "Reservar Agora" : 
+                                lang === 'en' ? "Book Now" : "Réserver Maintenant";
+                
+                let durationText = lang === 'pt' ? 'Duração:' : 
+                                 lang === 'en' ? 'Duration:' : 'Durée:';
+                
+                let perPersonText = lang === 'pt' ? 'por pessoa' : 
+                                  lang === 'en' ? 'per person' : 'par personne';
+                
                 let extraInfo = `
-                    <p><strong>Duration:</strong> ${item.duration}</p>
-                    <p class="price">${Utils.formatPrice(item.price)} per person</p>
+                    <p><strong>${durationText} ${item.duration}</strong></p>
+                    <p class="price">${Utils.formatPrice(item.price)} ${perPersonText}</p>
                 `;
                 
                 if (item.type === "hike") {
-                    buttonText = "Book Hike";
+                    buttonText = lang === 'pt' ? "Reservar Trilha" : 
+                                lang === 'en' ? "Book Hike" : "Réserver Randonnée";
+                    
+                    const difficultyText = lang === 'pt' ? 
+                        `Dificuldade ${item.difficulty}` : 
+                        lang === 'en' ? 
+                        `${item.difficulty} Difficulty` : 
+                        `Difficulté ${item.difficulty}`;
+                    
                     extraInfo = `
-                        <p><strong>Duration:</strong> ${item.duration}</p>
-                        <p><span class="difficulty difficulty-${item.difficulty.toLowerCase()}">${item.difficulty} Difficulty</span></p>
-                        <p class="price">${Utils.formatPrice(item.price)} per person</p>
+                        <p><strong>${durationText} ${item.duration}</strong></p>
+                        <p><span class="difficulty difficulty-${item.difficulty.toLowerCase()}">${difficultyText}</span></p>
+                        <p class="price">${Utils.formatPrice(item.price)} ${perPersonText}</p>
                     `;
                 }
                 
@@ -1148,12 +1640,13 @@
         const BookingModal = {
             selectedTours: [],
             selectedPrices: [],
-            availableTours: [...tourData, ...hikeData],
+            availableTours: [],
             
             init: function() {
                 this.cacheDom();
                 this.bindEvents();
                 this.setMinBookingDate();
+                this.updateAvailableTours(LanguageManager.currentLang);
             },
             
             cacheDom: function() {
@@ -1177,6 +1670,14 @@
                 
                 // Set minimum date for booking
                 this.setMinBookingDate();
+            },
+            
+            updateAvailableTours: function(lang) {
+                // Combine tours and hikes for the current language
+                this.availableTours = [
+                    ...(tourData[lang] || []),
+                    ...(hikeData[lang] || [])
+                ];
             },
             
             setMinBookingDate: function() {
@@ -1219,7 +1720,13 @@
                 );
                 
                 if (notSelectedTours.length === 0) {
-                    this.toursAvailableList.innerHTML = '<p style="text-align: center; color: #aaa;">All tours are already selected</p>';
+                    const noToursText = LanguageManager.currentLang === 'pt' ? 
+                        'Todos os passeios já estão selecionados' :
+                        LanguageManager.currentLang === 'en' ?
+                        'All tours are already selected' :
+                        'Toutes les visites sont déjà sélectionnées';
+                    
+                    this.toursAvailableList.innerHTML = `<p style="text-align: center; color: #aaa;">${noToursText}</p>`;
                     return;
                 }
                 
@@ -1257,7 +1764,12 @@
                     this.updateTourList();
                     this.availableToursSection.style.display = 'none';
                 } else {
-                    alert('Please select at least one tour to add.');
+                    const alertText = LanguageManager.currentLang === 'pt' ?
+                        'Por favor, selecione pelo menos um passeio para adicionar.' :
+                        LanguageManager.currentLang === 'en' ?
+                        'Please select at least one tour to add.' :
+                        'Veuillez sélectionner au moins une visite à ajouter.';
+                    alert(alertText);
                 }
             },
             
@@ -1274,20 +1786,35 @@
                 this.tourList.innerHTML = '';
                 
                 if (this.selectedTours.length === 0) {
-                    this.tourList.innerHTML = '<p style="text-align: center; color: #aaa; padding: 20px;">No tours selected. Click "Add Another Tour" to browse options.</p>';
+                    const noToursText = LanguageManager.currentLang === 'pt' ?
+                        'Nenhum passeio selecionado. Clique em "Adicionar Outro Passeio" para navegar pelas opções.' :
+                        LanguageManager.currentLang === 'en' ?
+                        'No tours selected. Click "Add Another Tour" to browse options.' :
+                        'Aucune visite sélectionnée. Cliquez sur "Ajouter une Autre Visite" pour parcourir les options.';
+                    
+                    this.tourList.innerHTML = `<p style="text-align: center; color: #aaa; padding: 20px;">${noToursText}</p>`;
                 } else {
                     this.selectedTours.forEach((tour, index) => {
                         const item = document.createElement('div');
                         item.className = 'tour-item';
                         item.innerHTML = `
                             <span><strong>${tour}</strong> - ${Utils.formatPrice(this.selectedPrices[index])}</span>
-                            <button onclick="BookingModal.removeTour('${tour}')">Remove</button>
+                            <button onclick="BookingModal.removeTour('${tour}')">${LanguageManager.currentLang === 'pt' ? 'Remover' : 
+                                                                                  LanguageManager.currentLang === 'en' ? 'Remove' : 'Supprimer'}</button>
                         `;
                         this.tourList.appendChild(item);
                     });
                 }
                 
-                this.modalTitle.textContent = `Book Your Adventure (${this.selectedTours.length} tour${this.selectedTours.length !== 1 ? 's' : ''} selected)`;
+                const toursText = LanguageManager.currentLang === 'pt' ? 
+                    `passeio${this.selectedTours.length !== 1 ? 's' : ''} selecionado${this.selectedTours.length !== 1 ? 's' : ''}` :
+                    LanguageManager.currentLang === 'en' ?
+                    `tour${this.selectedTours.length !== 1 ? 's' : ''} selected` :
+                    `visite${this.selectedTours.length !== 1 ? 's' : ''} sélectionnée${this.selectedTours.length !== 1 ? 's' : ''}`;
+                
+                this.modalTitle.textContent = `${LanguageManager.currentLang === 'pt' ? 'Reserve Sua Aventura' : 
+                                              LanguageManager.currentLang === 'en' ? 'Book Your Adventure' : 
+                                              'Réservez Votre Aventure'} (${this.selectedTours.length} ${toursText})`;
             },
             
             submitForm: function() {
@@ -1300,17 +1827,32 @@
                 
                 // Validation
                 if (!name || !phone || !email || !date || !people || this.selectedTours.length === 0) {
-                    alert('Please fill all required fields and select at least one tour.');
+                    const alertText = LanguageManager.currentLang === 'pt' ?
+                        'Por favor, preencha todos os campos obrigatórios e selecione pelo menos um passeio.' :
+                        LanguageManager.currentLang === 'en' ?
+                        'Please fill all required fields and select at least one tour.' :
+                        'Veuillez remplir tous les champs obligatoires et sélectionner au moins une visite.';
+                    alert(alertText);
                     return;
                 }
                 
                 if (!Utils.validatePhone(phone)) {
-                    alert('Please enter a valid phone number (10 or 11 digits).');
+                    const alertText = LanguageManager.currentLang === 'pt' ?
+                        'Por favor, insira um número de telefone válido (10 ou 11 dígitos).' :
+                        LanguageManager.currentLang === 'en' ?
+                        'Please enter a valid phone number (10 or 11 digits).' :
+                        'Veuillez saisir un numéro de téléphone valide (10 ou 11 chiffres).';
+                    alert(alertText);
                     return;
                 }
                 
                 if (people < 1 || people > 15) {
-                    alert('Please enter a valid number of people (1-15).');
+                    const alertText = LanguageManager.currentLang === 'pt' ?
+                        'Por favor, insira um número válido de pessoas (1-15).' :
+                        LanguageManager.currentLang === 'en' ?
+                        'Please enter a valid number of people (1-15).' :
+                        'Veuillez saisir un nombre valide de personnes (1-15).';
+                    alert(alertText);
                     return;
                 }
                 
@@ -1335,32 +1877,91 @@
             },
             
             sendBooking: function(name, phone, email, date, people, specialRequests, totalPrice) {
-                let message = `*NEW BOOKING - TRIPDECODER*%0A%0A`;
-                message += `*SELECTED TOURS:*%0A`;
-                message += this.selectedTours.map((tour, index) => 
-                    `- ${tour}: ${Utils.formatPrice(this.selectedPrices[index])} per person`
-                ).join('%0A');
+                // Create WhatsApp message based on language
+                let message = '';
                 
-                message += `%0A%0A*BOOKING DETAILS:*%0A`;
-                message += `👤 *Name:* ${name}%0A`;
-                message += `📞 *Phone:* ${phone}%0A`;
-                message += `📧 *Email:* ${email}%0A`;
-                message += `📅 *Date:* ${Utils.formatDate(date)}%0A`;
-                message += `👥 *Number of people:* ${people}%0A`;
-                
-                if (specialRequests) {
-                    message += `💬 *Special Requests:* ${specialRequests}%0A`;
+                if (LanguageManager.currentLang === 'pt') {
+                    message = `*NOVA RESERVA - TRIPDECODER*%0A%0A`;
+                    message += `*PASSEIOS SELECIONADOS:*%0A`;
+                    message += this.selectedTours.map((tour, index) => 
+                        `- ${tour}: ${Utils.formatPrice(this.selectedPrices[index])} por pessoa`
+                    ).join('%0A');
+                    
+                    message += `%0A%0A*DETALHES DA RESERVA:*%0A`;
+                    message += `👤 *Nome:* ${name}%0A`;
+                    message += `📞 *Telefone:* ${phone}%0A`;
+                    message += `📧 *Email:* ${email}%0A`;
+                    message += `📅 *Data:* ${Utils.formatDate(date)}%0A`;
+                    message += `👥 *Número de pessoas:* ${people}%0A`;
+                    
+                    if (specialRequests) {
+                        message += `💬 *Pedidos especiais:* ${specialRequests}%0A`;
+                    }
+                    
+                    message += `%0A*PREÇO:*%0A`;
+                    message += `Subtotal: ${Utils.formatPrice(this.selectedPrices.reduce((total, price) => total + price, 0) * people)}%0A`;
+                    
+                    if (this.selectedTours.length >= 2) {
+                        message += `Desconto (15% para 2+ passeios): -${Utils.formatPrice((this.selectedPrices.reduce((total, price) => total + price, 0) * people) * 0.15)}%0A`;
+                    }
+                    
+                    message += `💵 *Total:* ${Utils.formatPrice(totalPrice)}%0A%0A`;
+                    message += `_Esta mensagem foi enviada através do site TripDecoder_`;
+                } else if (LanguageManager.currentLang === 'en') {
+                    message = `*NEW BOOKING - TRIPDECODER*%0A%0A`;
+                    message += `*SELECTED TOURS:*%0A`;
+                    message += this.selectedTours.map((tour, index) => 
+                        `- ${tour}: ${Utils.formatPrice(this.selectedPrices[index])} per person`
+                    ).join('%0A');
+                    
+                    message += `%0A%0A*BOOKING DETAILS:*%0A`;
+                    message += `👤 *Name:* ${name}%0A`;
+                    message += `📞 *Phone:* ${phone}%0A`;
+                    message += `📧 *Email:* ${email}%0A`;
+                    message += `📅 *Date:* ${Utils.formatDate(date)}%0A`;
+                    message += `👥 *Number of people:* ${people}%0A`;
+                    
+                    if (specialRequests) {
+                        message += `💬 *Special Requests:* ${specialRequests}%0A`;
+                    }
+                    
+                    message += `%0A*PRICING:*%0A`;
+                    message += `Subtotal: ${Utils.formatPrice(this.selectedPrices.reduce((total, price) => total + price, 0) * people)}%0A`;
+                    
+                    if (this.selectedTours.length >= 2) {
+                        message += `Discount (15% for 2+ tours): -${Utils.formatPrice((this.selectedPrices.reduce((total, price) => total + price, 0) * people) * 0.15)}%0A`;
+                    }
+                    
+                    message += `💵 *Total:* ${Utils.formatPrice(totalPrice)}%0A%0A`;
+                    message += `_This message was sent through the TripDecoder website_`;
+                } else if (LanguageManager.currentLang === 'fr') {
+                    message = `*NOUVELLE RÉSERVATION - TRIPDECODER*%0A%0A`;
+                    message += `*VISITES SÉLECTIONNÉES:*%0A`;
+                    message += this.selectedTours.map((tour, index) => 
+                        `- ${tour}: ${Utils.formatPrice(this.selectedPrices[index])} par personne`
+                    ).join('%0A');
+                    
+                    message += `%0A%0A*DÉTAILS DE LA RÉSERVATION:*%0A`;
+                    message += `👤 *Nom:* ${name}%0A`;
+                    message += `📞 *Téléphone:* ${phone}%0A`;
+                    message += `📧 *Email:* ${email}%0A`;
+                    message += `📅 *Date:* ${Utils.formatDate(date)}%0A`;
+                    message += `👥 *Nombre de personnes:* ${people}%0A`;
+                    
+                    if (specialRequests) {
+                        message += `💬 *Demandes spéciales:* ${specialRequests}%0A`;
+                    }
+                    
+                    message += `%0A*PRIX:*%0A`;
+                    message += `Sous-total: ${Utils.formatPrice(this.selectedPrices.reduce((total, price) => total + price, 0) * people)}%0A`;
+                    
+                    if (this.selectedTours.length >= 2) {
+                        message += `Remise (15% pour 2+ visites): -${Utils.formatPrice((this.selectedPrices.reduce((total, price) => total + price, 0) * people) * 0.15)}%0A`;
+                    }
+                    
+                    message += `💵 *Total:* ${Utils.formatPrice(totalPrice)}%0A%0A`;
+                    message += `_Ce message a été envoyé via le site Web TripDecoder_`;
                 }
-                
-                message += `%0A*PRICING:*%0A`;
-                message += `Subtotal: ${Utils.formatPrice(this.selectedPrices.reduce((total, price) => total + price, 0) * people)}%0A`;
-                
-                if (this.selectedTours.length >= 2) {
-                    message += `Discount (15% for 2+ tours): -${Utils.formatPrice((this.selectedPrices.reduce((total, price) => total + price, 0) * people) * 0.15)}%0A`;
-                }
-                
-                message += `💵 *Total:* ${Utils.formatPrice(totalPrice)}%0A%0A`;
-                message += `_This message was sent through the TripDecoder website_`;
                 
                 const whatsAppNumber = '5521990455492';
                 const whatsAppLink = `https://wa.me/${whatsAppNumber}?text=${message}`;
@@ -1398,28 +1999,24 @@
 
         // ========== INITIALIZATION ==========
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize language manager
+            LanguageManager.init();
+            
             // Initialize modal
             BookingModal.init();
             
             // Initialize mobile navigation
             MobileNav.init();
             
-            // Populate tours
-            const toursContainer = document.getElementById('tours-container');
-            tourData.forEach(tour => {
-                toursContainer.appendChild(Utils.createCard(tour));
-            });
-            
-            // Populate hikes
-            const hikesContainer = document.getElementById('hikes-container');
-            hikeData.forEach(hike => {
-                hikesContainer.appendChild(Utils.createCard(hike));
-            });
-            
             // Contact form submission
             document.getElementById('contact-form').addEventListener('submit', function(e) {
                 e.preventDefault();
-                alert('Message sent successfully! We will contact you soon.');
+                const successText = LanguageManager.currentLang === 'pt' ?
+                    'Mensagem enviada com sucesso! Entraremos em contato em breve.' :
+                    LanguageManager.currentLang === 'en' ?
+                    'Message sent successfully! We will contact you soon.' :
+                    'Message envoyé avec succès ! Nous vous contacterons bientôt.';
+                alert(successText);
                 this.reset();
             });
             
@@ -1428,7 +2025,12 @@
                 e.preventDefault();
                 const email = this.querySelector('input[type="email"]').value;
                 if (email) {
-                    alert('Thank you for subscribing to our newsletter!');
+                    const successText = LanguageManager.currentLang === 'pt' ?
+                        'Obrigado por se inscrever em nossa newsletter!' :
+                        LanguageManager.currentLang === 'en' ?
+                        'Thank you for subscribing to our newsletter!' :
+                        'Merci de vous être abonné à notre newsletter !';
+                    alert(successText);
                     this.reset();
                 }
             });
