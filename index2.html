@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TripDecoder — Tours no Rio de Janeiro e Niterói</title>
+    <meta name="description" content="Descubra o Rio de Janeiro e Niterói com guias locais. Reserve tours para o Cristo Redentor, Pão de Açúcar, praias e trilhas. Melhores preços garantidos.">
+    <link rel="shortcut icon" href="tripdecoder.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TravelAgency",
+      "name": "TripDecoder",
+      "description": "Passeios locais e trilhas no Rio de Janeiro e Niterói",
+      "url": "https://tripdecoder.com",
+      "telephone": "+55-21-99045-5492",
+      "address": { "@type": "PostalAddress", "addressLocality": "Rio de Janeiro", "addressCountry": "BR" }
+    }
+    </script>
+
+    <style>
+        /* ── TOKENS ────────────────────────────────────── */
+        :root {
+            --gold:    #c9a84c;
+            --gold-lt: #e2c47a;
+            --teal:    #0d9488;
+            --teal-lt: #14b8a6;
+            --ink:     #0b0f0e;
+            --ink2:    #141918;
+            --ink3:    #1e2422;
+            --stone:   #2a302e;
+            --mist:    #8fa39e;
+            --cream:   #f0ebe1;
+            --white:   #ffffff;
+            --red:     #e05252;
+            --green:   #3db87a;
+            --radius:  12px;
+            --shadow:  0 8px 32px rgba(0,0,0,.45);
+        }
+
+        /* ── RESET ─────────────────────────────────────── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--ink);
+            color: var(--cream);
+            line-height: 1.65;
+            overflow-x: hidden;
+        }
+        img { display: block; max-width: 100%; }
+        a { text-decoration: none; color: inherit; }
+
+        /* ── LANGUAGE SWITCHER ─────────────────────────── */
+        .lang-bar {
+            position: fixed; top: 18px; right: 24px;
+            z-index: 900;
+            display: flex; gap: 4px;
+            background: rgba(11,15,14,.7);
+            border: 1px solid var(--stone);
+            border-radius: 30px;
+            padding: 4px;
+            backdrop-filter: blur(10px);
+        }
+        .lang-btn {
+            background: none; border: none;
+            color: var(--mist);
+            font-family: 'DM Sans', sans-serif;
+            font-size: .78rem; font-weight: 600;
+            padding: 5px 12px; border-radius: 20px;
+            cursor: pointer; transition: all .25s;
+        }
+        .lang-btn.active { background: var(--gold); color: var(--ink); }
+
+        /* ── HEADER ────────────────────────────────────── */
+        header {
+            position: sticky; top: 0; z-index: 800;
+            background: rgba(11,15,14,.88);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(201,168,76,.15);
+            padding: 14px 0;
+        }
+        .header-inner {
+            max-width: 1200px; margin: auto; padding: 0 28px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .logo { display: flex; align-items: center; gap: 10px; }
+        .logo img { width: 42px; height: 42px; object-fit: contain; }
+        .logo-fallback {
+            width: 42px; height: 42px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--teal));
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700; font-size: 1.1rem; color: var(--ink);
+            flex-shrink: 0;
+        }
+        .logo-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.55rem; font-weight: 700;
+            color: var(--white); letter-spacing: .02em;
+        }
+        .logo-name span { color: var(--gold); }
+        nav { display: flex; gap: 32px; }
+        nav a {
+            font-size: .88rem; font-weight: 500;
+            color: var(--mist);
+            letter-spacing: .04em; text-transform: uppercase;
+            transition: color .25s; position: relative;
+        }
+        nav a::after {
+            content: ''; position: absolute; left: 0; bottom: -4px;
+            width: 0; height: 1px; background: var(--gold);
+            transition: width .3s;
+        }
+        nav a:hover { color: var(--gold); }
+        nav a:hover::after { width: 100%; }
+        .menu-toggle {
+            display: none; background: none; border: none;
+            color: var(--cream); font-size: 1.4rem; cursor: pointer;
+        }
+
+        /* ── HERO ──────────────────────────────────────── */
+        .hero {
+            position: relative; height: 92vh; min-height: 560px;
+            display: flex; align-items: flex-end;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute; inset: 0;
+            background: url('Christ the Redeemer.jpg') center/cover no-repeat;
+        }
+        .hero-bg::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(11,15,14,.15) 0%,
+                rgba(11,15,14,.35) 50%,
+                rgba(11,15,14,.92) 100%
+            );
+        }
+        .hero-content {
+            position: relative; z-index: 1;
+            max-width: 1200px; margin: auto; padding: 0 28px 72px;
+            width: 100%;
+        }
+        .hero-eyebrow {
+            display: inline-block;
+            font-size: .78rem; font-weight: 600;
+            letter-spacing: .18em; text-transform: uppercase;
+            color: var(--gold); margin-bottom: 18px;
+            opacity: 0; animation: fadeUp .7s .2s forwards;
+        }
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.4rem, 6vw, 4.8rem);
+            font-weight: 600; line-height: 1.1;
+            color: var(--white); max-width: 720px;
+            margin-bottom: 22px;
+            opacity: 0; animation: fadeUp .7s .35s forwards;
+        }
+        .hero-title em { color: var(--gold); font-style: italic; }
+        .hero-sub {
+            font-size: 1.05rem; color: rgba(240,235,225,.75);
+            max-width: 480px; margin-bottom: 38px;
+            opacity: 0; animation: fadeUp .7s .5s forwards;
+        }
+        .hero-cta {
+            display: flex; gap: 14px; flex-wrap: wrap;
+            opacity: 0; animation: fadeUp .7s .65s forwards;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(22px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── BUTTONS ───────────────────────────────────── */
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600; font-size: .9rem;
+            letter-spacing: .03em;
+            padding: 13px 28px; border-radius: 6px;
+            border: none; cursor: pointer;
+            transition: all .25s; line-height: 1;
+        }
+        .btn-gold {
+            background: var(--gold); color: var(--ink);
+        }
+        .btn-gold:hover { background: var(--gold-lt); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(201,168,76,.35); }
+        .btn-outline {
+            background: transparent; color: var(--white);
+            border: 1px solid rgba(255,255,255,.35);
+        }
+        .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+        .btn-teal { background: var(--teal); color: var(--white); }
+        .btn-teal:hover { background: var(--teal-lt); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(13,148,136,.35); }
+        .btn-red { background: var(--red); color: var(--white); }
+        .btn-red:hover { background: #c94545; transform: translateY(-2px); }
+        .btn-sm { padding: 9px 20px; font-size: .82rem; }
+        .btn:disabled { opacity: .55; cursor: not-allowed; transform: none !important; }
+
+        /* ── OFFER BANNER ──────────────────────────────── */
+        .offer-banner {
+            background: linear-gradient(90deg, #0d7a6e 0%, var(--teal) 50%, #0d7a6e 100%);
+            padding: 16px 28px; text-align: center;
+        }
+        .offer-banner p { font-size: .92rem; font-weight: 500; }
+        .offer-banner strong { color: var(--gold-lt); }
+
+        /* ── SECTIONS ──────────────────────────────────── */
+        section { padding: 88px 0; }
+        .container { max-width: 1200px; margin: auto; padding: 0 28px; }
+
+        .section-tag {
+            font-size: .75rem; font-weight: 700; letter-spacing: .18em;
+            text-transform: uppercase; color: var(--gold);
+            margin-bottom: 10px; display: block;
+        }
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.9rem, 3.5vw, 3rem);
+            font-weight: 600; color: var(--white);
+            line-height: 1.15; margin-bottom: 48px;
+        }
+        .section-title em { color: var(--gold); font-style: italic; }
+
+        /* ── CARDS ─────────────────────────────────────── */
+        .grid { display: grid; gap: 24px; }
+        .grid-3 { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+
+        .card {
+            background: var(--ink2);
+            border: 1px solid var(--stone);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: transform .3s, border-color .3s, box-shadow .3s;
+            display: flex; flex-direction: column;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(201,168,76,.4);
+            box-shadow: 0 20px 48px rgba(0,0,0,.5);
+        }
+        .card-thumb {
+            height: 210px; overflow: hidden; position: relative;
+            background: var(--ink3);
+        }
+        .card-thumb img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform .6s;
+        }
+        .card:hover .card-thumb img { transform: scale(1.07); }
+        .card-badge {
+            position: absolute; top: 12px; left: 12px;
+            background: rgba(11,15,14,.75);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(201,168,76,.3);
+            border-radius: 20px;
+            font-size: .72rem; font-weight: 700;
+            letter-spacing: .07em; text-transform: uppercase;
+            color: var(--gold-lt); padding: 4px 10px;
+        }
+        .card-body { padding: 22px; flex: 1; display: flex; flex-direction: column; }
+        .card-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem; font-weight: 600;
+            color: var(--white); margin-bottom: 8px;
+        }
+        .card-desc { font-size: .88rem; color: var(--mist); margin-bottom: 16px; flex: 1; }
+        .card-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+        .card-meta span {
+            font-size: .8rem; color: var(--mist);
+            display: flex; align-items: center; gap: 5px;
+        }
+        .card-meta i { color: var(--gold); font-size: .75rem; }
+        .difficulty-pill {
+            display: inline-block;
+            font-size: .72rem; font-weight: 700;
+            letter-spacing: .07em; text-transform: uppercase;
+            padding: 3px 10px; border-radius: 20px;
+        }
+        .diff-high { background: rgba(224,82,82,.18); color: #f87171; border: 1px solid rgba(224,82,82,.3); }
+        .diff-medium { background: rgba(234,179,8,.15); color: #fbbf24; border: 1px solid rgba(234,179,8,.3); }
+        .diff-low { background: rgba(61,184,122,.15); color: #6ee7b7; border: 1px solid rgba(61,184,122,.3); }
+        .card-price {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem; font-weight: 700;
+            color: var(--gold); margin-bottom: 18px;
+        }
+        .card-price small { font-family: 'DM Sans', sans-serif; font-size: .8rem; color: var(--mist); font-weight: 400; }
+
+        /* ── FEATURES ──────────────────────────────────── */
+        .features-section { background: var(--ink2); border-top: 1px solid var(--stone); border-bottom: 1px solid var(--stone); }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px; }
+        .feature {
+            text-align: center; padding: 32px 20px;
+            border-radius: var(--radius);
+            background: var(--ink3);
+            border: 1px solid var(--stone);
+            transition: border-color .3s;
+        }
+        .feature:hover { border-color: rgba(201,168,76,.4); }
+        .feature-icon {
+            width: 56px; height: 56px; border-radius: 50%;
+            background: linear-gradient(135deg, rgba(201,168,76,.15), rgba(13,148,136,.15));
+            border: 1px solid rgba(201,168,76,.25);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem;
+            margin: 0 auto 18px;
+        }
+        .feature h4 { font-size: 1rem; font-weight: 600; color: var(--white); margin-bottom: 8px; }
+        .feature p { font-size: .85rem; color: var(--mist); }
+
+        /* ── TESTIMONIALS ──────────────────────────────── */
+        .testimonials-section { background: var(--ink); }
+        .testimonial-card { padding: 28px; position: relative; }
+        .testimonial-card::before {
+            content: '"';
+            position: absolute; top: 16px; left: 22px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem; color: var(--gold);
+            opacity: .25; line-height: 1;
+        }
+        .testimonial-text { font-size: .92rem; color: var(--mist); margin-bottom: 20px; padding-top: 24px; }
+        .testimonial-author { font-weight: 600; color: var(--white); font-size: .9rem; }
+        .testimonial-stars { color: var(--gold); font-size: .85rem; margin-top: 4px; }
+
+        /* ── MODAL ─────────────────────────────────────── */
+        .modal-overlay {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,.85);
+            backdrop-filter: blur(6px);
+            z-index: 1500;
+            align-items: center; justify-content: center;
+            padding: 20px;
+        }
+        .modal-overlay.open { display: flex; }
+        .modal-box {
+            background: var(--ink2);
+            border: 1px solid var(--stone);
+            border-radius: 16px;
+            padding: 36px;
+            width: 100%; max-width: 560px;
+            max-height: 90vh; overflow-y: auto;
+            position: relative;
+            animation: modalIn .3s ease;
+        }
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(.94) translateY(16px); }
+            to   { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .modal-close {
+            position: absolute; top: 16px; right: 16px;
+            background: var(--stone); border: none;
+            width: 32px; height: 32px; border-radius: 50%;
+            color: var(--mist); font-size: 1rem;
+            cursor: pointer; transition: all .2s;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .modal-close:hover { background: var(--red); color: var(--white); }
+        .modal-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.7rem; font-weight: 600;
+            color: var(--white); margin-bottom: 6px;
+        }
+        .modal-subtitle { font-size: .85rem; color: var(--mist); margin-bottom: 28px; }
+
+        /* Tour items list */
+        .tour-list { margin-bottom: 16px; }
+        .tour-item {
+            display: flex; justify-content: space-between; align-items: center;
+            background: var(--ink3);
+            border: 1px solid var(--stone);
+            border-radius: 8px; padding: 12px 16px; margin-bottom: 8px;
+        }
+        .tour-item-name { font-weight: 600; font-size: .9rem; }
+        .tour-item-price { color: var(--gold); font-weight: 600; font-size: .9rem; }
+        .tour-item-remove {
+            background: none; border: none;
+            color: var(--mist); cursor: pointer;
+            font-size: .85rem; padding: 4px 8px;
+            border-radius: 4px; transition: all .2s;
+        }
+        .tour-item-remove:hover { color: var(--red); background: rgba(224,82,82,.1); }
+
+        .available-tours-wrap { margin-bottom: 20px; }
+        .available-tours-wrap h4 { font-size: .9rem; color: var(--cream); margin-bottom: 12px; }
+        .available-tour-item {
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 14px;
+            background: var(--ink3); border: 1px solid var(--stone);
+            border-radius: 8px; margin-bottom: 6px;
+            cursor: pointer; transition: border-color .2s;
+        }
+        .available-tour-item:hover { border-color: var(--gold); }
+        .available-tour-item input[type="checkbox"] { accent-color: var(--gold); width: 15px; height: 15px; cursor: pointer; }
+        .available-tour-item label { flex: 1; font-size: .88rem; cursor: pointer; }
+        .available-tour-item span { color: var(--gold); font-size: .85rem; font-weight: 600; }
+
+        /* Form */
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .form-group { margin-bottom: 18px; }
+        .form-group label {
+            display: block; font-size: .82rem; font-weight: 600;
+            letter-spacing: .04em; text-transform: uppercase;
+            color: var(--mist); margin-bottom: 7px;
+        }
+        .form-control {
+            width: 100%; padding: 12px 14px;
+            background: var(--ink3); border: 1px solid var(--stone);
+            border-radius: 8px; color: var(--white);
+            font-family: 'DM Sans', sans-serif; font-size: .92rem;
+            transition: border-color .25s, box-shadow .25s;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(201,168,76,.12);
+        }
+        .form-control::placeholder { color: rgba(143,163,158,.45); }
+        textarea.form-control { resize: vertical; min-height: 80px; }
+        .form-control[readonly] { background: rgba(20,25,24,.6); color: var(--gold); font-weight: 600; }
+
+        .modal-actions { display: flex; gap: 12px; margin-top: 24px; }
+        .modal-actions .btn { flex: 1; justify-content: center; }
+
+        .discount-note {
+            background: rgba(13,148,136,.12);
+            border: 1px solid rgba(13,148,136,.3);
+            border-radius: 8px; padding: 10px 14px;
+            font-size: .82rem; color: var(--teal-lt);
+            margin-bottom: 16px; display: none;
+        }
+        .discount-note.show { display: block; }
+
+        /* ── CONTACT ───────────────────────────────────── */
+        .contact-section { background: var(--ink2); border-top: 1px solid var(--stone); }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; align-items: start; }
+        .contact-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem; color: var(--white); margin-bottom: 24px;
+        }
+        .contact-item { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 18px; }
+        .contact-icon {
+            width: 38px; height: 38px; border-radius: 50%;
+            background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.2);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--gold); font-size: .9rem; flex-shrink: 0;
+        }
+        .contact-item p { font-size: .9rem; color: var(--mist); }
+        .contact-item strong { color: var(--white); }
+        .social-row { display: flex; gap: 10px; margin-top: 24px; }
+        .social-btn {
+            width: 40px; height: 40px; border-radius: 50%;
+            background: var(--stone); color: var(--mist);
+            display: flex; align-items: center; justify-content: center;
+            font-size: .95rem; transition: all .25s;
+        }
+        .social-btn:hover { background: var(--gold); color: var(--ink); transform: translateY(-3px); }
+
+        /* ── FOOTER ────────────────────────────────────── */
+        footer {
+            background: var(--ink); border-top: 1px solid var(--stone);
+            padding: 60px 0 28px;
+        }
+        .footer-grid {
+            display: grid; grid-template-columns: 1.5fr repeat(3, 1fr);
+            gap: 40px; margin-bottom: 48px;
+        }
+        .footer-brand .logo-name { font-size: 1.3rem; margin-bottom: 12px; display: block; }
+        .footer-brand p { font-size: .87rem; color: var(--mist); max-width: 260px; line-height: 1.7; }
+        .footer-col h4 {
+            font-size: .78rem; font-weight: 700;
+            letter-spacing: .12em; text-transform: uppercase;
+            color: var(--gold); margin-bottom: 18px;
+        }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { font-size: .88rem; color: var(--mist); transition: color .2s; }
+        .footer-col ul li a:hover { color: var(--gold); }
+        .newsletter-form { display: flex; gap: 0; margin-top: 12px; }
+        .newsletter-input {
+            flex: 1; padding: 10px 14px;
+            background: var(--ink3); border: 1px solid var(--stone);
+            border-right: none; border-radius: 6px 0 0 6px;
+            color: var(--white); font-family: 'DM Sans', sans-serif; font-size: .88rem;
+        }
+        .newsletter-input:focus { outline: none; border-color: var(--gold); }
+        .newsletter-btn {
+            background: var(--gold); color: var(--ink);
+            border: none; padding: 10px 16px;
+            border-radius: 0 6px 6px 0;
+            font-weight: 700; font-size: .82rem;
+            cursor: pointer; transition: background .25s; white-space: nowrap;
+        }
+        .newsletter-btn:hover { background: var(--gold-lt); }
+        .footer-bottom {
+            border-top: 1px solid var(--stone); padding-top: 24px;
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 10px;
+        }
+        .footer-bottom p { font-size: .83rem; color: #5a6b66; }
+
+        /* ── TOAST ─────────────────────────────────────── */
+        .toast {
+            position: fixed; bottom: 28px; right: 28px; z-index: 2000;
+            background: var(--green); color: var(--white);
+            padding: 14px 22px; border-radius: 10px;
+            font-weight: 500; font-size: .9rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,.4);
+            animation: toastIn .3s ease;
+            max-width: 340px;
+        }
+        .toast.error { background: var(--red); }
+        @keyframes toastIn {
+            from { opacity: 0; transform: translateX(30px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+
+        /* ── LOADER ────────────────────────────────────── */
+        .spinner {
+            display: inline-block; width: 16px; height: 16px;
+            border: 2px solid rgba(255,255,255,.3);
+            border-radius: 50%; border-top-color: #fff;
+            animation: spin .8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ── RESPONSIVE ────────────────────────────────── */
+        @media (max-width: 960px) {
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            nav { display: none; flex-direction: column; gap: 20px; position: absolute; top: 65px; left: 0; right: 0; background: var(--ink2); border-bottom: 1px solid var(--stone); padding: 24px 28px; }
+            nav.open { display: flex; }
+            header { position: relative; }
+            .menu-toggle { display: block; }
+            .hero { height: 75vh; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .modal-box { padding: 24px; }
+            .hero-title { font-size: 2.2rem; }
+        }
+        @media (max-width: 480px) {
+            .modal-actions { flex-direction: column; }
+            .hero-cta { flex-direction: column; }
+            .btn { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Language bar -->
+<div class="lang-bar">
+    <button class="lang-btn active" data-lang="pt">PT</button>
+    <button class="lang-btn" data-lang="en">EN</button>
+    <button class="lang-btn" data-lang="fr">FR</button>
+</div>
+
+<!-- Header -->
+<header>
+    <div class="header-inner">
+        <div class="logo">
+            <img src="tripdecoder.png" alt="TripDecoder" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="logo-fallback" style="display:none">T</div>
+            <span class="logo-name">Trip<span>Decoder</span></span>
+        </div>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+        <nav id="main-nav">
+            <a href="#tours" data-i18n="nav-tours">Passeios</a>
+            <a href="#hikes" data-i18n="nav-hikes">Trilhas</a>
+            <a href="#testimonials" data-i18n="nav-testimonials">Depoimentos</a>
+            <a href="#contact" data-i18n="nav-contact">Contato</a>
+        </nav>
+    </div>
+</header>
+
+<!-- Hero -->
+<section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-content container">
+        <span class="hero-eyebrow" data-i18n="hero-eyebrow">Rio de Janeiro & Niterói</span>
+        <h1 class="hero-title" data-i18n="hero-title">Descubra o Rio com <em>especialistas locais</em></h1>
+        <p class="hero-sub" data-i18n="hero-sub">Passeios, trilhas e experiências únicas com guias certificados que conhecem cada canto da cidade.</p>
+        <div class="hero-cta">
+            <a href="#tours" class="btn btn-gold" data-i18n="hero-cta1"><i class="fas fa-compass"></i> Explorar Passeios</a>
+            <a href="#contact" class="btn btn-outline" data-i18n="hero-cta2">Falar com a Gente</a>
+        </div>
+    </div>
+</section>
+
+<!-- Offer Banner -->
+<div class="offer-banner">
+    <p data-i18n="offer-text">🔥 <strong>Oferta especial:</strong> Reserve 2 passeios e ganhe <strong>15% de desconto</strong> na segunda reserva — use o código <strong>RIO15</strong></p>
+</div>
+
+<!-- Features -->
+<section class="features-section">
+    <div class="container">
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">🧭</div>
+                <h4 data-i18n="feat1-title">Guias Especialistas</h4>
+                <p data-i18n="feat1-text">Locais certificados que conhecem os tesouros escondidos e os melhores pontos.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">💰</div>
+                <h4 data-i18n="feat2-title">Melhor Preço</h4>
+                <p data-i18n="feat2-text">Preços competitivos sem taxas ocultas. Encontrou mais barato? A gente iguala.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🔄</div>
+                <h4 data-i18n="feat3-title">Cancelamento Grátis</h4>
+                <p data-i18n="feat3-text">Cancele gratuitamente até 24h antes para reembolso total.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⭐</div>
+                <h4 data-i18n="feat4-title">4.9 / 5 Estrelas</h4>
+                <p data-i18n="feat4-text">Avaliados por mais de 1.000 viajantes. Sua satisfação é nossa prioridade.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Tours -->
+<section id="tours">
+    <div class="container">
+        <span class="section-tag" data-i18n="tours-tag">Passeios Populares</span>
+        <h2 class="section-title" data-i18n="tours-title">Experiências <em>inesquecíveis</em></h2>
+        <div class="grid grid-3" id="tours-grid"></div>
+    </div>
+</section>
+
+<!-- Hikes -->
+<section id="hikes" style="background:var(--ink2);border-top:1px solid var(--stone);">
+    <div class="container">
+        <span class="section-tag" data-i18n="hikes-tag">Trilhas de Aventura</span>
+        <h2 class="section-title" data-i18n="hikes-title">Para os <em>aventureiros</em></h2>
+        <div class="grid grid-3" id="hikes-grid"></div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section id="testimonials" class="testimonials-section">
+    <div class="container">
+        <span class="section-tag" data-i18n="test-tag">Depoimentos</span>
+        <h2 class="section-title" data-i18n="test-title">O que nossos <em>clientes</em> dizem</h2>
+        <div class="grid grid-3" id="testimonials-grid"></div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="contact-section">
+    <div class="container">
+        <span class="section-tag" data-i18n="contact-tag">Contato</span>
+        <h2 class="section-title" data-i18n="contact-title">Entre em <em>contato</em></h2>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3 data-i18n="contact-info-title">Informações</h3>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                    <div><p><strong data-i18n="contact-phone-label">Telefone</strong></p><p>+55 (21) 99045-5492</p></div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+                    <div><p><strong>WhatsApp</strong></p><p>+55 (21) 99045-5492</p></div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <div><p><strong>Email</strong></p><p>info@tripdecoder.com</p></div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-clock"></i></div>
+                    <div><p><strong data-i18n="contact-hours-label">Horário</strong></p><p data-i18n="contact-hours-val">8h às 22h, todos os dias</p></div>
+                </div>
+                <div class="social-row">
+                    <a href="#" class="social-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-btn" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <form id="contact-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label data-i18n="form-name">Nome</label>
+                        <input type="text" id="c-name" class="form-control" required data-i18n-placeholder="form-name-ph">
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="form-email">Email</label>
+                        <input type="email" id="c-email" class="form-control" required data-i18n-placeholder="form-email-ph">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="form-message">Mensagem</label>
+                    <textarea id="c-msg" class="form-control" rows="5" required data-i18n-placeholder="form-msg-ph"></textarea>
+                </div>
+                <button type="submit" class="btn btn-gold"><i class="fas fa-paper-plane"></i> <span data-i18n="form-send">Enviar Mensagem</span></button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <span class="logo-name">Trip<span>Decoder</span></span>
+                <p data-i18n="footer-desc">Seu guia local confiável para passeios e aventuras no Rio de Janeiro e Niterói.</p>
+            </div>
+            <div class="footer-col">
+                <h4 data-i18n="footer-links">Links</h4>
+                <ul>
+                    <li><a href="#tours" data-i18n="nav-tours">Passeios</a></li>
+                    <li><a href="#hikes" data-i18n="nav-hikes">Trilhas</a></li>
+                    <li><a href="#testimonials" data-i18n="nav-testimonials">Depoimentos</a></li>
+                    <li><a href="#contact" data-i18n="nav-contact">Contato</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 data-i18n="footer-support">Suporte</h4>
+                <ul>
+                    <li><a href="#" data-i18n="footer-faq">FAQ</a></li>
+                    <li><a href="#" data-i18n="footer-cancel">Cancelamento</a></li>
+                    <li><a href="#" data-i18n="footer-privacy">Privacidade</a></li>
+                    <li><a href="#" data-i18n="footer-terms">Termos de Uso</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 data-i18n="footer-news">Newsletter</h4>
+                <p style="font-size:.85rem;color:var(--mist);margin-bottom:12px;" data-i18n="footer-news-sub">Receba ofertas exclusivas e dicas de viagem.</p>
+                <form class="newsletter-form" id="newsletter-form">
+                    <input type="email" class="newsletter-input" data-i18n-placeholder="footer-news-ph" required>
+                    <button type="submit" class="newsletter-btn" data-i18n="footer-news-btn">OK</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 TripDecoder. <span data-i18n="footer-rights">Todos os direitos reservados.</span></p>
+            <p style="color:#3a4b46;font-size:.78rem;">Rio de Janeiro &amp; Niterói, Brasil</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Booking Modal -->
+<div class="modal-overlay" id="booking-modal">
+    <div class="modal-box">
+        <button class="modal-close" id="modal-close-btn" aria-label="Fechar">&times;</button>
+        <h2 class="modal-title" data-i18n="modal-title">Reserve sua aventura</h2>
+        <p class="modal-subtitle" id="modal-subtitle" data-i18n="modal-subtitle">Preencha os dados para confirmar sua reserva.</p>
+
+        <!-- Selected tours list -->
+        <div class="tour-list" id="modal-tour-list"></div>
+
+        <!-- Add more tours toggle -->
+        <button class="btn btn-outline btn-sm" id="add-tour-btn" style="margin-bottom:16px;" data-i18n="modal-add-tour">
+            <i class="fas fa-plus"></i> Adicionar Outro Passeio
+        </button>
+
+        <!-- Available tours to add -->
+        <div class="available-tours-wrap" id="available-tours-wrap" style="display:none;">
+            <h4 data-i18n="modal-select-more">Selecione mais passeios:</h4>
+            <div id="available-tours-list"></div>
+            <button class="btn btn-teal btn-sm" id="confirm-selection-btn" data-i18n="modal-confirm-sel">
+                <i class="fas fa-check"></i> Confirmar Seleção
+            </button>
+        </div>
+
+        <!-- Discount note -->
+        <div class="discount-note" id="discount-note">
+            🎉 <span data-i18n="modal-discount-note">Você selecionou 2+ passeios — 15% de desconto aplicado automaticamente!</span>
+        </div>
+
+        <!-- Booking form -->
+        <form id="booking-form" novalidate>
+            <div class="form-row">
+                <div class="form-group">
+                    <label data-i18n="form-name">Nome Completo</label>
+                    <input type="text" id="b-name" class="form-control" required data-i18n-placeholder="form-name-ph">
+                </div>
+                <div class="form-group">
+                    <label data-i18n="form-phone">Telefone</label>
+                    <input type="tel" id="b-phone" class="form-control" required data-i18n-placeholder="form-phone-ph">
+                </div>
+            </div>
+            <div class="form-group">
+                <label data-i18n="form-email">Email</label>
+                <input type="email" id="b-email" class="form-control" required data-i18n-placeholder="form-email-ph">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label data-i18n="form-date">Data Preferida</label>
+                    <input type="date" id="b-date" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="form-people">Nº de Pessoas</label>
+                    <input type="number" id="b-people" class="form-control" min="1" max="15" required data-i18n-placeholder="form-people-ph">
+                </div>
+            </div>
+            <div class="form-group">
+                <label data-i18n="form-total">Valor Total Estimado</label>
+                <input type="text" id="b-total" class="form-control" readonly placeholder="—">
+            </div>
+            <div class="form-group">
+                <label data-i18n="form-requests">Pedidos Especiais</label>
+                <textarea id="b-requests" class="form-control" rows="2" data-i18n-placeholder="form-requests-ph"></textarea>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn btn-gold" id="submit-booking-btn">
+                    <span id="submit-text" data-i18n="form-submit">Confirmar Reserva</span>
+                    <span id="submit-spinner" class="spinner" style="display:none;"></span>
+                </button>
+                <button type="button" class="btn btn-red" id="modal-cancel-btn" data-i18n="form-cancel">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+//  EMAILJS CONFIG — UPDATE WITH YOUR OWN CREDENTIALS
+// ═══════════════════════════════════════════════════════
+const EMAILJS = {
+    PUBLIC_KEY:  'umEVBeCyd4_ewceAt',
+    SERVICE_ID:  'service_e315jfb',
+    TEMPLATE_ID: 'template_myop48m'
+};
+emailjs.init(EMAILJS.PUBLIC_KEY);
+
+// ═══════════════════════════════════════════════════════
+//  TRANSLATIONS
+// ═══════════════════════════════════════════════════════
+const i18n = {
+    pt: {
+        "nav-tours":"Passeios","nav-hikes":"Trilhas","nav-testimonials":"Depoimentos","nav-contact":"Contato",
+        "hero-eyebrow":"Rio de Janeiro & Niterói",
+        "hero-title":"Descubra o Rio com especialistas locais",
+        "hero-sub":"Passeios, trilhas e experiências únicas com guias certificados que conhecem cada canto da cidade.",
+        "hero-cta1":"Explorar Passeios","hero-cta2":"Falar com a Gente",
+        "offer-text":"🔥 Oferta especial: Reserve 2 passeios e ganhe 15% de desconto na segunda reserva — use o código RIO15",
+        "feat1-title":"Guias Especialistas","feat1-text":"Locais certificados que conhecem os tesouros escondidos e os melhores pontos.",
+        "feat2-title":"Melhor Preço","feat2-text":"Preços competitivos sem taxas ocultas. Encontrou mais barato? A gente iguala.",
+        "feat3-title":"Cancelamento Grátis","feat3-text":"Cancele gratuitamente até 24h antes para reembolso total.",
+        "feat4-title":"4.9 / 5 Estrelas","feat4-text":"Avaliados por mais de 1.000 viajantes. Sua satisfação é nossa prioridade.",
+        "tours-tag":"Passeios Populares","tours-title":"Experiências inesquecíveis",
+        "hikes-tag":"Trilhas de Aventura","hikes-title":"Para os aventureiros",
+        "test-tag":"Depoimentos","test-title":"O que nossos clientes dizem",
+        "contact-tag":"Contato","contact-title":"Entre em contato",
+        "contact-info-title":"Informações","contact-phone-label":"Telefone","contact-hours-label":"Horário","contact-hours-val":"8h às 22h, todos os dias",
+        "form-name":"Nome Completo","form-name-ph":"Seu nome completo",
+        "form-phone":"Telefone","form-phone-ph":"+55 (21) 99999-9999",
+        "form-email":"Email","form-email-ph":"seu@email.com",
+        "form-date":"Data Preferida","form-people":"Nº de Pessoas","form-people-ph":"1",
+        "form-total":"Valor Total Estimado",
+        "form-requests":"Pedidos Especiais (opcional)","form-requests-ph":"Algum requisito especial...",
+        "form-message":"Mensagem","form-msg-ph":"Sua mensagem...",
+        "form-send":"Enviar Mensagem","form-submit":"Confirmar Reserva","form-cancel":"Cancelar",
+        "modal-title":"Reserve sua aventura","modal-subtitle":"Preencha os dados para confirmar sua reserva.",
+        "modal-add-tour":"Adicionar Outro Passeio","modal-select-more":"Selecione mais passeios:",
+        "modal-confirm-sel":"Confirmar Seleção",
+        "modal-discount-note":"Você selecionou 2+ passeios — 15% de desconto aplicado automaticamente!",
+        "footer-desc":"Seu guia local confiável para passeios e aventuras no Rio de Janeiro e Niterói.",
+        "footer-links":"Links","footer-support":"Suporte","footer-faq":"FAQ",
+        "footer-cancel":"Política de Cancelamento","footer-privacy":"Privacidade","footer-terms":"Termos de Uso",
+        "footer-news":"Newsletter","footer-news-sub":"Receba ofertas exclusivas e dicas de viagem.",
+        "footer-news-ph":"seu@email.com","footer-news-btn":"Inscrever","footer-rights":"Todos os direitos reservados.",
+        "book-now":"Reservar Agora","duration-label":"Duração","per-person":"/ pessoa","includes-label":"Inclui",
+        "remove-btn":"Remover","difficulty":"Dificuldade",
+        "toast-success":"✅ Reserva enviada! Você receberá um email de confirmação em breve.",
+        "toast-error":"❌ Erro ao enviar. Tente novamente ou nos chame no WhatsApp.",
+        "toast-contact":"✅ Mensagem enviada! Entraremos em contato em breve.",
+        "toast-newsletter":"✅ Inscrito! Obrigado por se juntar a nós.",
+        "alert-fill":"Por favor, preencha todos os campos obrigatórios.",
+        "alert-phone":"Por favor, insira um telefone válido (10 ou 11 dígitos).",
+        "alert-tour":"Por favor, selecione pelo menos um passeio.",
+        "alert-people":"Número de pessoas deve ser entre 1 e 15.",
+        "none-selected":"Nenhum passeio selecionado.",
+    },
+    en: {
+        "nav-tours":"Tours","nav-hikes":"Hikes","nav-testimonials":"Reviews","nav-contact":"Contact",
+        "hero-eyebrow":"Rio de Janeiro & Niterói",
+        "hero-title":"Discover Rio with local experts",
+        "hero-sub":"Unique tours, hikes and experiences with certified guides who know every corner of the city.",
+        "hero-cta1":"Explore Tours","hero-cta2":"Get in Touch",
+        "offer-text":"🔥 Special offer: Book 2 tours and get 15% off the second booking — use code RIO15",
+        "feat1-title":"Expert Guides","feat1-text":"Certified locals who know the hidden gems and the best spots.",
+        "feat2-title":"Best Price","feat2-text":"Competitive prices with no hidden fees. Found it cheaper? We'll match it.",
+        "feat3-title":"Free Cancellation","feat3-text":"Cancel for free up to 24h before for a full refund.",
+        "feat4-title":"4.9 / 5 Stars","feat4-text":"Reviewed by over 1,000 travelers. Your satisfaction is our priority.",
+        "tours-tag":"Popular Tours","tours-title":"Unforgettable experiences",
+        "hikes-tag":"Adventure Hikes","hikes-title":"For the adventurers",
+        "test-tag":"Testimonials","test-title":"What our clients say",
+        "contact-tag":"Contact","contact-title":"Get in touch",
+        "contact-info-title":"Information","contact-phone-label":"Phone","contact-hours-label":"Hours","contact-hours-val":"8am – 10pm, every day",
+        "form-name":"Full Name","form-name-ph":"Your full name",
+        "form-phone":"Phone","form-phone-ph":"+55 (21) 99999-9999",
+        "form-email":"Email","form-email-ph":"you@email.com",
+        "form-date":"Preferred Date","form-people":"Number of People","form-people-ph":"1",
+        "form-total":"Estimated Total",
+        "form-requests":"Special Requests (optional)","form-requests-ph":"Any special requirements...",
+        "form-message":"Message","form-msg-ph":"Your message...",
+        "form-send":"Send Message","form-submit":"Confirm Booking","form-cancel":"Cancel",
+        "modal-title":"Book your adventure","modal-subtitle":"Fill in your details to confirm your booking.",
+        "modal-add-tour":"Add Another Tour","modal-select-more":"Select more tours:",
+        "modal-confirm-sel":"Confirm Selection",
+        "modal-discount-note":"You selected 2+ tours — 15% discount applied automatically!",
+        "footer-desc":"Your trusted local guide for tours and adventures in Rio de Janeiro and Niterói.",
+        "footer-links":"Links","footer-support":"Support","footer-faq":"FAQ",
+        "footer-cancel":"Cancellation Policy","footer-privacy":"Privacy Policy","footer-terms":"Terms of Service",
+        "footer-news":"Newsletter","footer-news-sub":"Get exclusive deals and travel tips.",
+        "footer-news-ph":"you@email.com","footer-news-btn":"Join","footer-rights":"All rights reserved.",
+        "book-now":"Book Now","duration-label":"Duration","per-person":"/ person","includes-label":"Includes",
+        "remove-btn":"Remove","difficulty":"Difficulty",
+        "toast-success":"✅ Booking submitted! You will receive a confirmation email shortly.",
+        "toast-error":"❌ Error submitting. Please try again or contact us on WhatsApp.",
+        "toast-contact":"✅ Message sent! We will get back to you soon.",
+        "toast-newsletter":"✅ Subscribed! Thanks for joining us.",
+        "alert-fill":"Please fill in all required fields.",
+        "alert-phone":"Please enter a valid phone number (10 or 11 digits).",
+        "alert-tour":"Please select at least one tour.",
+        "alert-people":"Number of people must be between 1 and 15.",
+        "none-selected":"No tour selected.",
+    },
+    fr: {
+        "nav-tours":"Visites","nav-hikes":"Randonnées","nav-testimonials":"Témoignages","nav-contact":"Contact",
+        "hero-eyebrow":"Rio de Janeiro & Niterói",
+        "hero-title":"Découvrez Rio avec des experts locaux",
+        "hero-sub":"Visites, randonnées et expériences uniques avec des guides certifiés qui connaissent chaque coin de la ville.",
+        "hero-cta1":"Explorer les Visites","hero-cta2":"Nous Contacter",
+        "offer-text":"🔥 Offre spéciale : Réservez 2 visites et obtenez 15 % de réduction — code RIO15",
+        "feat1-title":"Guides Experts","feat1-text":"Locaux certifiés qui connaissent les joyaux cachés et les meilleurs endroits.",
+        "feat2-title":"Meilleur Prix","feat2-text":"Prix compétitifs sans frais cachés. Trouvé moins cher ? Nous l'égalons.",
+        "feat3-title":"Annulation Gratuite","feat3-text":"Annulation gratuite jusqu'à 24h avant pour un remboursement intégral.",
+        "feat4-title":"4.9 / 5 Étoiles","feat4-text":"Évalué par plus de 1 000 voyageurs. Votre satisfaction est notre priorité.",
+        "tours-tag":"Visites Populaires","tours-title":"Expériences inoubliables",
+        "hikes-tag":"Randonnées d'Aventure","hikes-title":"Pour les aventuriers",
+        "test-tag":"Témoignages","test-title":"Ce que disent nos clients",
+        "contact-tag":"Contact","contact-title":"Prenez contact",
+        "contact-info-title":"Informations","contact-phone-label":"Téléphone","contact-hours-label":"Horaires","contact-hours-val":"8h à 22h, tous les jours",
+        "form-name":"Nom Complet","form-name-ph":"Votre nom complet",
+        "form-phone":"Téléphone","form-phone-ph":"+55 (21) 99999-9999",
+        "form-email":"Email","form-email-ph":"vous@email.com",
+        "form-date":"Date Préférée","form-people":"Nombre de Personnes","form-people-ph":"1",
+        "form-total":"Total Estimé",
+        "form-requests":"Demandes Spéciales (facultatif)","form-requests-ph":"Des exigences particulières...",
+        "form-message":"Message","form-msg-ph":"Votre message...",
+        "form-send":"Envoyer","form-submit":"Confirmer la Réservation","form-cancel":"Annuler",
+        "modal-title":"Réservez votre aventure","modal-subtitle":"Remplissez vos coordonnées pour confirmer votre réservation.",
+        "modal-add-tour":"Ajouter une Autre Visite","modal-select-more":"Sélectionnez plus de visites :",
+        "modal-confirm-sel":"Confirmer la Sélection",
+        "modal-discount-note":"Vous avez sélectionné 2+ visites — 15 % de réduction appliquée automatiquement !",
+        "footer-desc":"Votre guide local de confiance pour les visites et aventures à Rio de Janeiro et Niterói.",
+        "footer-links":"Liens","footer-support":"Support","footer-faq":"FAQ",
+        "footer-cancel":"Politique d'Annulation","footer-privacy":"Confidentialité","footer-terms":"Conditions d'Utilisation",
+        "footer-news":"Newsletter","footer-news-sub":"Recevez des offres exclusives et des conseils de voyage.",
+        "footer-news-ph":"vous@email.com","footer-news-btn":"S'abonner","footer-rights":"Tous droits réservés.",
+        "book-now":"Réserver","duration-label":"Durée","per-person":"/ pers.","includes-label":"Inclus",
+        "remove-btn":"Supprimer","difficulty":"Difficulté",
+        "toast-success":"✅ Réservation envoyée ! Vous recevrez un email de confirmation sous peu.",
+        "toast-error":"❌ Erreur lors de l'envoi. Réessayez ou contactez-nous sur WhatsApp.",
+        "toast-contact":"✅ Message envoyé ! Nous vous répondrons bientôt.",
+        "toast-newsletter":"✅ Inscrit ! Merci de nous rejoindre.",
+        "alert-fill":"Veuillez remplir tous les champs obligatoires.",
+        "alert-phone":"Veuillez entrer un numéro de téléphone valide.",
+        "alert-tour":"Veuillez sélectionner au moins une visite.",
+        "alert-people":"Le nombre de personnes doit être entre 1 et 15.",
+        "none-selected":"Aucune visite sélectionnée.",
+    }
+};
+
+// ═══════════════════════════════════════════════════════
+//  DATA
+// ═══════════════════════════════════════════════════════
+const toursData = {
+    pt:[
+        {name:"Cristo Redentor",desc:"Visite uma das Novas Sete Maravilhas do Mundo com acesso prioritário e comentários especializados.",price:150,img:"Christ the Redeemer.jpg",duration:"4 horas",includes:["Busca no hotel","Ingressos prioritários","Guia especializado"]},
+        {name:"Pão de Açúcar",desc:"Desfrute de vistas deslumbrantes de 360° do Rio via bondinho.",price:120,img:"Sugarloaf Mountain.jpg",duration:"3 horas",includes:["Ingressos do bondinho","Guia","Oportunidades fotográficas"]},
+        {name:"Praia de Copacabana",desc:"Vivencie a energia de uma das praias mais famosas do mundo.",price:90,img:"Copacabana Beach.jpg",duration:"2.5 horas",includes:["Guia da praia","Petiscos locais","Insights culturais"]},
+        {name:"Escadaria Selarón",desc:"Descubra a história vibrante por trás dos famosos degraus coloridos.",price:75,img:"Selaronstairs.jpeg",duration:"2 horas",includes:["História da arte","Sessão de fotos","Tour pelo bairro"]},
+        {name:"Arcos da Lapa",desc:"Explore o aqueduto histórico e o vibrante distrito de vida noturna.",price:85,img:"Arcosdalapa.jpg",duration:"3 horas",includes:["Contexto histórico","Tour noturno","Visita a bar local"]},
+        {name:"Museu do Amanhã",desc:"Explore sustentabilidade e possibilidades futuras nesta maravilha arquitetônica.",price:110,img:"Museu_do_Amanhã.jpg",duration:"3.5 horas",includes:["Ingressos","Guia científico","Exposições interativas"]},
+        {name:"Praia de Icaraí",desc:"Relaxe em uma das praias mais famosas de Niterói com vistas deslumbrantes.",price:80,img:"Icaraí Beach.jpg",duration:"2 horas",includes:["Guia da praia","Dicas locais","Pontos cênicos"]},
+        {name:"Ilha de Paquetá",desc:"Escape para este paraíso sem carros na Baía de Guanabara.",price:100,img:"Ilha-de-Paqueta.jpg",duration:"6 horas",includes:["Passagens de balsa","Aluguel de bicicleta","Guia da ilha"]},
+        {name:"MAC Niterói",desc:"Visite o icônico museu de Niterói com arquitetura de Oscar Niemeyer.",price:95,img:"Contemporary Art Museum (MAC).jpg",duration:"2.5 horas",includes:["Ingresso","Guia de arte","Vista panorâmica"]}
+    ],
+    en:[
+        {name:"Christ the Redeemer",desc:"Visit one of the New Seven Wonders of the World with skip-the-line access.",price:150,img:"Christ the Redeemer.jpg",duration:"4 hours",includes:["Hotel pickup","Skip-the-line tickets","Expert guide"]},
+        {name:"Sugarloaf Mountain",desc:"Enjoy breathtaking 360° views of Rio from this iconic landmark via cable car.",price:120,img:"Sugarloaf Mountain.jpg",duration:"3 hours",includes:["Cable car tickets","Guide","Photo opportunities"]},
+        {name:"Copacabana Beach",desc:"Experience the energy of one of the world's most famous beaches.",price:90,img:"Copacabana Beach.jpg",duration:"2.5 hours",includes:["Beach guide","Local snacks","Cultural insights"]},
+        {name:"Selarón Steps",desc:"Discover the vibrant story behind these famous colorful steps.",price:75,img:"Selaronstairs.jpeg",duration:"2 hours",includes:["Art history","Photo session","Neighborhood tour"]},
+        {name:"Arcos da Lapa",desc:"Explore the historic aqueduct and the vibrant nightlife district.",price:85,img:"Arcosdalapa.jpg",duration:"3 hours",includes:["Historical context","Evening tour","Local bar visit"]},
+        {name:"Museum of Tomorrow",desc:"Explore sustainability and future possibilities at this architectural marvel.",price:110,img:"Museu_do_Amanhã.jpg",duration:"3.5 hours",includes:["Museum tickets","Science guide","Interactive exhibits"]},
+        {name:"Icaraí Beach",desc:"Relax at one of Niterói's most famous beaches with stunning views.",price:80,img:"Icaraí Beach.jpg",duration:"2 hours",includes:["Beach guide","Local tips","Scenic viewpoints"]},
+        {name:"Ilha de Paquetá",desc:"Escape to this car-free island paradise in Guanabara Bay.",price:100,img:"Ilha-de-Paqueta.jpg",duration:"6 hours",includes:["Ferry tickets","Bike rental","Island guide"]},
+        {name:"Contemporary Art Museum (MAC)",desc:"Visit the iconic museum in Niterói with Oscar Niemeyer architecture.",price:95,img:"Contemporary Art Museum (MAC).jpg",duration:"2.5 hours",includes:["Museum tickets","Art guide","Panoramic views"]}
+    ],
+    fr:[
+        {name:"Christ Rédempteur",desc:"Visitez l'une des sept nouvelles merveilles du monde avec accès coupe-file.",price:150,img:"Christ the Redeemer.jpg",duration:"4 heures",includes:["Prise en charge à l'hôtel","Billets coupe-file","Guide expert"]},
+        {name:"Pain de Sucre",desc:"Profitez de vues à 360° époustouflantes sur Rio via le téléphérique.",price:120,img:"Sugarloaf Mountain.jpg",duration:"3 heures",includes:["Billets téléphérique","Guide","Photos panoramiques"]},
+        {name:"Plage de Copacabana",desc:"Vivez l'énergie de l'une des plages les plus célèbres au monde.",price:90,img:"Copacabana Beach.jpg",duration:"2.5 heures",includes:["Guide de plage","Snacks locaux","Aperçus culturels"]},
+        {name:"Escalier Selarón",desc:"Découvrez l'histoire vibrante de ces célèbres marches colorées.",price:75,img:"Selaronstairs.jpeg",duration:"2 heures",includes:["Histoire de l'art","Séance photo","Visite du quartier"]},
+        {name:"Arcos da Lapa",desc:"Explorez l'aqueduc historique et le quartier animé de la vie nocturne.",price:85,img:"Arcosdalapa.jpg",duration:"3 heures",includes:["Contexte historique","Visite nocturne","Bar local"]},
+        {name:"Musée de Demain",desc:"Explorez la durabilité et les possibilités futures dans cette merveille architecturale.",price:110,img:"Museu_do_Amanhã.jpg",duration:"3.5 heures",includes:["Billets","Guide scientifique","Expositions interactives"]},
+        {name:"Plage d'Icaraí",desc:"Détendez-vous sur l'une des plages les plus célèbres de Niterói.",price:80,img:"Icaraí Beach.jpg",duration:"2 heures",includes:["Guide de plage","Conseils locaux","Points de vue panoramiques"]},
+        {name:"Île de Paquetá",desc:"Échappez-vous vers ce paradis insulaire sans voiture dans la Baie de Guanabara.",price:100,img:"Ilha-de-Paqueta.jpg",duration:"6 heures",includes:["Billets de ferry","Location de vélo","Guide de l'île"]},
+        {name:"Musée d'Art Contemporain (MAC)",desc:"Visitez le musée emblématique de Niterói avec l'architecture d'Oscar Niemeyer.",price:95,img:"Contemporary Art Museum (MAC).jpg",duration:"2.5 heures",includes:["Billets","Guide d'art","Vues panoramiques"]}
+    ]
+};
+
+const hikesData = {
+    pt:[{name:"Trilha do Costão de Itacoatiara",desc:"Uma trilha costeira desafiadora com vistas espetaculares do oceano Atlântico e da Baía de Guanabara.",price:50,img:"costão.jpg",duration:"4 horas",difficulty:"Alta",diffKey:"high",includes:["Guia certificado","Equipamento de segurança","Lanche"]}],
+    en:[{name:"Itacoatiara Costão Trail",desc:"A challenging coastal trail with spectacular views of the Atlantic Ocean and Guanabara Bay.",price:50,img:"costão.jpg",duration:"4 hours",difficulty:"High",diffKey:"high",includes:["Certified guide","Safety equipment","Snacks"]}],
+    fr:[{name:"Sentier du Costão d'Itacoatiara",desc:"Un sentier côtier difficile avec des vues spectaculaires sur l'Atlantique et la Baie de Guanabara.",price:50,img:"costão.jpg",duration:"4 heures",difficulty:"Élevée",diffKey:"high",includes:["Guide certifié","Équipement de sécurité","Collation"]}]
+};
+
+const testimonialsData = {
+    pt:[
+        {text:"Adoramos o passeio do Cristo Redentor! O guia era muito conhecedor e tornou a experiência completamente inesquecível. Recomendo sem hesitar!",author:"Ana Silva",stars:5},
+        {text:"O Pão de Açúcar é imperdível! A vista do pôr do sol foi de tirar o fôlego. Nosso guia conhecia todos os melhores pontos para fotos. Vou reservar novamente!",author:"João Souza",stars:5},
+        {text:"As trilhas foram incríveis! Nosso guia era muito consciente com a segurança e compartilhou fatos interessantes sobre a flora e fauna local.",author:"Maria Santos",stars:4}
+    ],
+    en:[
+        {text:"We loved the Christ the Redeemer tour! The guide was very knowledgeable and made the experience completely unforgettable. Highly recommended!",author:"Ana Silva",stars:5},
+        {text:"Sugarloaf Mountain is a must-see! The sunset view was breathtaking. Our guide knew all the best photo spots. Will definitely book again!",author:"João Souza",stars:5},
+        {text:"The hiking trails were amazing! Our guide was very safety-conscious and shared fascinating facts about the local flora and fauna.",author:"Maria Santos",stars:4}
+    ],
+    fr:[
+        {text:"Nous avons adoré la visite du Christ Rédempteur ! Le guide était très compétent et a rendu l'expérience inoubliable. Fortement recommandé !",author:"Ana Silva",stars:5},
+        {text:"Le Pain de Sucre est incontournable ! La vue du coucher de soleil était à couper le souffle. Notre guide connaissait tous les meilleurs spots photos.",author:"João Souza",stars:5},
+        {text:"Les sentiers étaient incroyables ! Notre guide était très attentif à la sécurité et a partagé des faits fascinants sur la flore et la faune locales.",author:"Maria Santos",stars:4}
+    ]
+};
+
+// ═══════════════════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════════════════
+let currentLang = 'pt';
+let selectedTours = [];  // [{name, price}]
+
+// ═══════════════════════════════════════════════════════
+//  HELPERS
+// ═══════════════════════════════════════════════════════
+const t = (key) => i18n[currentLang]?.[key] || i18n.pt[key] || key;
+
+function fmtPrice(v) {
+    return new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(v);
+}
+
+function stars(n) {
+    return '★'.repeat(n) + '☆'.repeat(5-n);
+}
+
+function showToast(msg, isErr=false) {
+    const el = document.createElement('div');
+    el.className = 'toast' + (isErr ? ' error' : '');
+    el.textContent = msg;
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 5000);
+}
+
+function setMinDate() {
+    const d = new Date(); d.setDate(d.getDate()+1);
+    const el = document.getElementById('b-date');
+    if(el) el.min = d.toISOString().split('T')[0];
+}
+
+// ═══════════════════════════════════════════════════════
+//  RENDER CARDS
+// ═══════════════════════════════════════════════════════
+function renderCard(item, isHike=false) {
+    const div = document.createElement('div');
+    div.className = 'card';
+
+    const includesList = item.includes.map(i=>`<li style="font-size:.82rem;color:var(--mist);margin-bottom:4px;">✓ ${i}</li>`).join('');
+
+    let metaExtra = '';
+    if(isHike) {
+        metaExtra = `<span class="difficulty-pill diff-${item.diffKey}">${t('difficulty')}: ${item.difficulty}</span>`;
+    }
+
+    div.innerHTML = `
+      <div class="card-thumb">
+        <img src="${item.img}" alt="${item.name}"
+             onerror="this.src='https://placehold.co/400x210/1e2422/8fa39e?text=${encodeURIComponent(item.name)}'">
+        <span class="card-badge">${isHike ? '⛰ Trilha' : '📍 Passeio'}</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">${item.name}</h3>
+        <p class="card-desc">${item.desc}</p>
+        <div class="card-meta">
+          <span><i class="fas fa-clock"></i> ${item.duration}</span>
+          ${metaExtra ? `<span>${metaExtra}</span>` : ''}
+        </div>
+        <ul style="list-style:none;margin-bottom:14px;">${includesList}</ul>
+        <div class="card-price">${fmtPrice(item.price)} <small>${t('per-person')}</small></div>
+        <button class="btn btn-gold btn-sm" data-tour-name="${encodeURIComponent(item.name)}" data-tour-price="${item.price}">
+          ${t('book-now')}
+        </button>
+      </div>`;
+
+    div.querySelector('button').addEventListener('click', () => openModal(item.name, item.price));
+    return div;
+}
+
+function renderTestimonial(item) {
+    const div = document.createElement('div');
+    div.className = 'card testimonial-card';
+    div.innerHTML = `
+      <div class="card-body">
+        <p class="testimonial-text">"${item.text}"</p>
+        <p class="testimonial-author">${item.author}</p>
+        <p class="testimonial-stars">${stars(item.stars)}</p>
+      </div>`;
+    return div;
+}
+
+function loadAllCards() {
+    const tg = document.getElementById('tours-grid');
+    const hg = document.getElementById('hikes-grid');
+    const tst = document.getElementById('testimonials-grid');
+    tg.innerHTML = ''; hg.innerHTML = ''; tst.innerHTML = '';
+    (toursData[currentLang]||[]).forEach(x => tg.appendChild(renderCard(x, false)));
+    (hikesData[currentLang]||[]).forEach(x => hg.appendChild(renderCard(x, true)));
+    (testimonialsData[currentLang]||[]).forEach(x => tst.appendChild(renderTestimonial(x)));
+}
+
+// ═══════════════════════════════════════════════════════
+//  MODAL
+// ═══════════════════════════════════════════════════════
+function openModal(name, price) {
+    if(!selectedTours.find(x=>x.name===name)) {
+        selectedTours.push({name, price});
+    }
+    refreshModalList();
+    refreshAvailableTours();
+    setMinDate();
+    calcTotal();
+    document.getElementById('booking-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    selectedTours = [];
+    document.getElementById('booking-modal').classList.remove('open');
+    document.getElementById('available-tours-wrap').style.display = 'none';
+    document.getElementById('booking-form').reset();
+    document.getElementById('b-total').value = '';
+    document.getElementById('discount-note').classList.remove('show');
+    document.body.style.overflow = '';
+}
+
+function refreshModalList() {
+    const el = document.getElementById('modal-tour-list');
+    el.innerHTML = '';
+    if(selectedTours.length === 0) {
+        el.innerHTML = `<p style="color:var(--mist);font-size:.88rem;margin-bottom:12px;">${t('none-selected')}</p>`;
+        return;
+    }
+    selectedTours.forEach(item => {
+        const d = document.createElement('div');
+        d.className = 'tour-item';
+        d.innerHTML = `
+          <span class="tour-item-name">${item.name}</span>
+          <span class="tour-item-price">${fmtPrice(item.price)}</span>
+          <button class="tour-item-remove" data-name="${encodeURIComponent(item.name)}">${t('remove-btn')} ×</button>`;
+        d.querySelector('button').addEventListener('click', () => {
+            selectedTours = selectedTours.filter(x=>x.name!==item.name);
+            refreshModalList();
+            refreshAvailableTours();
+            calcTotal();
+        });
+        el.appendChild(d);
+    });
+
+    // Discount note
+    const dn = document.getElementById('discount-note');
+    if(selectedTours.length >= 2) dn.classList.add('show');
+    else dn.classList.remove('show');
+}
+
+function refreshAvailableTours() {
+    const all = [...(toursData[currentLang]||[]), ...(hikesData[currentLang]||[])];
+    const wrap = document.getElementById('available-tours-list');
+    wrap.innerHTML = '';
+    const notSelected = all.filter(x => !selectedTours.find(s=>s.name===x.name));
+    notSelected.forEach(item => {
+        const d = document.createElement('div');
+        d.className = 'available-tour-item';
+        const id = 'at-' + Math.random().toString(36).slice(2);
+        d.innerHTML = `
+          <input type="checkbox" id="${id}" value="${item.name}">
+          <label for="${id}">${item.name}</label>
+          <span>${fmtPrice(item.price)}</span>`;
+        wrap.appendChild(d);
+    });
+}
+
+function calcTotal() {
+    const people = parseInt(document.getElementById('b-people').value)||0;
+    if(!people || selectedTours.length===0) { document.getElementById('b-total').value = ''; return; }
+    let base = selectedTours.reduce((s,x)=>s+x.price,0) * people;
+    if(selectedTours.length >= 2) base *= 0.85;
+    document.getElementById('b-total').value = fmtPrice(base) + (selectedTours.length>=2 ? ' (−15%)' : '');
+}
+
+async function submitBooking() {
+    const name     = document.getElementById('b-name').value.trim();
+    const phone    = document.getElementById('b-phone').value.trim();
+    const email    = document.getElementById('b-email').value.trim();
+    const date     = document.getElementById('b-date').value;
+    const people   = parseInt(document.getElementById('b-people').value);
+    const requests = document.getElementById('b-requests').value.trim();
+
+    if(!name || !phone || !email || !date || !people) { showToast(t('alert-fill'), true); return; }
+    if(phone.replace(/\D/g,'').length < 10) { showToast(t('alert-phone'), true); return; }
+    if(selectedTours.length === 0) { showToast(t('alert-tour'), true); return; }
+    if(people < 1 || people > 15) { showToast(t('alert-people'), true); return; }
+
+    const btn = document.getElementById('submit-booking-btn');
+    const txt = document.getElementById('submit-text');
+    const spn = document.getElementById('submit-spinner');
+    btn.disabled = true; txt.style.display='none'; spn.style.display='inline-block';
+
+    const base = selectedTours.reduce((s,x)=>s+x.price,0) * people;
+    const total = selectedTours.length >= 2 ? base * 0.85 : base;
+    const bookingId = 'TRIP-' + Date.now().toString().slice(-8) + Math.random().toString(36).substr(2,4).toUpperCase();
+
+    const params = {
+        to_email:         email,
+        to_name:          name,
+        user_name:        name,
+        user_phone:       phone,
+        user_email:       email,
+        booking_date:     new Date(date+'T12:00:00').toLocaleDateString('pt-BR'),
+        number_of_people: String(people),
+        selected_tours:   selectedTours.map(x=>`${x.name} — ${fmtPrice(x.price)}`).join('\n'),
+        total_price:      fmtPrice(total),
+        special_requests: requests || 'Nenhum',
+        booking_id:       bookingId
+    };
+
+    try {
+        await emailjs.send(EMAILJS.SERVICE_ID, EMAILJS.TEMPLATE_ID, params);
+        showToast(t('toast-success'));
+        closeModal();
+    } catch(err) {
+        console.error('EmailJS error:', err);
+        showToast(t('toast-error'), true);
+    } finally {
+        btn.disabled = false; txt.style.display=''; spn.style.display='none';
+    }
+}
+
+// ═══════════════════════════════════════════════════════
+//  LANGUAGE MANAGER
+// ═══════════════════════════════════════════════════════
+function setLanguage(lang) {
+    currentLang = lang;
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const k = el.dataset.i18n;
+        if(i18n[lang]?.[k]) el.textContent = i18n[lang][k];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const k = el.dataset.i18nPlaceholder;
+        if(i18n[lang]?.[k]) el.placeholder = i18n[lang][k];
+    });
+    loadAllCards();
+}
+
+// ═══════════════════════════════════════════════════════
+//  EVENT LISTENERS
+// ═══════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+    // Language buttons
+    document.querySelectorAll('.lang-btn').forEach(b =>
+        b.addEventListener('click', () => setLanguage(b.dataset.lang))
+    );
+
+    // Mobile menu
+    document.getElementById('menu-toggle').addEventListener('click', () =>
+        document.getElementById('main-nav').classList.toggle('open')
+    );
+    document.querySelectorAll('#main-nav a').forEach(a =>
+        a.addEventListener('click', () => document.getElementById('main-nav').classList.remove('open'))
+    );
+
+    // Modal close
+    document.getElementById('modal-close-btn').addEventListener('click', closeModal);
+    document.getElementById('modal-cancel-btn').addEventListener('click', closeModal);
+    document.getElementById('booking-modal').addEventListener('click', e => {
+        if(e.target === document.getElementById('booking-modal')) closeModal();
+    });
+
+    // Add tour toggle
+    document.getElementById('add-tour-btn').addEventListener('click', () => {
+        const wrap = document.getElementById('available-tours-wrap');
+        wrap.style.display = wrap.style.display === 'none' ? 'block' : 'none';
+        if(wrap.style.display === 'block') refreshAvailableTours();
+    });
+
+    // Confirm selection
+    document.getElementById('confirm-selection-btn').addEventListener('click', () => {
+        document.querySelectorAll('#available-tours-list input[type=checkbox]:checked').forEach(cb => {
+            const all = [...(toursData[currentLang]||[]), ...(hikesData[currentLang]||[])];
+            const item = all.find(x => x.name === cb.value);
+            if(item && !selectedTours.find(s=>s.name===item.name)) {
+                selectedTours.push({name:item.name, price:item.price});
+            }
+        });
+        refreshModalList();
+        document.getElementById('available-tours-wrap').style.display = 'none';
+        calcTotal();
+    });
+
+    // Recalc total when people changes
+    document.getElementById('b-people').addEventListener('input', calcTotal);
+
+    // Submit booking
+    document.getElementById('submit-booking-btn').addEventListener('click', submitBooking);
+
+    // Contact form
+    document.getElementById('contact-form').addEventListener('submit', e => {
+        e.preventDefault();
+        showToast(t('toast-contact'));
+        e.target.reset();
+    });
+
+    // Newsletter form
+    document.getElementById('newsletter-form').addEventListener('submit', e => {
+        e.preventDefault();
+        showToast(t('toast-newsletter'));
+        e.target.reset();
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a =>
+        a.addEventListener('click', function(e) {
+            e.preventDefault();
+            const tgt = document.querySelector(this.getAttribute('href'));
+            if(tgt) tgt.scrollIntoView({behavior:'smooth', block:'start'});
+        })
+    );
+
+    // Init
+    setLanguage('pt');
+});
+</script>
+</body>
+</html>
