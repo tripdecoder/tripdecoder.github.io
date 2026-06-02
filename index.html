@@ -1364,82 +1364,327 @@
             }
         };
 
-        // ========== BOOKING MODAL ==========
-        const BookingModal = {
-            selectedTours: [], selectedPrices: [], availableTours: [],
-            init() { this.cacheDom(); this.bindEvents(); this.setMinBookingDate(); this.updateAvailableTours('pt'); },
-            cacheDom() { this.modal = document.getElementById('booking-modal'); this.modalTitle = document.getElementById('modal-title'); this.tourList = document.getElementById('tour-list'); this.availableToursSection = document.getElementById('available-tours'); this.toursAvailableList = document.getElementById('tours-available'); this.bookingForm = document.getElementById('booking-form'); this.submitBtn = document.getElementById('submit-btn'); this.submitText = document.getElementById('submit-text'); this.submitLoading = document.getElementById('submit-loading'); },
-            bindEvents() { this.modal.addEventListener('click', (e) => { if (e.target === this.modal) this.close(); }); this.setMinBookingDate(); },
-            updateAvailableTours(lang) { this.availableTours = [...(tourData[lang] || []), ...(hikeData[lang] || [])]; },
-            setMinBookingDate() { const dateInput = document.getElementById('date'); if (dateInput) dateInput.min = Utils.setMinDate(); },
-            open(tourName, price) {
-                const index = this.selectedTours.indexOf(tourName);
-                if (index === -1) { this.selectedTours.push(tourName); this.selectedPrices.push(price); }
-                else { this.selectedTours.splice(index, 1); this.selectedPrices.splice(index, 1); }
-                this.updateTourList();
-                this.modal.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            },
-            close() { this.selectedTours = []; this.selectedPrices = []; this.modal.style.display = 'none'; this.availableToursSection.style.display = 'none'; this.bookingForm?.reset(); document.body.style.overflow = 'auto'; },
-            showAvailableTours() {
-                this.toursAvailableList.innerHTML = '';
-                const notSelectedTours = this.availableTours.filter(tour => !this.selectedTours.includes(tour.name));
-                if (notSelectedTours.length === 0) { this.toursAvailableList.innerHTML = '<p style="text-align: center; color: #aaa;">Todos os passeios já estão selecionados</p>'; return; }
-                notSelectedTours.forEach(tour => {
-                    const item = document.createElement('li');
-                    item.style.marginBottom = '10px';
-                    item.innerHTML = `<input type="checkbox" id="tour-${tour.name.replace(/\s+/g, '-')}" value="${tour.name}"><label for="tour-${tour.name.replace(/\s+/g, '-')}">${tour.name} - ${Utils.formatPrice(tour.price)}</label>`;
-                    this.toursAvailableList.appendChild(item);
-                });
-                this.availableToursSection.style.display = 'block';
-            },
-            confirmSelection() {
-                const checkboxes = document.querySelectorAll('#tours-available input[type="checkbox"]');
-                checkboxes.forEach(checkbox => {
-                    if (checkbox.checked) {
-                        const tour = this.availableTours.find(t => t.name === checkbox.value);
-                        if (tour && !this.selectedTours.includes(tour.name)) { this.selectedTours.push(tour.name); this.selectedPrices.push(tour.price); }
-                    }
-                });
-                this.updateTourList();
-                this.availableToursSection.style.display = 'none';
-            },
-            removeTour(tourName) { const index = this.selectedTours.indexOf(tourName); if (index !== -1) { this.selectedTours.splice(index, 1); this.selectedPrices.splice(index, 1); this.updateTourList(); } },
-            updateTourList() {
-                this.tourList.innerHTML = '';
-                if (this.selectedTours.length === 0) { this.tourList.innerHTML = '<p style="text-align: center; color: #aaa; padding: 20px;">Nenhum passeio selecionado. Clique em "Adicionar Outro Passeio" para navegar pelas opções.</p>'; }
-                else { this.selectedTours.forEach((tour, index) => { const item = document.createElement('div'); item.className = 'tour-item'; item.innerHTML = `<span><strong>${tour}</strong> - ${Utils.formatPrice(this.selectedPrices[index])}</span><button onclick="BookingModal.removeTour('${tour}')">Remover</button>`; this.tourList.appendChild(item); }); }
-                const toursText = `passeio${this.selectedTours.length !== 1 ? 's' : ''} selecionado${this.selectedTours.length !== 1 ? 's' : ''}`;
-                this.modalTitle.textContent = `Reserve Sua Aventura (${this.selectedTours.length} ${toursText})`;
-            },
-            async submitForm() {
-                const name = document.getElementById('name').value.trim();
-                const phone = document.getElementById('phone').value.trim();
-                const email = document.getElementById('email').value.trim();
-                const date = document.getElementById('date').value;
-                const people = parseInt(document.getElementById('people').value);
-                const specialRequests = document.getElementById('special-requests').value.trim();
-                if (!name || !phone || !email || !date || !people || this.selectedTours.length === 0) { alert('Por favor, preencha todos os campos obrigatórios e selecione pelo menos um passeio.'); return; }
-                if (!Utils.validatePhone(phone)) { alert('Por favor, insira um número de telefone válido (10 ou 11 dígitos).'); return; }
-                if (people < 1 || people > 15) { alert('Por favor, insira um número válido de pessoas (1-15).'); return; }
-                this.submitText.style.display = 'none';
-                this.submitLoading.style.display = 'inline-block';
-                this.submitBtn.disabled = true;
-                const basePrice = this.selectedPrices.reduce((total, price) => total + price, 0);
-                let totalPrice = basePrice * people;
-                let discount = 0;
-                if (this.selectedTours.length >= 2) { discount = totalPrice * 0.15; totalPrice = totalPrice * 0.85; }
-                const bookingId = 'TRIP-' + Date.now().toString().slice(-8) + Math.random().toString(36).substr(2, 4).toUpperCase();
-                const toursList = this.selectedTours.map((tour, i) => `${tour} - ${Utils.formatPrice(this.selectedPrices[i])}`).join('\n');
-                const templateParams = { to_email: email, to_name: name, user_name: name, user_phone: phone, user_email: email, booking_date: Utils.formatDate(date), number_of_people: people, selected_tours: toursList, total_price: Utils.formatPrice(totalPrice), special_requests: specialRequests || 'Nenhum', booking_id: bookingId, admin_email: 'info@tripdecoder.com' };
-                try {
-                    await emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, templateParams);
-                    showToast(translations[LanguageManager.currentLang]['booking-success']);
-                    this.close();
-                } catch (error) { console.error('Email send error:', error); showToast(translations[LanguageManager.currentLang]['booking-error'], true); }
-                finally { this.submitText.style.display = 'inline-block'; this.submitLoading.style.display = 'none'; this.submitBtn.disabled = false; }
-            }
-        };
+        // ============================================================
+// TRIPDECODER — Substitua o objeto BookingModal no seu site
+// Cole este código no lugar do BookingModal existente
+// ============================================================
+
+// ⚙️ Cole aqui a URL que o Google Apps Script gerar ao publicar
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyzUSdNpH1lOve6YdcIpPiVNWFI9g0w1kF5u2UGt-CJ2-69pnOPFgGJUmlw0afRZMW7/exec';
+
+// ========== BOOKING MODAL ATUALIZADO ==========
+const BookingModal = {
+  selectedTours: [],
+  selectedPrices: [],
+  availableTours: [],
+
+  init() {
+    this.cacheDom();
+    this.bindEvents();
+    this.setMinBookingDate();
+    this.updateAvailableTours('pt');
+  },
+
+  cacheDom() {
+    this.modal = document.getElementById('booking-modal');
+    this.modalTitle = document.getElementById('modal-title');
+    this.tourList = document.getElementById('tour-list');
+    this.availableToursSection = document.getElementById('available-tours');
+    this.toursAvailableList = document.getElementById('tours-available');
+    this.bookingForm = document.getElementById('booking-form');
+    this.submitBtn = document.getElementById('submit-btn');
+    this.submitText = document.getElementById('submit-text');
+    this.submitLoading = document.getElementById('submit-loading');
+    this.dateInput = document.getElementById('date');
+  },
+
+  bindEvents() {
+    this.modal.addEventListener('click', (e) => {
+      if (e.target === this.modal) this.close();
+    });
+
+    // Verificar disponibilidade ao mudar a data
+    this.dateInput?.addEventListener('change', () => {
+      if (this.selectedTours.length > 0 && this.dateInput.value) {
+        this.checkAndShowAvailability();
+      }
+    });
+  },
+
+  updateAvailableTours(lang) {
+    this.availableTours = [
+      ...(typeof tourData !== 'undefined' ? tourData[lang] || [] : []),
+      ...(typeof hikeData !== 'undefined' ? hikeData[lang] || [] : [])
+    ];
+  },
+
+  setMinBookingDate() {
+    if (this.dateInput) {
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      this.dateInput.min = tomorrow.toISOString().split('T')[0];
+    }
+  },
+
+  open(tourName, price) {
+    const index = this.selectedTours.indexOf(tourName);
+    if (index === -1) {
+      this.selectedTours.push(tourName);
+      this.selectedPrices.push(price);
+    } else {
+      this.selectedTours.splice(index, 1);
+      this.selectedPrices.splice(index, 1);
+    }
+    this.updateTourList();
+    this.modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+
+    // Se já tem data selecionada, verificar disponibilidade
+    if (this.dateInput?.value) {
+      this.checkAndShowAvailability();
+    }
+  },
+
+  close() {
+    this.selectedTours = [];
+    this.selectedPrices = [];
+    this.modal.style.display = 'none';
+    this.availableToursSection.style.display = 'none';
+    this.bookingForm?.reset();
+    this.clearAvailabilityIndicators();
+    document.body.style.overflow = 'auto';
+  },
+
+  // ── Verificar disponibilidade no backend ──
+  async checkAndShowAvailability() {
+    const date = this.dateInput.value;
+    if (!date || this.selectedTours.length === 0) return;
+
+    try {
+      const response = await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        body: JSON.stringify({
+          action: 'checkAvailability',
+          tours: this.selectedTours,
+          date
+        })
+      });
+      const result = await response.json();
+      if (result.success) {
+        this.showAvailabilityBadges(result.availability);
+      }
+    } catch (err) {
+      console.warn('Não foi possível verificar disponibilidade:', err);
+    }
+  },
+
+  showAvailabilityBadges(availability) {
+    this.clearAvailabilityIndicators();
+    const items = this.tourList.querySelectorAll('.tour-item');
+    items.forEach(item => {
+      const tourName = item.dataset.tourName;
+      const avail = availability[tourName];
+      if (!avail) return;
+
+      const badge = document.createElement('span');
+      badge.className = 'availability-badge';
+
+      if (avail.isFull) {
+        badge.textContent = '🔴 Lotado';
+        badge.style.cssText = 'background:#ff4d4d;color:white;padding:3px 8px;border-radius:10px;font-size:0.75rem;margin-left:8px';
+      } else if (avail.available <= 3) {
+        badge.textContent = `⚠️ Últimas ${avail.available} vagas`;
+        badge.style.cssText = 'background:#ffa500;color:white;padding:3px 8px;border-radius:10px;font-size:0.75rem;margin-left:8px';
+      } else {
+        badge.textContent = `✅ ${avail.available} vagas`;
+        badge.style.cssText = 'background:#4CAF50;color:white;padding:3px 8px;border-radius:10px;font-size:0.75rem;margin-left:8px';
+      }
+
+      item.querySelector('span')?.appendChild(badge);
+    });
+  },
+
+  clearAvailabilityIndicators() {
+    document.querySelectorAll('.availability-badge').forEach(el => el.remove());
+  },
+
+  showAvailableTours() {
+    this.toursAvailableList.innerHTML = '';
+    const notSelected = this.availableTours.filter(t => !this.selectedTours.includes(t.name));
+    if (notSelected.length === 0) {
+      this.toursAvailableList.innerHTML = '<p style="text-align:center;color:#aaa">Todos os passeios já estão selecionados</p>';
+      return;
+    }
+    notSelected.forEach(tour => {
+      const item = document.createElement('li');
+      item.style.marginBottom = '10px';
+      item.innerHTML = `
+        <input type="checkbox" id="tour-${tour.name.replace(/\s+/g,'-')}" value="${tour.name}">
+        <label for="tour-${tour.name.replace(/\s+/g,'-')}">
+          ${tour.name} — R$ ${tour.price},00/pessoa
+        </label>`;
+      this.toursAvailableList.appendChild(item);
+    });
+    this.availableToursSection.style.display = 'block';
+  },
+
+  confirmSelection() {
+    document.querySelectorAll('#tours-available input[type="checkbox"]').forEach(cb => {
+      if (cb.checked) {
+        const tour = this.availableTours.find(t => t.name === cb.value);
+        if (tour && !this.selectedTours.includes(tour.name)) {
+          this.selectedTours.push(tour.name);
+          this.selectedPrices.push(tour.price);
+        }
+      }
+    });
+    this.updateTourList();
+    this.availableToursSection.style.display = 'none';
+    if (this.dateInput?.value) this.checkAndShowAvailability();
+  },
+
+  removeTour(tourName) {
+    const index = this.selectedTours.indexOf(tourName);
+    if (index !== -1) {
+      this.selectedTours.splice(index, 1);
+      this.selectedPrices.splice(index, 1);
+      this.updateTourList();
+    }
+  },
+
+  updateTourList() {
+    this.tourList.innerHTML = '';
+    if (this.selectedTours.length === 0) {
+      this.tourList.innerHTML = '<p style="text-align:center;color:#aaa;padding:20px">Nenhum passeio selecionado.</p>';
+    } else {
+      this.selectedTours.forEach((tour, i) => {
+        const item = document.createElement('div');
+        item.className = 'tour-item';
+        item.dataset.tourName = tour;
+        item.innerHTML = `
+          <span>
+            <strong>${tour}</strong> — R$ ${this.selectedPrices[i]},00/pessoa
+          </span>
+          <button onclick="BookingModal.removeTour('${tour.replace(/'/g,"\\'")}')">Remover</button>`;
+        this.tourList.appendChild(item);
+      });
+    }
+    const count = this.selectedTours.length;
+    const label = `passeio${count !== 1 ? 's' : ''} selecionado${count !== 1 ? 's' : ''}`;
+    this.modalTitle.textContent = `Reserve Sua Aventura (${count} ${label})`;
+  },
+
+  // ── Enviar reserva para o backend ──
+  async submitForm() {
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const date = document.getElementById('date').value;
+    const people = parseInt(document.getElementById('people').value);
+    const specialRequests = document.getElementById('special-requests').value.trim();
+
+    // Validações locais
+    if (!name || !phone || !email || !date || !people || this.selectedTours.length === 0) {
+      showToast('Por favor, preencha todos os campos e selecione pelo menos um passeio.', true);
+      return;
+    }
+    if (people < 1 || people > 10) {
+      showToast('Número de pessoas deve ser entre 1 e 10.', true);
+      return;
+    }
+
+    // Mostrar loading
+    this.submitText.style.display = 'none';
+    this.submitLoading.style.display = 'inline-block';
+    this.submitBtn.disabled = true;
+
+    try {
+      const response = await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        body: JSON.stringify({
+          action: 'createBooking',
+          name, phone, email, date,
+          people: people,
+          tours: this.selectedTours,
+          prices: this.selectedPrices,
+          specialRequests
+        })
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // ✅ Reserva confirmada
+        const msg = `Reserva confirmada! ID: ${result.bookingId}${result.hasDiscount ? ' | Desconto de 15% aplicado!' : ''}`;
+        showToast(msg);
+        this.close();
+
+      } else if (result.unavailable && result.unavailable.length > 0) {
+        // 🔴 Passeio(s) lotado(s) — oferecer lista de espera
+        this.handleUnavailable(result.unavailable, { name, phone, email, date, people, specialRequests });
+
+      } else {
+        showToast(result.error || 'Erro ao processar reserva. Tente novamente.', true);
+      }
+
+    } catch (err) {
+      console.error('Erro na reserva:', err);
+      showToast('Erro de conexão. Verifique sua internet e tente novamente.', true);
+    } finally {
+      this.submitText.style.display = 'inline-block';
+      this.submitLoading.style.display = 'none';
+      this.submitBtn.disabled = false;
+    }
+  },
+
+  // ── Lidar com passeios lotados → oferecer lista de espera ──
+  handleUnavailable(unavailable, formData) {
+    const fullTours = unavailable.filter(u => u.isFull).map(u => u.tour);
+    const partialTours = unavailable.filter(u => !u.isFull);
+
+    let msg = '';
+    if (fullTours.length > 0) {
+      msg += `Os seguintes passeios estão lotados na data selecionada:\n• ${fullTours.join('\n• ')}\n\n`;
+    }
+    partialTours.forEach(t => {
+      msg += `"${t.tour}" tem apenas ${t.available} vaga(s), mas você pediu ${formData.people}.\n`;
+    });
+    msg += '\nDeseja entrar na lista de espera?';
+
+    if (confirm(msg)) {
+      this.joinWaitlist(formData);
+    }
+  },
+
+  // ── Entrar na lista de espera ──
+  async joinWaitlist(formData) {
+    this.submitBtn.disabled = true;
+
+    try {
+      const response = await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        body: JSON.stringify({
+          action: 'joinWaitlist',
+          ...formData,
+          tours: this.selectedTours,
+        })
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        showToast(`✅ Você está na lista de espera! ID: ${result.waitId}. Avisaremos quando abrir vaga.`);
+        this.close();
+      } else {
+        showToast('Erro ao entrar na lista de espera. Tente novamente.', true);
+      }
+    } catch (err) {
+      showToast('Erro de conexão.', true);
+    } finally {
+      this.submitBtn.disabled = false;
+    }
+  }
+};
 
         // ========== MOBILE NAVIGATION ==========
         const MobileNav = { init() { const toggleBtn = document.getElementById('mobile-menu-toggle'); const nav = document.getElementById('main-nav'); toggleBtn.addEventListener('click', () => nav.classList.toggle('active')); nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => nav.classList.remove('active'))); } };
