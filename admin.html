@@ -20,7 +20,6 @@
   --gold:    #e8c87a;
   --red:     #ff5555;
   --green:   #4caf50;
-  --orange:  #ff9800;
   --text:    #e8e8e8;
   --muted:   #777;
   --font-d:  'Syne', sans-serif;
@@ -34,275 +33,131 @@ button{font-family:var(--font-b);cursor:pointer;border:none;background:none}
 input,select,textarea{font-family:var(--font-b)}
 
 /* ── LOGIN ── */
-#login-screen{
-  display:flex;align-items:center;justify-content:center;min-height:100vh;
-  background:radial-gradient(ellipse at 50% 0%, rgba(0,212,170,0.08) 0%, transparent 70%);
-}
-.login-card{
-  background:var(--ink-3);border:1px solid var(--border);border-radius:20px;
-  padding:40px 36px;width:100%;max-width:380px;text-align:center;
-}
+#login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;background:radial-gradient(ellipse at 50% 0%,rgba(0,212,170,.08) 0%,transparent 70%)}
+.login-card{background:var(--ink-3);border:1px solid var(--border);border-radius:20px;padding:40px 36px;width:100%;max-width:380px;text-align:center}
 .login-logo{font-family:var(--font-d);font-size:1.6rem;font-weight:800;color:#fff;margin-bottom:6px}
 .login-logo span{color:var(--teal)}
-.login-sub{font-size:0.8rem;color:var(--muted);margin-bottom:28px}
-.login-field{
-  width:100%;background:var(--ink-4);border:1px solid var(--border);border-radius:10px;
-  padding:12px 14px;color:var(--text);font-size:0.9rem;margin-bottom:10px;
-  transition:border-color .2s;
-}
+.login-sub{font-size:.8rem;color:var(--muted);margin-bottom:28px}
+.login-field{width:100%;background:var(--ink-4);border:1px solid var(--border);border-radius:10px;padding:12px 14px;color:var(--text);font-size:.9rem;margin-bottom:10px;transition:border-color .2s}
 .login-field:focus{outline:none;border-color:var(--teal)}
-.login-btn{
-  width:100%;background:var(--teal);color:var(--ink);font-weight:700;font-size:0.95rem;
-  padding:12px;border-radius:10px;margin-top:6px;transition:background .2s;
-}
+.login-btn{width:100%;background:var(--teal);color:var(--ink);font-weight:700;font-size:.95rem;padding:12px;border-radius:10px;margin-top:6px;transition:background .2s}
 .login-btn:hover{background:var(--teal-d)}
-.login-err{color:var(--red);font-size:0.8rem;margin-top:10px;display:none}
+.login-err{color:var(--red);font-size:.8rem;margin-top:10px;display:none}
 
-/* ── MAIN APP ── */
+/* ── APP ── */
 #app{display:none}
-
-/* SIDEBAR */
-.sidebar{
-  position:fixed;top:0;left:0;bottom:0;width:220px;
-  background:var(--ink-2);border-right:1px solid var(--border);
-  display:flex;flex-direction:column;z-index:50;
-}
-.sidebar-logo{
-  padding:20px 18px 16px;
-  font-family:var(--font-d);font-size:1.1rem;font-weight:800;color:#fff;
-  border-bottom:1px solid var(--border);
-}
+.sidebar{position:fixed;top:0;left:0;bottom:0;width:220px;background:var(--ink-2);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:50}
+.sidebar-logo{padding:20px 18px 16px;font-family:var(--font-d);font-size:1.1rem;font-weight:800;color:#fff;border-bottom:1px solid var(--border)}
 .sidebar-logo span{color:var(--teal)}
-.sidebar-badge{
-  font-size:0.6rem;font-weight:700;background:var(--teal);color:var(--ink);
-  padding:2px 6px;border-radius:4px;margin-left:6px;vertical-align:middle;
-}
+.sidebar-badge{font-size:.6rem;font-weight:700;background:var(--teal);color:var(--ink);padding:2px 6px;border-radius:4px;margin-left:6px;vertical-align:middle}
 nav.sidebar-nav{flex:1;padding:12px 10px;display:flex;flex-direction:column;gap:2px}
-.nav-item{
-  display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;
-  font-size:0.85rem;font-weight:500;color:var(--muted);transition:all .2s;cursor:pointer;
-}
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;font-size:.85rem;font-weight:500;color:var(--muted);transition:all .2s;cursor:pointer}
 .nav-item:hover{background:var(--surface);color:var(--text)}
 .nav-item.active{background:rgba(0,212,170,.1);color:var(--teal);font-weight:600}
-.nav-item i{width:16px;text-align:center;font-size:0.9rem}
-.sidebar-footer{
-  padding:14px 18px;border-top:1px solid var(--border);
-  font-size:0.75rem;color:var(--muted);
-}
-.logout-btn{
-  display:flex;align-items:center;gap:8px;font-size:0.8rem;color:var(--muted);
-  padding:8px 12px;border-radius:8px;transition:all .2s;margin-top:6px;
-}
+.nav-item i{width:16px;text-align:center;font-size:.9rem}
+.sidebar-footer{padding:14px 18px;border-top:1px solid var(--border);font-size:.75rem;color:var(--muted)}
+.logout-btn{display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--muted);padding:8px 12px;border-radius:8px;transition:all .2s;margin-top:6px}
 .logout-btn:hover{background:rgba(255,85,85,.1);color:var(--red)}
 
-/* MAIN CONTENT */
 .main{margin-left:220px;padding:28px 32px;min-height:100vh}
-.page-header{
-  display:flex;align-items:center;justify-content:space-between;
-  margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--border);
-}
+.page-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--border)}
 .page-title{font-family:var(--font-d);font-size:1.4rem;font-weight:800;color:#fff}
-.page-sub{font-size:0.8rem;color:var(--muted);margin-top:2px}
-.sync-btn{
-  display:flex;align-items:center;gap:6px;background:var(--ink-3);border:1px solid var(--border);
-  color:var(--text);font-size:0.82rem;font-weight:500;padding:8px 14px;border-radius:8px;
-  transition:all .2s;
-}
+.page-sub{font-size:.8rem;color:var(--muted);margin-top:2px}
+.sync-btn{display:flex;align-items:center;gap:6px;background:var(--ink-3);border:1px solid var(--border);color:var(--text);font-size:.82rem;font-weight:500;padding:8px 14px;border-radius:8px;transition:all .2s}
 .sync-btn:hover{border-color:var(--teal);color:var(--teal)}
 .sync-btn.loading i{animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* SECTIONS */
 .section{display:none}
 .section.active{display:block}
 
-/* CARDS */
-.card{
-  background:var(--ink-3);border:1px solid var(--border);border-radius:14px;
-  padding:20px 22px;margin-bottom:14px;
-}
-.card-title{
-  font-family:var(--font-d);font-size:0.95rem;font-weight:700;color:#fff;margin-bottom:14px;
-  display:flex;align-items:center;gap:8px;
-}
+.card{background:var(--ink-3);border:1px solid var(--border);border-radius:14px;padding:20px 22px;margin-bottom:14px}
+.card-title{font-family:var(--font-d);font-size:.95rem;font-weight:700;color:#fff;margin-bottom:14px;display:flex;align-items:center;gap:8px}
 
-/* STATS ROW */
 .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
-.stat-card{
-  background:var(--ink-3);border:1px solid var(--border);border-radius:14px;padding:18px 20px;
-}
+.stat-card{background:var(--ink-3);border:1px solid var(--border);border-radius:14px;padding:18px 20px}
 .stat-val{font-family:var(--font-d);font-size:1.6rem;font-weight:800;color:#fff;line-height:1}
-.stat-lbl{font-size:0.75rem;color:var(--muted);margin-top:4px}
+.stat-lbl{font-size:.75rem;color:var(--muted);margin-top:4px}
 .stat-card.teal .stat-val{color:var(--teal)}
 .stat-card.gold .stat-val{color:var(--gold)}
 .stat-card.red  .stat-val{color:var(--red)}
 .stat-card.green .stat-val{color:var(--green)}
 
-/* TOURS TABLE */
 .tours-table{width:100%;border-collapse:collapse}
-.tours-table th{
-  font-size:0.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--muted);padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);
-}
-.tours-table td{
-  padding:13px 12px;border-bottom:1px solid rgba(255,255,255,0.04);
-  font-size:0.875rem;color:var(--text);vertical-align:middle;
-}
+.tours-table th{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:8px 12px;text-align:left;border-bottom:1px solid var(--border)}
+.tours-table td{padding:13px 12px;border-bottom:1px solid rgba(255,255,255,.04);font-size:.875rem;color:var(--text);vertical-align:middle}
 .tours-table tr:last-child td{border-bottom:none}
 .tours-table tr:hover td{background:var(--surface)}
 .tour-name-cell{font-weight:600;color:#fff}
 
-/* TOGGLE */
 .toggle{position:relative;width:42px;height:24px;flex-shrink:0}
 .toggle input{opacity:0;width:0;height:0}
-.toggle-slider{
-  position:absolute;inset:0;background:var(--ink-4);border:1px solid var(--border);
-  border-radius:12px;cursor:pointer;transition:.3s;
-}
-.toggle-slider::before{
-  content:'';position:absolute;width:16px;height:16px;left:3px;top:3px;
-  background:var(--muted);border-radius:50%;transition:.3s;
-}
+.toggle-slider{position:absolute;inset:0;background:var(--ink-4);border:1px solid var(--border);border-radius:12px;cursor:pointer;transition:.3s}
+.toggle-slider::before{content:'';position:absolute;width:16px;height:16px;left:3px;top:3px;background:var(--muted);border-radius:50%;transition:.3s}
 .toggle input:checked + .toggle-slider{background:rgba(0,212,170,.15);border-color:var(--teal)}
 .toggle input:checked + .toggle-slider::before{background:var(--teal);transform:translateX(18px)}
 
-/* NUMBER INPUT */
-.num-input{
-  background:var(--ink-4);border:1px solid var(--border);border-radius:7px;
-  padding:5px 8px;color:var(--text);font-size:0.85rem;width:70px;
-  transition:border-color .2s;
-}
+.num-input{background:var(--ink-4);border:1px solid var(--border);border-radius:7px;padding:5px 8px;color:var(--text);font-size:.85rem;width:70px;transition:border-color .2s}
 .num-input:focus{outline:none;border-color:var(--teal)}
-
-/* PRICE INPUT */
 .price-input-wrap{display:flex;align-items:center;gap:4px}
-.price-prefix{font-size:0.8rem;color:var(--muted)}
-.price-input{
-  background:var(--ink-4);border:1px solid var(--border);border-radius:7px;
-  padding:5px 8px;color:var(--text);font-size:0.875rem;width:80px;
-  transition:border-color .2s;
-}
+.price-prefix{font-size:.8rem;color:var(--muted)}
+.price-input{background:var(--ink-4);border:1px solid var(--border);border-radius:7px;padding:5px 8px;color:var(--text);font-size:.875rem;width:90px;transition:border-color .2s}
 .price-input:focus{outline:none;border-color:var(--teal)}
 
-/* SAVE BTN (inline) */
-.save-btn{
-  background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.25);color:var(--teal);
-  font-size:0.78rem;font-weight:600;padding:5px 10px;border-radius:6px;
-  transition:all .2s;white-space:nowrap;
-}
+.save-btn{background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.25);color:var(--teal);font-size:.78rem;font-weight:600;padding:5px 10px;border-radius:6px;transition:all .2s;white-space:nowrap}
 .save-btn:hover{background:rgba(0,212,170,.2)}
 
-/* STATUS BADGE */
-.badge{
-  display:inline-flex;align-items:center;gap:4px;font-size:0.7rem;font-weight:600;
-  padding:3px 8px;border-radius:100px;
-}
-.badge.open  {background:rgba(0,212,170,.12);color:var(--teal);border:1px solid rgba(0,212,170,.2)}
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:.7rem;font-weight:600;padding:3px 8px;border-radius:100px}
+.badge.open{background:rgba(0,212,170,.12);color:var(--teal);border:1px solid rgba(0,212,170,.2)}
 .badge.closed{background:rgba(255,85,85,.12);color:var(--red);border:1px solid rgba(255,85,85,.2)}
-.badge.ok    {background:rgba(76,175,80,.12);color:var(--green);border:1px solid rgba(76,175,80,.2)}
 
-/* PROMO CARDS */
 .promo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
-.promo-card{
-  background:var(--ink-4);border:1px solid var(--border);border-radius:12px;padding:16px 18px;
-}
-.promo-code{
-  font-family:monospace;font-size:1rem;font-weight:700;color:var(--gold);
-  background:rgba(232,200,122,.08);border:1px solid rgba(232,200,122,.15);
-  padding:3px 10px;border-radius:6px;display:inline-block;margin-bottom:8px;
-}
-.promo-desc{font-size:0.8rem;color:var(--muted);margin-bottom:12px}
+.promo-card{background:var(--ink-4);border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+.promo-code{font-family:monospace;font-size:1rem;font-weight:700;color:var(--gold);background:rgba(232,200,122,.08);border:1px solid rgba(232,200,122,.15);padding:3px 10px;border-radius:6px;display:inline-block;margin-bottom:8px}
+.promo-desc{font-size:.8rem;color:var(--muted);margin-bottom:12px}
 .promo-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.del-btn{
-  background:rgba(255,85,85,.1);border:1px solid rgba(255,85,85,.2);color:var(--red);
-  font-size:0.78rem;padding:5px 10px;border-radius:6px;transition:all .2s;
-}
+.del-btn{background:rgba(255,85,85,.1);border:1px solid rgba(255,85,85,.2);color:var(--red);font-size:.78rem;padding:5px 10px;border-radius:6px;transition:all .2s}
 .del-btn:hover{background:rgba(255,85,85,.2)}
 
-/* ADD PROMO FORM */
-.add-promo-form{
-  background:var(--ink-4);border:1px solid var(--border);border-radius:12px;
-  padding:18px;margin-top:14px;display:grid;grid-template-columns:1fr 1fr 80px auto;gap:8px;align-items:end;
-}
-.form-label{font-size:0.72rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
-.form-field{
-  background:var(--ink-3);border:1px solid var(--border);border-radius:7px;
-  padding:8px 10px;color:var(--text);font-size:0.875rem;width:100%;transition:border-color .2s;
-}
+.add-promo-form{background:var(--ink-4);border:1px solid var(--border);border-radius:12px;padding:18px;margin-top:14px;display:grid;grid-template-columns:1fr 1fr 80px auto;gap:8px;align-items:end}
+.form-label{font-size:.72rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+.form-field{background:var(--ink-3);border:1px solid var(--border);border-radius:7px;padding:8px 10px;color:var(--text);font-size:.875rem;width:100%;transition:border-color .2s}
 .form-field:focus{outline:none;border-color:var(--teal)}
-.add-btn{
-  background:var(--teal);color:var(--ink);font-weight:700;font-size:0.85rem;
-  padding:9px 14px;border-radius:8px;transition:background .2s;white-space:nowrap;
-}
+.add-btn{background:var(--teal);color:var(--ink);font-weight:700;font-size:.85rem;padding:9px 14px;border-radius:8px;transition:background .2s;white-space:nowrap}
 .add-btn:hover{background:var(--teal-d)}
 
-/* CALENDAR */
 .cal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
-.cal-tour-card{
-  background:var(--ink-4);border:1px solid var(--border);border-radius:12px;padding:16px;
-}
-.cal-tour-name{font-weight:700;color:#fff;font-size:0.9rem;margin-bottom:12px}
+.cal-tour-card{background:var(--ink-4);border:1px solid var(--border);border-radius:12px;padding:16px}
+.cal-tour-name{font-weight:700;color:#fff;font-size:.9rem;margin-bottom:12px}
 .cal-input-row{display:flex;gap:8px;margin-bottom:8px}
-.cal-date-input{
-  flex:1;background:var(--ink-3);border:1px solid var(--border);border-radius:7px;
-  padding:7px 10px;color:var(--text);font-size:0.82rem;transition:border-color .2s;
-}
+.cal-date-input{flex:1;background:var(--ink-3);border:1px solid var(--border);border-radius:7px;padding:7px 10px;color:var(--text);font-size:.82rem;transition:border-color .2s}
 .cal-date-input:focus{outline:none;border-color:var(--teal)}
-.block-btn{
-  background:rgba(255,85,85,.12);border:1px solid rgba(255,85,85,.25);color:var(--red);
-  font-size:0.78rem;font-weight:600;padding:7px 12px;border-radius:7px;transition:all .2s;white-space:nowrap;
-}
+.block-btn{background:rgba(255,85,85,.12);border:1px solid rgba(255,85,85,.25);color:var(--red);font-size:.78rem;font-weight:600;padding:7px 12px;border-radius:7px;transition:all .2s;white-space:nowrap}
 .block-btn:hover{background:rgba(255,85,85,.25)}
 .blocked-dates{display:flex;flex-direction:column;gap:5px;max-height:120px;overflow-y:auto}
-.blocked-date-item{
-  display:flex;align-items:center;justify-content:space-between;
-  background:rgba(255,85,85,.06);border:1px solid rgba(255,85,85,.15);
-  border-radius:6px;padding:5px 10px;font-size:0.8rem;
-}
-.unblock-btn{
-  font-size:0.7rem;color:var(--muted);background:none;border:none;cursor:pointer;
-  padding:2px 6px;border-radius:4px;transition:color .2s;
-}
+.blocked-date-item{display:flex;align-items:center;justify-content:space-between;background:rgba(255,85,85,.06);border:1px solid rgba(255,85,85,.15);border-radius:6px;padding:5px 10px;font-size:.8rem}
+.unblock-btn{font-size:.7rem;color:var(--muted);background:none;border:none;cursor:pointer;padding:2px 6px;border-radius:4px;transition:color .2s}
 .unblock-btn:hover{color:var(--red)}
-.no-blocks{font-size:0.78rem;color:var(--muted);font-style:italic}
+.no-blocks{font-size:.78rem;color:var(--muted);font-style:italic}
 
-/* BOOKINGS TABLE */
 .bookings-filter-row{display:flex;gap:8px;margin-bottom:16px;align-items:center}
-.filter-input{
-  background:var(--ink-3);border:1px solid var(--border);border-radius:7px;
-  padding:8px 12px;color:var(--text);font-size:0.85rem;flex:1;max-width:220px;
-  transition:border-color .2s;
-}
+.filter-input{background:var(--ink-3);border:1px solid var(--border);border-radius:7px;padding:8px 12px;color:var(--text);font-size:.85rem;flex:1;max-width:220px;transition:border-color .2s}
 .filter-input:focus{outline:none;border-color:var(--teal)}
-.filter-btn{
-  background:var(--ink-3);border:1px solid var(--border);color:var(--text);
-  font-size:0.82rem;padding:8px 14px;border-radius:7px;transition:all .2s;
-}
+.filter-btn{background:var(--ink-3);border:1px solid var(--border);color:var(--text);font-size:.82rem;padding:8px 14px;border-radius:7px;transition:all .2s}
 .filter-btn:hover{border-color:var(--teal);color:var(--teal)}
-.bookings-table{width:100%;border-collapse:collapse;font-size:0.82rem}
-.bookings-table th{
-  font-size:0.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--muted);padding:8px 10px;text-align:left;border-bottom:1px solid var(--border);
-}
-.bookings-table td{padding:11px 10px;border-bottom:1px solid rgba(255,255,255,0.04);vertical-align:middle}
+.bookings-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.bookings-table th{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:8px 10px;text-align:left;border-bottom:1px solid var(--border)}
+.bookings-table td{padding:11px 10px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle}
 .bookings-table tr:hover td{background:var(--surface)}
-.status-confirmed{color:var(--green);font-weight:600}
-.status-cancelled{color:var(--red);font-weight:600}
-.empty-state{text-align:center;padding:40px;color:var(--muted);font-size:0.875rem}
+.status-Confirmado{color:var(--green);font-weight:600}
+.status-Cancelado{color:var(--red);font-weight:600}
+.empty-state{text-align:center;padding:40px;color:var(--muted);font-size:.875rem}
 
-/* TOAST */
-.toast{
-  position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
-  background:var(--ink-3);border:1px solid var(--border);color:var(--text);
-  font-size:0.85rem;font-weight:500;padding:11px 20px;border-radius:100px;
-  box-shadow:0 8px 32px rgba(0,0,0,.5);z-index:999;white-space:nowrap;
-  animation:toastIn .3s forwards;pointer-events:none;
-}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--ink-3);border:1px solid var(--border);color:var(--text);font-size:.85rem;font-weight:500;padding:11px 20px;border-radius:100px;box-shadow:0 8px 32px rgba(0,0,0,.5);z-index:999;white-space:nowrap;animation:toastIn .3s forwards;pointer-events:none}
 .toast.success{border-color:rgba(0,212,170,.3);color:var(--teal)}
-.toast.error  {border-color:rgba(255,85,85,.3);color:var(--red)}
+.toast.error{border-color:rgba(255,85,85,.3);color:var(--red)}
 @keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
 
-/* RESPONSIVE */
 @media(max-width:900px){
   .sidebar{width:60px}
   .sidebar-logo,.nav-item span,.sidebar-footer,.sidebar-badge{display:none}
@@ -315,7 +170,6 @@ nav.sidebar-nav{flex:1;padding:12px 10px;display:flex;flex-direction:column;gap:
 </head>
 <body>
 
-<!-- ═══════ LOGIN ═══════ -->
 <div id="login-screen">
   <div class="login-card">
     <div class="login-logo">Trip<span>Decoder</span></div>
@@ -327,31 +181,16 @@ nav.sidebar-nav{flex:1;padding:12px 10px;display:flex;flex-direction:column;gap:
   </div>
 </div>
 
-<!-- ═══════ APP ═══════ -->
 <div id="app">
-
-  <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="sidebar-logo">Trip<span>Decoder</span> <span class="sidebar-badge">Admin</span></div>
     <nav class="sidebar-nav">
-      <div class="nav-item active" data-section="dashboard" onclick="showSection('dashboard',this)">
-        <i class="fas fa-gauge-high"></i><span>Dashboard</span>
-      </div>
-      <div class="nav-item" data-section="inventory" onclick="showSection('inventory',this)">
-        <i class="fas fa-sliders"></i><span>Inventário</span>
-      </div>
-      <div class="nav-item" data-section="prices" onclick="showSection('prices',this)">
-        <i class="fas fa-tag"></i><span>Preços</span>
-      </div>
-      <div class="nav-item" data-section="promos" onclick="showSection('promos',this)">
-        <i class="fas fa-percent"></i><span>Promoções</span>
-      </div>
-      <div class="nav-item" data-section="calendar" onclick="showSection('calendar',this)">
-        <i class="fas fa-calendar-xmark"></i><span>Bloqueios</span>
-      </div>
-      <div class="nav-item" data-section="bookings" onclick="showSection('bookings',this)">
-        <i class="fas fa-receipt"></i><span>Reservas</span>
-      </div>
+      <div class="nav-item active" onclick="showSection('dashboard',this)"><i class="fas fa-gauge-high"></i><span>Dashboard</span></div>
+      <div class="nav-item" onclick="showSection('inventory',this)"><i class="fas fa-sliders"></i><span>Inventário</span></div>
+      <div class="nav-item" onclick="showSection('prices',this)"><i class="fas fa-tag"></i><span>Preços</span></div>
+      <div class="nav-item" onclick="showSection('promos',this)"><i class="fas fa-percent"></i><span>Promoções</span></div>
+      <div class="nav-item" onclick="showSection('calendar',this)"><i class="fas fa-calendar-xmark"></i><span>Bloqueios</span></div>
+      <div class="nav-item" onclick="showSection('bookings',this)"><i class="fas fa-receipt"></i><span>Reservas</span></div>
     </nav>
     <div class="sidebar-footer">
       <div style="margin-bottom:4px">Logado como <strong>admin</strong></div>
@@ -359,10 +198,7 @@ nav.sidebar-nav{flex:1;padding:12px 10px;display:flex;flex-direction:column;gap:
     </div>
   </aside>
 
-  <!-- MAIN -->
   <main class="main">
-
-    <!-- PAGE HEADER -->
     <div class="page-header">
       <div>
         <div class="page-title" id="page-title">Dashboard</div>
@@ -373,30 +209,17 @@ nav.sidebar-nav{flex:1;padding:12px 10px;display:flex;flex-direction:column;gap:
       </button>
     </div>
 
-    <!-- ── DASHBOARD ── -->
+    <!-- DASHBOARD -->
     <div class="section active" id="section-dashboard">
       <div class="stats-row">
-        <div class="stat-card teal">
-          <div class="stat-val" id="stat-open">–</div>
-          <div class="stat-lbl">Passeios abertos</div>
-        </div>
-        <div class="stat-card red">
-          <div class="stat-val" id="stat-closed">–</div>
-          <div class="stat-lbl">Passeios fechados</div>
-        </div>
-        <div class="stat-card gold">
-          <div class="stat-val" id="stat-promos">–</div>
-          <div class="stat-lbl">Promoções ativas</div>
-        </div>
-        <div class="stat-card green">
-          <div class="stat-val" id="stat-bookings-today">–</div>
-          <div class="stat-lbl">Reservas hoje</div>
-        </div>
+        <div class="stat-card teal"><div class="stat-val" id="stat-open">–</div><div class="stat-lbl">Passeios abertos</div></div>
+        <div class="stat-card red"><div class="stat-val" id="stat-closed">–</div><div class="stat-lbl">Passeios fechados</div></div>
+        <div class="stat-card gold"><div class="stat-val" id="stat-promos">–</div><div class="stat-lbl">Promoções ativas</div></div>
+        <div class="stat-card green"><div class="stat-val" id="stat-bookings-today">–</div><div class="stat-lbl">Reservas hoje</div></div>
       </div>
       <div class="card">
         <div class="card-title"><i class="fas fa-circle-info" style="color:var(--teal)"></i> Início rápido</div>
-        <p style="font-size:0.875rem;color:var(--muted);line-height:1.7">
-          Usa o menu lateral para navegar entre as secções.<br>
+        <p style="font-size:.875rem;color:var(--muted);line-height:1.7">
           <strong style="color:var(--text)">Inventário</strong> — abre/fecha passeios e ajusta vagas.<br>
           <strong style="color:var(--text)">Preços</strong> — altera preços individualmente ou em lote.<br>
           <strong style="color:var(--text)">Promoções</strong> — cria e gere cupons de desconto.<br>
@@ -404,44 +227,29 @@ nav.sidebar-nav{flex:1;padding:12px 10px;display:flex;flex-direction:column;gap:
           <strong style="color:var(--text)">Reservas</strong> — consulta reservas por data.
         </p>
       </div>
-      <div class="card" id="dash-quick-tours">
+      <div class="card">
         <div class="card-title"><i class="fas fa-compass" style="color:var(--teal)"></i> Estado dos passeios</div>
-        <div id="dash-tours-list" style="color:var(--muted);font-size:0.875rem">A carregar…</div>
+        <div id="dash-tours-list" style="color:var(--muted);font-size:.875rem">A carregar…</div>
       </div>
     </div>
 
-    <!-- ── INVENTÁRIO ── -->
+    <!-- INVENTÁRIO -->
     <div class="section" id="section-inventory">
       <div class="card">
         <div class="card-title"><i class="fas fa-sliders" style="color:var(--teal)"></i> Passeios & Vagas</div>
-        <table class="tours-table" id="inv-table">
-          <thead>
-            <tr>
-              <th>Passeio</th>
-              <th>Estado</th>
-              <th>Vagas máx.</th>
-              <th>Ação</th>
-            </tr>
-          </thead>
+        <table class="tours-table">
+          <thead><tr><th>Passeio</th><th>Aberto</th><th>Vagas máx.</th><th>Estado</th></tr></thead>
           <tbody id="inv-tbody"></tbody>
         </table>
       </div>
     </div>
 
-    <!-- ── PREÇOS ── -->
+    <!-- PREÇOS -->
     <div class="section" id="section-prices">
       <div class="card" style="margin-bottom:14px">
         <div class="card-title"><i class="fas fa-tag" style="color:var(--teal)"></i> Preços por passeio</div>
-        <table class="tours-table" id="price-table">
-          <thead>
-            <tr>
-              <th>Passeio</th>
-              <th>Preço atual (R$)</th>
-              <th>Preço original (R$)</th>
-              <th>Variação</th>
-              <th>Salvar</th>
-            </tr>
-          </thead>
+        <table class="tours-table">
+          <thead><tr><th>Passeio</th><th>Preço atual (R$)</th><th>Preço original (R$)</th><th>Variação</th><th>Salvar</th></tr></thead>
           <tbody id="price-tbody"></tbody>
         </table>
       </div>
@@ -453,86 +261,64 @@ nav.sidebar-nav{flex:1;padding:12px 10px;display:flex;flex-direction:column;gap:
             <option value="decrease">Reduzir</option>
           </select>
           <input type="number" id="batch-pct" class="num-input" placeholder="%" min="1" max="99" value="10">
-          <span style="font-size:0.85rem;color:var(--muted)">% em todos os passeios</span>
+          <span style="font-size:.85rem;color:var(--muted)">% em todos os passeios</span>
           <button class="save-btn" onclick="applyBatchPrice()">Aplicar</button>
           <button class="del-btn" onclick="resetPrices()">Repor originais</button>
         </div>
       </div>
     </div>
 
-    <!-- ── PROMOÇÕES ── -->
+    <!-- PROMOÇÕES -->
     <div class="section" id="section-promos">
       <div class="card">
-        <div class="card-title"><i class="fas fa-percent" style="color:var(--gold)"></i> Cupons ativos</div>
-        <div class="promo-grid" id="promos-grid">
-          <div style="color:var(--muted);font-size:0.875rem">A carregar…</div>
-        </div>
-        <!-- Add promo form -->
+        <div class="card-title"><i class="fas fa-percent" style="color:var(--gold)"></i> Cupons</div>
+        <div class="promo-grid" id="promos-grid"><div style="color:var(--muted);font-size:.875rem">A carregar…</div></div>
         <div class="add-promo-form">
-          <div>
-            <div class="form-label">Código</div>
-            <input type="text" id="new-code" class="form-field" placeholder="VERÃO10" style="text-transform:uppercase">
-          </div>
-          <div>
-            <div class="form-label">Descrição</div>
-            <input type="text" id="new-desc" class="form-field" placeholder="Ex: Oferta de verão">
-          </div>
-          <div>
-            <div class="form-label">Desconto %</div>
-            <input type="number" id="new-disc" class="form-field" placeholder="10" min="1" max="99">
-          </div>
-          <div style="padding-bottom:1px">
-            <button class="add-btn" onclick="addPromo()"><i class="fas fa-plus"></i> Adicionar</button>
-          </div>
+          <div><div class="form-label">Código</div><input type="text" id="new-code" class="form-field" placeholder="VERAO10" style="text-transform:uppercase"></div>
+          <div><div class="form-label">Descrição</div><input type="text" id="new-desc" class="form-field" placeholder="Ex: Oferta de verão"></div>
+          <div><div class="form-label">Desconto %</div><input type="number" id="new-disc" class="form-field" placeholder="10" min="1" max="99"></div>
+          <div style="padding-bottom:1px"><button class="add-btn" onclick="addPromo()"><i class="fas fa-plus"></i> Adicionar</button></div>
         </div>
       </div>
     </div>
 
-    <!-- ── BLOQUEIOS ── -->
+    <!-- BLOQUEIOS -->
     <div class="section" id="section-calendar">
       <div class="card">
         <div class="card-title"><i class="fas fa-calendar-xmark" style="color:var(--red)"></i> Bloquear datas por passeio</div>
-        <p style="font-size:0.8rem;color:var(--muted);margin-bottom:16px">Datas bloqueadas ficam indisponíveis para reserva nesse passeio específico.</p>
-        <div class="cal-grid" id="cal-grid">
-          <div style="color:var(--muted);font-size:0.875rem">A carregar…</div>
-        </div>
+        <p style="font-size:.8rem;color:var(--muted);margin-bottom:16px">Datas bloqueadas ficam indisponíveis para reserva nesse passeio específico.</p>
+        <div class="cal-grid" id="cal-grid"><div style="color:var(--muted);font-size:.875rem">A carregar…</div></div>
       </div>
     </div>
 
-    <!-- ── RESERVAS ── -->
+    <!-- RESERVAS -->
     <div class="section" id="section-bookings">
       <div class="card">
         <div class="card-title"><i class="fas fa-receipt" style="color:var(--teal)"></i> Reservas</div>
         <div class="bookings-filter-row">
           <input type="date" id="bk-date" class="filter-input">
           <button class="filter-btn" onclick="loadBookings()"><i class="fas fa-magnifying-glass"></i> Filtrar</button>
-          <button class="filter-btn" onclick="document.getElementById('bk-date').value=''; loadBookings()">Todas</button>
+          <button class="filter-btn" onclick="document.getElementById('bk-date').value='';loadBookings()">Todas</button>
         </div>
         <div style="overflow-x:auto">
           <table class="bookings-table">
-            <thead>
-              <tr>
-                <th>ID</th><th>Data</th><th>Nome</th><th>Email</th>
-                <th>Passeios</th><th>Pessoas</th><th>Total</th><th>Status</th>
-              </tr>
-            </thead>
-            <tbody id="bk-tbody">
-              <tr><td colspan="8" class="empty-state">Selecione uma data ou clique em "Todas"</td></tr>
-            </tbody>
+            <thead><tr><th>ID</th><th>Data</th><th>Nome</th><th>Email</th><th>Passeios</th><th>Pessoas</th><th>Total</th><th>Status</th></tr></thead>
+            <tbody id="bk-tbody"><tr><td colspan="8" class="empty-state">Selecione uma data ou clique em "Todas"</td></tr></tbody>
           </table>
         </div>
       </div>
     </div>
-
   </main>
 </div>
 
 <script>
-// ── CONFIG ────────────────────────────────────────────────
-const SCRIPT_URL  = 'https://script.google.com/macros/s/AKfycbyzUSdNpH1lOve6YdcIpPiVNWFI9g0w1kF5u2UGt-CJ2-69pnOPFgGJUmlw0afRZMW7/exec'; // ← substitui pela URL do Apps Script
+// ── CONFIG ── substitui pela tua URL ──────────────────────
+const SCRIPT_URL  = 'https://script.google.com/macros/s/AKfycbyzUSdNpH1lOve6YdcIpPiVNWFI9g0w1kF5u2UGt-CJ2-69pnOPFgGJUmlw0afRZMW7/exec';
 const CREDENTIALS = { user:'admin', pass:'tripdecoder2025' };
 
 // ── STATE ─────────────────────────────────────────────────
+// tourNames[i] guarda o nome REAL (com espaços) — usado sempre nas chamadas API
+// Os elementos HTML usam o índice i, nunca o nome transformado
 let appData = { tours:[], promos:[], calendar:[] };
 
 // ── AUTH ──────────────────────────────────────────────────
@@ -556,19 +342,19 @@ document.getElementById('l-pass').addEventListener('keydown', e => { if(e.key===
 
 // ── NAV ───────────────────────────────────────────────────
 const PAGE_META = {
-  dashboard : ['Dashboard',     'Visão geral dos passeios e reservas'],
-  inventory : ['Inventário',    'Abrir/fechar passeios e ajustar vagas'],
-  prices    : ['Preços',        'Gerir preços individuais e em lote'],
-  promos    : ['Promoções',     'Cupons e descontos'],
-  calendar  : ['Bloqueios',     'Bloquear datas por passeio'],
-  bookings  : ['Reservas',      'Consultar reservas por data'],
+  dashboard:['Dashboard','Visão geral dos passeios e reservas'],
+  inventory:['Inventário','Abrir/fechar passeios e ajustar vagas'],
+  prices:['Preços','Gerir preços individuais e em lote'],
+  promos:['Promoções','Cupons e descontos'],
+  calendar:['Bloqueios','Bloquear datas por passeio'],
+  bookings:['Reservas','Consultar reservas por data'],
 };
 function showSection(id, el) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   document.getElementById('section-'+id).classList.add('active');
   el.classList.add('active');
-  const [title, sub] = PAGE_META[id];
+  const [title,sub] = PAGE_META[id];
   document.getElementById('page-title').textContent = title;
   document.getElementById('page-sub').textContent   = sub;
 }
@@ -611,67 +397,66 @@ async function loadData() {
 
 // ── DASHBOARD ─────────────────────────────────────────────
 function renderDashboard() {
-  const open   = appData.tours.filter(t => t.open).length;
-  const closed = appData.tours.filter(t => !t.open).length;
-  const promos = appData.promos.filter(p => p.active).length;
-  document.getElementById('stat-open').textContent   = open;
-  document.getElementById('stat-closed').textContent = closed;
-  document.getElementById('stat-promos').textContent  = promos;
+  document.getElementById('stat-open').textContent   = appData.tours.filter(t=>t.open).length;
+  document.getElementById('stat-closed').textContent = appData.tours.filter(t=>!t.open).length;
+  document.getElementById('stat-promos').textContent = appData.promos.filter(p=>p.active).length;
+  document.getElementById('stat-bookings-today').textContent = '–';
 
-  const list = document.getElementById('dash-tours-list');
-  list.innerHTML = appData.tours.map(t => `
+  document.getElementById('dash-tours-list').innerHTML = appData.tours.map(t=>`
     <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border)">
-      <span style="font-size:0.875rem;color:${t.open?'var(--text)':'var(--muted)'}">${t.name}</span>
+      <span style="font-size:.875rem;color:${t.open?'var(--text)':'var(--muted)'}">${t.name}</span>
       <span class="badge ${t.open?'open':'closed'}">${t.open?'Aberto':'Fechado'}</span>
     </div>`).join('');
-
-  // bookings today: not available without extra call, show placeholder
-  document.getElementById('stat-bookings-today').textContent = '–';
 }
 
-// ── INVENTORY ─────────────────────────────────────────────
+// ── INVENTÁRIO ─────────────────────────────────────────────
+// CORREÇÃO: usa índice i como ID — o nome real é buscado em appData.tours[i].name
 function renderInventory() {
-  const tbody = document.getElementById('inv-tbody');
-  tbody.innerHTML = appData.tours.map(t => `
+  document.getElementById('inv-tbody').innerHTML = appData.tours.map((t,i)=>`
     <tr>
       <td class="tour-name-cell">${t.name}</td>
       <td>
         <label class="toggle">
-          <input type="checkbox" ${t.open?'checked':''} onchange="setStatus('${esc(t.name)}', this.checked)">
+          <input type="checkbox" ${t.open?'checked':''} onchange="setStatus(${i}, this.checked)">
           <span class="toggle-slider"></span>
         </label>
       </td>
       <td>
         <input type="number" class="num-input" value="${t.maxVagas}" min="0" max="999"
-          id="vagas-${esc(t.name)}" onchange="setVagas('${esc(t.name)}', this.value)">
+          id="vagas-${i}" onchange="setVagas(${i}, this.value)">
       </td>
       <td><span class="badge ${t.open?'open':'closed'}">${t.open?'Aberto':'Fechado'}</span></td>
     </tr>`).join('');
 }
 
-async function setStatus(name, open) {
-  const res = await api({ action:'adminSetTourStatus', tourName:name, open });
+async function setStatus(i, open) {
+  const name = appData.tours[i].name; // nome real com espaços
+  const res  = await api({ action:'adminSetTourStatus', tourName:name, open });
   if (res.success) {
-    const tour = appData.tours.find(t => t.name===name);
-    if (tour) tour.open = open;
+    appData.tours[i].open = open;
     renderDashboard();
-    toast((open?'✅ Aberto':'🔴 Fechado') + ': ' + name);
-  } else toast('Erro: '+res.error,'error');
+    renderInventory();
+    toast((open ? '✅ Aberto' : '🔴 Fechado') + ': ' + name);
+  } else toast('Erro: ' + res.error, 'error');
 }
 
-async function setVagas(name, vagas) {
-  const res = await api({ action:'adminSetVagas', tourName:name, vagas:parseInt(vagas) });
-  if (res.success) { const t=appData.tours.find(t=>t.name===name); if(t) t.maxVagas=parseInt(vagas); toast('Vagas atualizadas ✓'); }
-  else toast('Erro: '+res.error,'error');
+async function setVagas(i, vagas) {
+  const name = appData.tours[i].name;
+  const val  = parseInt(vagas);
+  const res  = await api({ action:'adminSetVagas', tourName:name, vagas:val });
+  if (res.success) {
+    appData.tours[i].maxVagas = val;
+    toast('Vagas atualizadas: ' + name + ' → ' + val);
+  } else toast('Erro: ' + res.error, 'error');
 }
 
-// ── PRICES ────────────────────────────────────────────────
+// ── PREÇOS ────────────────────────────────────────────────
 function renderPrices() {
-  const tbody = document.getElementById('price-tbody');
-  tbody.innerHTML = appData.tours.map(t => {
+  document.getElementById('price-tbody').innerHTML = appData.tours.map((t,i)=>{
     const diff = t.price - t.originalPrice;
     const pct  = t.originalPrice ? ((diff/t.originalPrice)*100).toFixed(0) : 0;
-    const varHtml = diff===0 ? '<span style="color:var(--muted)">—</span>'
+    const varHtml = diff===0
+      ? '<span style="color:var(--muted)">—</span>'
       : diff>0
         ? `<span style="color:var(--green)">+${pct}%</span>`
         : `<span style="color:var(--red)">${pct}%</span>`;
@@ -681,38 +466,37 @@ function renderPrices() {
         <td>
           <div class="price-input-wrap">
             <span class="price-prefix">R$</span>
-            <input type="number" class="price-input" value="${t.price}" min="1"
-              id="price-${esc(t.name)}">
+            <input type="number" class="price-input" value="${t.price}" min="1" id="price-${i}">
           </div>
         </td>
         <td style="color:var(--muted)">R$ ${t.originalPrice.toFixed(2)}</td>
         <td>${varHtml}</td>
-        <td><button class="save-btn" onclick="savePrice('${esc(t.name)}')">Salvar</button></td>
+        <td><button class="save-btn" onclick="savePrice(${i})">Salvar</button></td>
       </tr>`;
   }).join('');
 }
 
-async function savePrice(name) {
-  const val = parseFloat(document.getElementById('price-'+name).value);
-  if (!val || val < 1) { toast('Preço inválido','error'); return; }
+async function savePrice(i) {
+  const name = appData.tours[i].name;
+  const val  = parseFloat(document.getElementById('price-'+i).value);
+  if (!val || val < 1) { toast('Preço inválido', 'error'); return; }
   const res = await api({ action:'adminSetPrice', tourName:name, price:val });
   if (res.success) {
-    const t = appData.tours.find(t=>t.name===name);
-    if (t) t.price = val;
+    appData.tours[i].price = val;
     renderPrices();
-    toast('Preço atualizado ✓');
-  } else toast('Erro: '+res.error,'error');
+    toast('Preço atualizado: ' + name + ' → R$ ' + val);
+  } else toast('Erro: ' + res.error, 'error');
 }
 
 async function applyBatchPrice() {
-  const type = document.getElementById('batch-type').value;
-  const pct  = parseFloat(document.getElementById('batch-pct').value);
-  if (!pct || pct<=0) { toast('Percentagem inválida','error'); return; }
-  const factor = type==='increase' ? (1+pct/100) : (1-pct/100);
-  for (const t of appData.tours) {
-    const newPrice = Math.round(t.price * factor);
-    await api({ action:'adminSetPrice', tourName:t.name, price:newPrice });
-    t.price = newPrice;
+  const type   = document.getElementById('batch-type').value;
+  const pct    = parseFloat(document.getElementById('batch-pct').value);
+  if (!pct || pct <= 0) { toast('Percentagem inválida', 'error'); return; }
+  const factor = type === 'increase' ? (1 + pct/100) : (1 - pct/100);
+  for (let i = 0; i < appData.tours.length; i++) {
+    const newPrice = Math.round(appData.tours[i].price * factor);
+    await api({ action:'adminSetPrice', tourName:appData.tours[i].name, price:newPrice });
+    appData.tours[i].price = newPrice;
   }
   renderPrices();
   toast(`Preços ${type==='increase'?'aumentados':'reduzidos'} em ${pct}% ✓`);
@@ -720,142 +504,137 @@ async function applyBatchPrice() {
 
 async function resetPrices() {
   if (!confirm('Repor todos os preços para os valores originais?')) return;
-  for (const t of appData.tours) {
-    await api({ action:'adminSetPrice', tourName:t.name, price:t.originalPrice });
-    t.price = t.originalPrice;
+  for (let i = 0; i < appData.tours.length; i++) {
+    const orig = appData.tours[i].originalPrice;
+    await api({ action:'adminSetPrice', tourName:appData.tours[i].name, price:orig });
+    appData.tours[i].price = orig;
   }
   renderPrices();
   toast('Preços repostos ✓');
 }
 
-// ── PROMOS ────────────────────────────────────────────────
+// ── PROMOÇÕES ─────────────────────────────────────────────
 function renderPromos() {
   const grid = document.getElementById('promos-grid');
-  if (!appData.promos.length) { grid.innerHTML='<div style="color:var(--muted);font-size:0.875rem">Nenhuma promoção criada.</div>'; return; }
-  grid.innerHTML = appData.promos.map(p => `
+  if (!appData.promos.length) {
+    grid.innerHTML = '<div style="color:var(--muted);font-size:.875rem">Nenhuma promoção criada.</div>';
+    return;
+  }
+  grid.innerHTML = appData.promos.map((p,i)=>`
     <div class="promo-card">
       <div class="promo-code">${p.code}</div>
-      <div class="promo-desc">${p.description || ''} · <strong>${p.discount}% off</strong></div>
+      <div class="promo-desc">${p.description||''} · <strong>${p.discount}% off</strong></div>
       <div class="promo-row">
-        <label class="toggle" style="width:42px">
-          <input type="checkbox" ${p.active?'checked':''} onchange="togglePromo('${p.code}', this.checked)">
+        <label class="toggle">
+          <input type="checkbox" ${p.active?'checked':''} onchange="togglePromo(${i}, this.checked)">
           <span class="toggle-slider"></span>
         </label>
-        <span style="font-size:0.78rem;color:var(--muted)">${p.active?'Ativo':'Pausado'}</span>
-        <button class="del-btn" onclick="deletePromo('${p.code}')"><i class="fas fa-trash"></i> Apagar</button>
+        <span style="font-size:.78rem;color:var(--muted)">${p.active?'Ativo':'Pausado'}</span>
+        <button class="del-btn" onclick="deletePromo(${i})"><i class="fas fa-trash"></i> Apagar</button>
       </div>
     </div>`).join('');
 }
 
-async function togglePromo(code, active) {
-  const p = appData.promos.find(x=>x.code===code);
-  if (!p) return;
-  const res = await api({ action:'adminSetPromo', code, discount:p.discount, active, description:p.description });
-  if (res.success) { p.active=active; renderPromos(); toast(active?'Promoção ativada ✓':'Promoção pausada'); }
-  else toast('Erro','error');
+async function togglePromo(i, active) {
+  const p   = appData.promos[i];
+  const res = await api({ action:'adminSetPromo', code:p.code, discount:p.discount, active, description:p.description });
+  if (res.success) { appData.promos[i].active = active; renderPromos(); toast(active?'Promoção ativada ✓':'Promoção pausada'); }
+  else toast('Erro', 'error');
 }
 
-async function deletePromo(code) {
-  if (!confirm('Apagar promoção '+code+'?')) return;
-  const res = await api({ action:'adminDeletePromo', code });
-  if (res.success) { appData.promos=appData.promos.filter(p=>p.code!==code); renderPromos(); toast('Promoção apagada'); }
-  else toast('Erro','error');
+async function deletePromo(i) {
+  const p = appData.promos[i];
+  if (!confirm('Apagar promoção ' + p.code + '?')) return;
+  const res = await api({ action:'adminDeletePromo', code:p.code });
+  if (res.success) { appData.promos.splice(i,1); renderPromos(); toast('Promoção apagada'); }
+  else toast('Erro', 'error');
 }
 
 async function addPromo() {
   const code = document.getElementById('new-code').value.trim().toUpperCase();
   const desc = document.getElementById('new-desc').value.trim();
   const disc = parseFloat(document.getElementById('new-disc').value);
-  if (!code||!disc) { toast('Preenche código e desconto','error'); return; }
+  if (!code || !disc) { toast('Preenche código e desconto', 'error'); return; }
   const res = await api({ action:'adminSetPromo', code, discount:disc, active:true, description:desc });
   if (res.success) {
-    appData.promos.push({code,discount:disc,active:true,description:desc});
+    appData.promos.push({ code, discount:disc, active:true, description:desc });
     renderPromos();
-    document.getElementById('new-code').value='';
-    document.getElementById('new-desc').value='';
-    document.getElementById('new-disc').value='';
+    document.getElementById('new-code').value = '';
+    document.getElementById('new-desc').value = '';
+    document.getElementById('new-disc').value = '';
     toast('Promoção criada ✓');
-  } else toast('Erro: '+res.error,'error');
+  } else toast('Erro: ' + res.error, 'error');
 }
 
-// ── CALENDAR ──────────────────────────────────────────────
+// ── BLOQUEIOS ─────────────────────────────────────────────
 function renderCalendar() {
-  const grid = document.getElementById('cal-grid');
-  grid.innerHTML = appData.tours.map(t => {
+  document.getElementById('cal-grid').innerHTML = appData.tours.map((t,i)=>{
     const blocked = appData.calendar.filter(c => c.tourName===t.name && c.blocked);
     const blockedHtml = blocked.length
       ? blocked.map(b=>`
           <div class="blocked-date-item">
             <span>${b.date}</span>
-            <button class="unblock-btn" onclick="unblockDate('${esc(t.name)}','${b.date}')">
-              <i class="fas fa-xmark"></i>
-            </button>
+            <button class="unblock-btn" onclick="unblockDate(${i},'${b.date}')"><i class="fas fa-xmark"></i></button>
           </div>`).join('')
       : '<div class="no-blocks">Nenhuma data bloqueada</div>';
-
     return `
       <div class="cal-tour-card">
         <div class="cal-tour-name">${t.name}</div>
         <div class="cal-input-row">
-          <input type="date" class="cal-date-input" id="cal-date-${esc(t.name)}">
-          <button class="block-btn" onclick="blockDate('${esc(t.name)}')">
-            <i class="fas fa-lock"></i> Bloquear
-          </button>
+          <input type="date" class="cal-date-input" id="cal-date-${i}">
+          <button class="block-btn" onclick="blockDate(${i})"><i class="fas fa-lock"></i> Bloquear</button>
         </div>
-        <div class="blocked-dates" id="blocks-${esc(t.name)}">${blockedHtml}</div>
+        <div class="blocked-dates">${blockedHtml}</div>
       </div>`;
   }).join('');
 }
 
-async function blockDate(name) {
-  const el   = document.getElementById('cal-date-'+name);
-  const date = el.value;
-  if (!date) { toast('Seleciona uma data','error'); return; }
+async function blockDate(i) {
+  const name = appData.tours[i].name;
+  const date = document.getElementById('cal-date-'+i).value;
+  if (!date) { toast('Seleciona uma data', 'error'); return; }
   const res = await api({ action:'adminBlockDate', tourName:name, date });
   if (res.success) {
     if (!appData.calendar.find(c=>c.tourName===name&&c.date===date)) {
-      appData.calendar.push({tourName:name,date,blocked:true,reason:''});
+      appData.calendar.push({ tourName:name, date, blocked:true, reason:'' });
     }
-    el.value='';
     renderCalendar();
     toast('Data bloqueada ✓');
-  } else toast('Erro: '+res.error,'error');
+  } else toast('Erro: ' + res.error, 'error');
 }
 
-async function unblockDate(name, date) {
-  const res = await api({ action:'adminUnblockDate', tourName:name, date });
+async function unblockDate(i, date) {
+  const name = appData.tours[i].name;
+  const res  = await api({ action:'adminUnblockDate', tourName:name, date });
   if (res.success) {
     appData.calendar = appData.calendar.filter(c=>!(c.tourName===name&&c.date===date));
     renderCalendar();
     toast('Data desbloqueada ✓');
-  } else toast('Erro','error');
+  } else toast('Erro', 'error');
 }
 
-// ── BOOKINGS ──────────────────────────────────────────────
+// ── RESERVAS ──────────────────────────────────────────────
 async function loadBookings() {
   const date = document.getElementById('bk-date').value;
   const res  = await api({ action:'adminGetBookings', date });
-  if (!res.success) { toast('Erro: '+res.error,'error'); return; }
+  if (!res.success) { toast('Erro: '+res.error, 'error'); return; }
   const tbody = document.getElementById('bk-tbody');
   if (!res.bookings.length) {
-    tbody.innerHTML='<tr><td colspan="8" class="empty-state">Nenhuma reserva encontrada.</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="8" class="empty-state">Nenhuma reserva encontrada.</td></tr>';
     return;
   }
   tbody.innerHTML = res.bookings.map(b=>`
     <tr>
-      <td style="font-family:monospace;color:var(--teal);font-size:0.78rem">${b.bookingId||''}</td>
+      <td style="font-family:monospace;color:var(--teal);font-size:.78rem">${b.bookingId||''}</td>
       <td>${b.date||''}</td>
       <td style="font-weight:600">${b.name||''}</td>
-      <td style="color:var(--muted)">${b.email||''}</td>
-      <td>${(b.tours||'').replace(/\|/g,', ')}</td>
+      <td style="color:var(--muted);font-size:.78rem">${b.email||''}</td>
+      <td>${(b.tours||'').toString().replace(/\|/g,', ')}</td>
       <td style="text-align:center">${b.people||''}</td>
       <td>R$ ${parseFloat(b.totalPaid||0).toFixed(2)}</td>
-      <td><span class="status-${b.status||'confirmed'}">${b.status||'confirmed'}</span></td>
+      <td><span class="status-${b.status||'Confirmado'}">${b.status||'Confirmado'}</span></td>
     </tr>`).join('');
 }
-
-// ── UTIL ──────────────────────────────────────────────────
-function esc(s) { return (s||'').replace(/'/g,"\\'").replace(/\s+/g,'_'); }
 </script>
 </body>
 </html>
